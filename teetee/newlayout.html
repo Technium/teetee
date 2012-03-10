@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<title>BWDTTA</title>
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+	<link href="stylesheets/newlayout.css" media="screen, projection" rel="stylesheet" type="text/css">
+
+	<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<link rel="shortcut icon" href="images/logo.ico">
+	<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="images/logo72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="images/logo114x114.png">
+
+	<script>
+		function hideAddressBar()
+		{
+			if (!window.location.hash)
+			{
+				setTimeout(function() { window.scrollTo(0, 1); }, 50);
+			}
+		}
+
+		window.addEventListener("load", function(){ if(!window.pageYOffset){ hideAddressBar(); } } );
+		window.addEventListener("orientationchange", hideAddressBar );
+	</script>
+
+	<style>
+		body > section > article {
+			display: none;
+		}
+	</style>
+
+</head>
+<body>
+
+	<aside class="nav">
+		<header>
+			<a href="#main">BWDTTA</a>
+		</header>
+		<nav>
+			<ul>
+				<li class="league"><a href="#divisions"><div></div><span>Leagues</span></a></li>
+				<li class="clubs"><a href="#clubs"><div></div><span>Clubs</span></a></li>
+				<li class="myteam"><a href="#myteam"><div></div><span>My Team</span></a></li>
+			</ul>
+		</nav>
+		<footer>
+			<section class="update">
+				<div class="notice">
+					<div class="icon"></div>
+					<span class="msg"></span>
+				</div>
+				<span class="status">Updated: <span class="date">-</span></span>
+			</section>
+			<section class="copyright">
+				<div>&copy; BWDTTA 2012</div>
+				<div class="author">By Steve Purchase</div>
+			</section>
+		</footer>
+	</aside>
+	<section class="articles">
+		<article class="main">
+			<header>
+				<h1>Welcome!</h1>
+			</header>
+			<content>
+				<p>Pulvinar augue, tincidunt nascetur adipiscing montes pid aliquet enim pulvinar integer porttitor. Urna nisi hac montes phasellus nisi ultrices rhoncus odio nisi et velit dapibus natoque, ac? Tempor? Porta, mus, facilisis sed, enim diam? Et, enim placerat mattis, enim dictumst, a eros tempor pulvinar porttitor in tristique platea? Odio magna.</p>
+				<section class="collapsible">
+					<p>Montes et turpis amet? Diam! Mid ultrices. Et magnis ridiculus dictumst urna. Ultrices sagittis mus. Natoque ultricies! Odio mus natoque parturient habitasse est elementum, scelerisque turpis egestas, lacus ac sit natoque nisi parturient scelerisque, a phasellus sit diam sagittis, porttitor, amet tincidunt dolor, tristique in in dignissim amet ridiculus.</p>
+				</section>
+				<p>Dolor! Montes dolor penatibus, porttitor! Ultricies sociis! Turpis ut, nunc adipiscing porta eros. Dictumst, enim ut in. Urna. Aliquet, in penatibus lorem integer ac vel? Etiam ut? Sed velit. Pellentesque nisi! Cum egestas egestas! Amet in turpis lacus nec? Vut cursus placerat integer. Lundium! Dictumst amet, pellentesque purus placerat.</p>
+			</content>
+			<footer></footer>
+		</article>
+
+		<article class="divisions">
+			<header><h1>Browse the Divisions</h1></header>
+			<aside class="list">
+				<ul>
+					<li><a href="#division/0">Premier Division</a></li>
+					<li><a href="#division/1">Division 1</a></li>
+					<li><a href="#division/2">Division 2</a></li>
+				</ul>
+			</aside>
+			<content>
+				<p>Montes et turpis amet? Diam! Mid ultrices. Et magnis ridiculus dictumst urna. Ultrices sagittis mus. Natoque ultricies! Odio mus natoque parturient habitasse est elementum, scelerisque turpis egestas, lacus ac sit natoque nisi parturient scelerisque, a phasellus sit diam sagittis, porttitor, amet tincidunt dolor, tristique in in dignissim amet ridiculus.</p>
+			</content>
+		</article>
+
+		<article class="myteam">
+			<header>
+				<h1>It's nothing personal</h1>
+				<h2 style="margin-left: 6em">...but it could be</h2>
+			</header>
+			<content>
+				<p>Tell us which team you want to track and we can personalise the site to show you more relevant information.</p>
+				<p>In order to do this, click on the <span class="icon star">star</span> on a team's page. Once this is done you can click on My Team to go directly there.</p>
+			</content>
+		</article>
+
+		<article class="notfound">
+			<header><h1>Not Found</h1></header>
+			<content><p>Something broke.</p></content>
+		</article>
+	</section>
+
+	<section class="templates">
+		<article class="division">
+			<header>
+				<nav>
+					<a class="prevItemLink disabled" href="#division/0">Prev</a>
+					<a href="#division/1" class="nextItemLink">Next</a>
+				</nav>
+			</header>
+			<content>
+				<header>
+					<h1 class="content_name">Some Division</h1>
+				</header>
+
+				<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumyeirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diamvoluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumyeirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diamvoluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumyeirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diamvoluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumyeirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diamvoluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumyeirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diamvoluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet, consete</p>
+		</article>
+	</section>
+
+	<script type="text/javascript" src="date-en-GB.js"></script>
+	<script type="text/javascript" src="Kybos.js"></script>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="jquery.linq.min.js"></script>
+	<script type="text/javascript" src="jquery.ba-hashchange.min.js"></script>
+	<script type="text/javascript" src="pure_min.js"></script>
+	<script type="text/javascript" src="app.js"></script>
+
+</body>
+</html>

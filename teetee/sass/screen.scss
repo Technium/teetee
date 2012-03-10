@@ -1,0 +1,285 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+$gutter : 0.75em;
+$bigLeftWidth : 10em;
+$color-background: #fff;
+
+$dev : true;
+
+@import "compass/reset";
+
+/*
+*  Simple fluid media
+*/
+figure {
+  position: relative;
+}
+figure img,
+figure object,
+figure embed,
+figure video {
+  max-width: 100%;
+  display: block;
+}
+img {
+  border: 0;
+  -ms-interpolation-mode: bicubic;
+}
+
+/*
+*	Zoomable baseline grid
+*	type size presets
+*/
+body {
+  /* 16px / 24px */
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 1em;
+  //font-size: 14px;
+  line-height: 1.5em;
+}
+.small {
+  /* 13px / 18px */
+
+  font-size: 0.8125em;
+  line-height: 1.3846153846153846em;
+}
+.normal, h4 {
+  /* 16px / 24px */
+
+  font-size: 1em;
+  line-height: 1.5em;
+  /* 24 */
+
+}
+.large, h3 {
+  /* 26 / 36px */
+
+  font-size: 1.625em;
+  line-height: 1.3846153846153846em;
+}
+.huge, h2 {
+  /* 42px / 48px */
+
+  font-size: 2.625em;
+  line-height: 1.1428571428571428em;
+}
+.massive, h1 {
+  /* 68px / 72px */
+
+  font-size: 4.25em;
+  line-height: 1.0588235294117647em;
+}
+.gigantic {
+  /* 110px / 120px */
+
+  font-size: 6.875em;
+  line-height: 1.0909090909090908em;
+}
+
+/*
+*  Fixes for IE6-8
+*  http://jonikorpi.com/leaving-old-IE-behind/
+*/
+.ie body {
+  width: 40em;
+  margin: 0 auto;
+  font-size: 1.0625em;
+}
+.ie h1 {
+  /* 42px / 48px */
+
+  font-size: 2.625em;
+  line-height: 1.1428571428571428em;
+  margin: 1.1428571428571428em 0 0.5714285714285714em;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+p {
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+}
+
+
+html, body, div.container {
+	height: 100%;
+}
+
+.leagueLogo {
+	text-align: center;
+
+	img {
+		max-width: 100%;
+		height: auto;
+	}
+}
+
+.leftBigCol {
+	width: $bigLeftWidth;
+	padding: 0 $gutter;
+	position: fixed;
+	top: 0;
+	left: 0;
+	min-height: 100%;
+
+	.bottom {
+		position: absolute;
+		bottom: 0px;
+		margin-bottom: 0.3em;
+
+		font-size: 0.8125em;
+		line-height: 1.3846153846153846em;
+
+		.info {
+			font-size: 80%/80%;
+		}
+
+		.warning {
+			max-width: 2em;
+			height: auto;
+			bottom: -0.5em;
+			position: relative;
+		}
+	}
+}
+
+.mainCol {
+	float: left;
+	min-height: 100%;
+	width: 100%;
+	padding-left: $bigLeftWidth + $gutter;
+	padding-right: $gutter;
+}
+
+.vertNavBar {
+	text-align: center;
+	margin: 0.5em ($gutter * -1) 1em ($gutter * -1);
+
+	table {
+		width: 100%;
+		font-size: 70%;
+		line-height: 70%;
+
+		td { text-align: center; }
+		span { display: block; }
+
+		.img {
+			width: 100%;
+			height: 3em;
+			background-size: contain;
+			background-repeat: no-repeat;
+			background-position: center;
+		}
+
+		.league { background-image: url(../images/league.png); }
+		.clubs  { background-image: url(../images/clubs.png); }
+		.myteam { background-image: url(../images/myteam.png); }
+	}
+
+	ul li {
+		display: inline-block;
+
+		a {
+			margin: 0px;
+			padding: 0px;
+			font-size: 70%;
+			line-height: 70%;
+			text-align: center;
+
+			* {
+				padding: 0px;
+				margin: 0px;
+			}
+		}
+
+		img {
+			//max-width: 2.6em;
+			max-height: 3em;
+			padding: 0px;
+			margin: 0px;
+			vertical-align: middle;
+		}
+	}
+}
+
+
+@mixin drop-shadow($offset: 0.4em, $blur: 0.5em) {
+	-moz-box-shadow: $offset $offset $blur rgba(0,0,0,0.5);
+	-webkit-box-shadow: $offset $offset $blur rgba(0,0,0,0.5);
+	box-shadow: $offset $offset $blur rgba(0,0,0,0.5);
+}
+
+table.standing {
+	margin: 0.6em auto 1em auto;
+	//border: 0.1em solid black;
+	background: white;
+	@include drop-shadow(2px,5px);
+
+	thead tr {
+		border-bottom: 0.1em solid grey;
+	}
+
+	td, th {
+		text-align: center;
+		vertical-align: middle;
+		padding: 0.1em 0.5em;
+	}
+
+	td.first {
+		text-align: left;
+		//padding-right: 1.5em;
+	}
+
+	tr.even {
+		background-color: darken($color-background, 0.5);
+	}
+}
+
+
+@media screen and (min-width: 640px) and (min-height: 640px) {
+	.leftBigCol { display: block; }
+	.leftSmallCol { display: none; }
+	.topRow { display: none; }
+}
+@media screen and (max-height: 640px) and (orientation: landscape) {
+	.leftBigCol { display: none; }
+	.leftSmallCol { display: block; }
+	.topRow { display: none; }
+}
+@media screen and (max-height: 640px) and (orientation: portrait) {
+	.leftBigCol { display: none; }
+	.leftSmallCol { display: none; }
+	.topRow { display: block; }
+}
+
+
+@media screen and (max-width: 40em) {
+	table.standing {
+		.pri3 {
+			display: none;
+		}
+	}
+}
+
+@media screen and (max-width: 36em) {
+	table.standing {
+		.pri2 {
+			display: none;
+		}
+	}
+}
+
+@media screen and (max-width: 32em) {
+	table.standing {
+		.pri1 {
+			display: none;
+		}
+	}
+}

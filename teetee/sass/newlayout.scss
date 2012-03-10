@@ -1,0 +1,526 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+$gutter : 0.75em;
+$bigLeftWidth : 10em;
+$color-background: #fff;
+
+@import "env";
+
+@import "compass/reset";
+@import "compass/utilities/general/clearfix";
+
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 1em;
+  //font-size: 14px;
+  line-height: 1.5em;
+}
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+p {
+	margin: 0.4em 0;
+}
+
+
+html, body {
+	width: 100%;
+	height: 100%;
+}
+
+///////////////////////////////////////////////////////////////////////
+
+aside.nav {
+	position: fixed;
+	z-index: 100;
+
+	@if $dev >= 1 { background: rgba(204, 238, 255, 0.5) };
+
+	.update .notice {
+		&.checking {
+			.icon { background-image: url(../images/loading.png); }
+			.msg:after {
+				content: "Checking...";
+			}
+		}
+
+		&.fail {
+			.icon { background-image: url(../images/warning.png); }
+			.msg:after {
+				content: "Check failed!";
+			}
+		}
+
+		&.offline {
+			.icon { background-image: url(../images/warning.png); }
+			.msg:after {
+				content: "Offline";
+			}
+		}
+
+		&.okay {
+			display: none;
+		}
+	}
+}
+
+section.templates {
+	display: none;
+}
+
+section.articles > article {
+	@if $dev >= 1 { background: #efc };
+
+	padding: $gutter;
+	h1 { font-size: 150%; }
+
+	> header {
+		position: relative;
+		margin: 0.5em 0;
+
+		a {
+			position: relative;
+			width: 2em;
+			height: 2em;
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: contain;
+			text-indent: -9999px;
+
+			.disabled {
+				color: grey;
+			}
+
+			&:first-child {
+				float: left;
+				background-image: url(../images/left.png);
+			}
+
+			&:last-child {
+				float: right;
+				background-image: url(../images/right.png);
+			}
+		}
+	}
+
+	> content > header {
+		line-height: 2em;
+		padding-bottom: 0.5em;
+
+		h1 {
+			float: left;
+			padding: 0 0.5em;
+		}
+
+		@include clearfix;
+	}
+
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	-webkit-transition: left 0.5s ease-out, opacity 0.3s linear;
+	transition: left 0.5s ease-out, opacity 0.3s linear;
+
+	&.offLeft {
+		//background-color: #fec;
+		left: -100%;
+		//width: 100%;
+		opacity: 0.2;
+		// need to do 'right' in order to get width right?
+	}
+	&.offRight {
+		//background-color: #efc;
+		left: 100%;
+		//width: 100%;
+		opacity: 0.2;
+	}
+}
+
+
+///////////////////////////////////////////////////////////////////////
+
+/* Small-screen portrait mode - small nav bar at the top */
+@media screen and (orientation: portrait) and (max-width: 640px) {
+	section.articles > article {
+		width: 100%;
+	}
+
+	aside.nav {
+		top: 0;
+		width: 100%;
+
+		header {
+			a {
+				display: block;
+				position: relative;
+				width: 100%;
+				height: 100%;
+			}
+			position: absolute;
+			height: 100%;
+			background: url(../images/logo.png) no-repeat center center;
+			background-size: contain;
+			text-indent: -9999px;
+			width: 28%;
+		}
+
+		nav {
+			margin-left: 28%;
+			position: absolute;
+			right: 0;
+			left: 0;
+			height: 100%;
+
+			ul {
+				padding-top: 0.2em;
+				height: 100%;
+
+				li {
+					position: relative;
+					width: 32%;
+					float: left;
+					height: 100%;
+					margin-top: auto;
+					margin-bottom: auto;
+
+					a {
+						div {
+							position: absolute;
+							width: 100%;
+							top: 0;
+							bottom: 1.4em;
+
+							@if $dev >= 1 { background-color: pink; }
+
+							background-size: contain;
+							background-position: center;
+							background-repeat: no-repeat;
+						}
+
+						span {
+							position: absolute;
+							left: 0;
+							right: 0;
+							bottom: 0;
+							text-align: center;
+						}
+						margin: 0 auto;
+
+						@if $dev >= 1 { background-color: yellow; }
+					}
+
+					&.league div { background-image: url(../images/league.png); }
+					&.clubs div { background-image: url(../images/clubs.png); }
+					&.myteam div { background-image: url(../images/myteam.png); }
+				}
+			}
+		}
+		footer {
+			display: none;
+		}
+	}
+
+	@media (max-width: 640px) {
+		aside.nav {
+			height: 5em;
+			a { font-size: 110%; }
+		}
+		section.articles > article {
+			margin-top: 5em;
+		}
+	}
+	@media (max-width: 480px) {
+		aside.nav {
+			height: 4em;
+			a { font-size: 80%; }
+		}
+		section.articles > article {
+			margin-top: 4em;
+		}
+	}
+	@media (max-width: 356px) {
+		aside.nav {
+			height: 3.5em;
+			a { font-size: 70%; }
+		}
+		section.articles > article {
+			margin-top: 3.5em;
+		}
+	}
+}
+
+/* Small-screen landscape mode - small nav bar on the left */
+@media screen and (orientation: landscape) and (max-height: 640px) {
+	aside.nav {
+		height: 100%;
+
+		header {
+			a {
+				display: block;
+				position: relative;
+				width: 100%;
+				height: 100%;
+			}
+			position: relative;
+			width: 100%;
+			background: url(../images/logo.png) no-repeat center center;
+			background-size: contain;
+			text-indent: -9999px;
+			height: 28%;
+		}
+
+		nav {
+			top: 28%;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			position: absolute;
+
+			ul {
+				//height: 100%;
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				left: 0;
+				right: 0;
+
+				li {
+					position: relative;
+					top: 0;
+					left: 0;
+					right: 0;
+					height: 32%;
+					//margin-top: 0.3em;
+
+					a {
+						$pad: 12%;
+						position: absolute;
+						width: 100%;
+						height: 100%;
+
+						div {
+							position: absolute;
+							width: 100%-$pad*2;
+							left: $pad;
+							top: 0;
+							bottom: 0;
+
+							@if $dev >= 1 { background-color: pink; }
+
+							background-size: contain;
+							background-position: center;
+							background-repeat: no-repeat;
+						}
+
+						span {
+							position: absolute;
+							bottom: 0;
+							width: 100%;
+							text-align: center;
+						}
+						margin: 0 auto;
+
+						@if $dev >= 1 { background-color: yellow; }
+					}
+
+					&.league div { background-image: url(../images/league.png); }
+					&.clubs div { background-image: url(../images/clubs.png); }
+					&.myteam div { background-image: url(../images/myteam.png); }
+				}
+			}
+		}
+
+		footer {
+			display: none;
+		}
+	}
+
+	@media (max-height: 640px) {
+		aside.nav {
+			width: 6em;
+			a { font-size: 100%; }
+		}
+		section.articles > article {
+			padding-left: 6em + $gutter;
+		}
+	}
+
+	@media (max-height: 480px) {
+		aside.nav {
+			width: 5em;
+			a { font-size: 90%; }
+		}
+		section.articles > article {
+			padding-left: 5em + $gutter;
+		}
+	}
+
+	@media (max-height: 320px) {
+		aside.nav {
+			width: 4em;
+			a { font-size: 80%; }
+		}
+		section.articles > article {
+			padding-left: 4em + $gutter;
+		}
+	}
+
+	@media (max-height: 240px) {
+		aside.nav {
+			width: 3em;
+			a { font-size: 70%; }
+		}
+		section.articles > article {
+			padding-left: 3em + $gutter;
+		}
+	}
+}
+
+@media screen and (min-width: 641px) and (min-height: 641px) {
+
+	section.articles > article {
+		padding-left: 9em + $gutter;
+	}
+
+	aside.nav {
+		width: 9em;
+		height: 100%;
+
+		header {
+			a {
+				display: block;
+				position: relative;
+				width: 100%;
+				height: 100%;
+			}
+			position: relative;
+			width: 100%;
+			background: url(../images/logo.png) no-repeat center center;
+			background-size: contain;
+			text-indent: -9999px;
+			height: 12em;
+		}
+
+		nav {
+			height: 5em;
+			width: 100%;
+			//position: absolute;
+			font-size: 70%;
+
+			ul {
+				position: relative;
+				width: 100%;
+				height: 100%;
+
+				li {
+					position: relative;
+					float: left;
+					width: 33%;
+					height: 100%;
+
+					a {
+						position: absolute;
+						width: 100%;
+						height: 100%;
+
+						div {
+							position: absolute;
+							width: 100%;
+							left: 0;
+							top: 0;
+							bottom: 1.4em;
+
+							@if $dev >= 1 { background-color: pink; }
+
+							background-size: contain;
+							background-position: center;
+							background-repeat: no-repeat;
+						}
+
+						span {
+							position: absolute;
+							bottom: 0;
+							width: 100%;
+							text-align: center;
+						}
+						margin: 0 auto;
+
+						@if $dev >= 1 { background-color: yellow; }
+					}
+
+					&.league div { background-image: url(../images/league.png); }
+					&.clubs div { background-image: url(../images/clubs.png); }
+					&.myteam div { background-image: url(../images/myteam.png); }
+				}
+			}
+		}
+
+		footer {
+			display: block;
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			padding: 0.2em 0.4em 0.2em 0.2em;
+
+			@if $dev >= 1 { background-color: #fce; }
+
+			.update {
+				padding-bottom: $gutter;
+
+				.notice {
+					text-align: center;
+					//display: none;
+
+					.icon {
+						position: relative;
+						display: inline-block;
+						vertical-align: middle;
+						width: 1.8em;
+						height: 1.8em;
+						background-position: center;
+						background-repeat: no-repeat;
+						background-size: contain;
+						//background-image: url(../images/warning.png);
+					}
+					.msg {
+						display: inline;
+						font-size: 80%;
+						margin-left: -0.3em;
+					}
+				}
+				.status {
+					display: block;
+					font-size: 80%;
+					text-align: center;
+
+					.date {
+						color: #2a2;
+						&.warn { color: red; }
+					}
+				}
+			}
+
+			.copyright {
+				line-height: 120%;
+				text-align: center;
+
+				.author { font-size: 80%; }
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 360px) {
+	body {
+		font-size: 90%;
+	}
+}
