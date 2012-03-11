@@ -80,6 +80,7 @@ app = {
 			evt.preventDefault;
 			evt.stopPropagation();
 			evt.stopImmediatePropagation();
+			return false;
 		});
 
 		/* Stats stuff */
