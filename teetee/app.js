@@ -19,6 +19,40 @@
 $dev = 1;
 transitionDuration = 500;
 
+utils = {
+	prevLink: function (cls, type) {
+		return function(obj) {
+			if (obj.context.id < 1) {
+				switch (type) {
+					case "href": return "#";
+					case "class": return "disabled";
+				}
+			} else {
+				switch (type) {
+					case "href": return "#"+cls+"/"+(obj.context.id - 1);
+					case "class": return "";
+				}
+			}
+		};
+	},
+
+	nextLink: function (cls, type) {
+		return function(obj) {
+			if (obj.context.id > 1) {
+				switch (type) {
+					case "href": return "#";
+					case "class": return "disabled";
+				}
+			} else {
+				switch (type) {
+					case "href": return "#"+cls+"/"+(obj.context.id + 1);
+					case "class": return "";
+				}
+			}
+		};
+	},
+};
+
 app = {
 	DATA_FILES: [ 'league', 'results' ],
 
@@ -302,45 +336,13 @@ app = {
 		app.setConfig(name, app[name]);
 	},
 
-	prevLink: function (cls, type) {
-		return function(obj) {
-			if (obj.context.id < 1) {
-				switch (type) {
-					case "href": return "#";
-					case "class": return "disabled";
-				}
-			} else {
-				switch (type) {
-					case "href": return "#"+cls+"/"+(obj.context.id - 1);
-					case "class": return "";
-				}
-			}
-		};
-	},
-
-	nextLink: function (cls, type) {
-		return function(obj) {
-			if (obj.context.id > 1) {
-				switch (type) {
-					case "href": return "#";
-					case "class": return "disabled";
-				}
-			} else {
-				switch (type) {
-					case "href": return "#"+cls+"/"+(obj.context.id + 1);
-					case "class": return "";
-				}
-			}
-		};
-	},
-
 	templateMapping: {
 		division: {
 			'.content_name': 'name',
-			'.prevItemLink@href': app.prevLink('division', 'href'),
-			'.prevItemLink@class': app.prevLink('division', 'class'),
-			'.nextItemLink@href': app.nextLink('division', 'href'),
-			'.nextItemLink@class': app.nextLink('division', 'class'),
+			'.prevItemLink@href': utils.prevLink('division', 'href'),
+			'.prevItemLink@class': utils.prevLink('division', 'class'),
+			'.nextItemLink@href': utils.nextLink('division', 'href'),
+			'.nextItemLink@class': utils.nextLink('division', 'class'),
 		},
 	},
 }
