@@ -306,7 +306,7 @@ app = {
 		division: {
 			'.content_name': 'name',
 			'.prevItemLink@href': function(obj) {
-				console.log(a);
+				console.log(obj);
 				return "#bang";
 			},
 		},
