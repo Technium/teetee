@@ -305,6 +305,10 @@ app = {
 	templateMapping: {
 		division: {
 			'.content_name': 'name',
+			'.prevItemLink@href': function(obj) {
+				console.log(a);
+				return "#bang";
+			},
 		},
 	},
 }
