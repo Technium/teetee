@@ -306,8 +306,18 @@ app = {
 		division: {
 			'.content_name': 'name',
 			'.prevItemLink@href': function(obj) {
-				console.log(obj);
-				return "#bang";
+				if (obj.context.id > 0) {
+					return "#division/"+(obj.context.id - 1);
+				} else {
+					return "#";
+				}
+			},
+			'.prevItemLink@class': function(obj) {
+				if (obj.context.id > 0) {
+					return "";
+				} else {
+					return "disabled";
+				}
 			},
 		},
 	},
