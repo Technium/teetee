@@ -17,7 +17,7 @@
  */
 
 $dev = 1;
-$transitionDuration = 500;
+transitionDuration = 500;
 
 app = {
 	DATA_FILES: [ 'league', 'results' ],
