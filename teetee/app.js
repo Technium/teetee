@@ -229,7 +229,7 @@ app = {
 				// If the last hash was also a division, do fancy transitions
 				if (app.lastHash && app.lastHash.search('#'+type+'/') != -1) {
 					var lastId = parseInt(app.lastHash.split('/')[1]);
-					slide = (id < lastId) ? -1 : 1;
+					slide = (id < lastId) ? 1 : -1;
 				}
 			}
 		}
