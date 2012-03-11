@@ -305,9 +305,16 @@ app = {
 	prevLink: function (cls, type) {
 		return function(obj) {
 			if (obj.context.id > 0) {
-				return "#"+type+"/"+(obj.context.id - 1);
+				switch (type) {
+					case "href": return "#"+cls+"/"+(obj.context.id - 1);
+					case "class": return "";
+				}
+
 			} else {
-				return "#";
+				switch (type) {
+					case "href": return "#";
+					case "class": return "disabled";
+				}
 			}
 		};
 	},
