@@ -216,10 +216,8 @@ app = {
 
 		var bits = newHash.substring(1).split('/');
 		if (bits.length == 1) {
-			//~ console.log("single part hash", bits);
 			target = $('.articles .'+bits[0]);
 		} else if (bits.length == 2) {
-			//~ console.log("multi-part hash", bits);
 			var type = bits[0];
 			var id = parseInt(bits[1]);
 			if (type in app.db) {
