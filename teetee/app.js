@@ -75,6 +75,7 @@ app = {
 
 		/* Location/back-stack stuff */
 		$(window).hashchange(app.hashChange);
+		$('a.disabled').on('click', function(evt) { evt.preventDefault; evt.skipPropagation(); });
 
 		/* Stats stuff */
 		if ("undefined" == typeof app.stats.id) {
