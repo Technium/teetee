@@ -304,15 +304,31 @@ app = {
 
 	prevLink: function (cls, type) {
 		return function(obj) {
-			if (obj.context.id > 0) {
+			if (obj.context.id < 1) {
+				switch (type) {
+					case "href": return "#";
+					case "class": return "disabled";
+				}
+			} else {
 				switch (type) {
 					case "href": return "#"+cls+"/"+(obj.context.id - 1);
 					case "class": return "";
 				}
-			} else {
+			}
+		};
+	},
+
+	nextLink: function (cls, type) {
+		return function(obj) {
+			if (obj.context.id > 1) {
 				switch (type) {
 					case "href": return "#";
 					case "class": return "disabled";
+				}
+			} else {
+				switch (type) {
+					case "href": return "#"+cls+"/"+(obj.context.id + 1);
+					case "class": return "";
 				}
 			}
 		};
@@ -323,6 +339,8 @@ app = {
 			'.content_name': 'name',
 			'.prevItemLink@href': prevLink('division', 'href'),
 			'.prevItemLink@class': prevLink('division', 'class'),
+			'.nextItemLink@href': nextLink('division', 'href'),
+			'.nextItemLink@class': nextLink('division', 'class'),
 		},
 	},
 }
