@@ -206,7 +206,7 @@ table.magic {
 }
 /* line 150, ../sass/newlayout.scss */
 table.magic td {
-  margin: 0.3em 0.3em;
+  padding: 0.3em 0.3em;
 }
 
 /* Small-screen portrait mode - small nav bar at the top */
