@@ -78,7 +78,7 @@ app = {
 		$('section.articles').on('click', 'a.disabled', function(evt) {
 			console.log("disabled click");
 			evt.preventDefault;
-			evt.skipPropagation();
+			evt.stopPropagation();
 		});
 
 		/* Stats stuff */
