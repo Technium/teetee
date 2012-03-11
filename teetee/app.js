@@ -309,7 +309,6 @@ app = {
 					case "href": return "#"+cls+"/"+(obj.context.id - 1);
 					case "class": return "";
 				}
-
 			} else {
 				switch (type) {
 					case "href": return "#";
