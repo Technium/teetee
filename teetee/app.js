@@ -208,6 +208,7 @@ app = {
 	},
 
 	hashChange: function (evt) {
+		var target, slide = false;
 		var newHash = window.location.hash || "#main";
 		console.log('hash change', newHash, evt);
 		if (app.lastHash == newHash) { return; }
@@ -215,24 +216,7 @@ app = {
 		var bits = newHash.substring(1).split('/');
 		if (bits.length == 1) {
 			//~ console.log("single part hash", bits);
-
-			var target = $('.articles .'+bits[0]);
-			if (!target.length) {
-				// doesn't exist
-				//~ console.log("no such article",newHash);
-				target = $('.articles .notfound');
-			}
-
-			var visibles = $('.articles > article:visible');
-			if (visibles.length) {
-				//~ console.log("found previously visible article");
-				visibles.fadeOut('fast', function () {
-					target.fadeIn('fast');
-				});
-			} else {
-				//~ console.log("no previous article");
-				target.fadeIn('fast');
-			}
+			target = $('.articles .'+bits[0]);
 		} else if (bits.length == 2) {
 			//~ console.log("multi-part hash", bits);
 
@@ -273,8 +257,14 @@ app = {
 			}
 		}
 
-		$('.articles > article:visible').fadeOut('fast');
-		$('.articles .notfound').fadeIn('fast');
+		var visibles = $('.articles > article:visible');
+		if (visibles.length) {
+			visibles.fadeOut('fast');
+		}
+		if (!target || !target.length) {
+			target = $('.articles .notfound');
+		}
+		target.fadeIn('fast');
 
 		app.lastHash = newHash;
 		evt.preventDefault();
