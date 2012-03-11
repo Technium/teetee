@@ -302,23 +302,21 @@ app = {
 		app.setConfig(name, app[name]);
 	},
 
+	prevLink: function (cls, type) {
+		return function(obj) {
+			if (obj.context.id > 0) {
+				return "#"+type+"/"+(obj.context.id - 1);
+			} else {
+				return "#";
+			}
+		};
+	},
+
 	templateMapping: {
 		division: {
 			'.content_name': 'name',
-			'.prevItemLink@href': function(obj) {
-				if (obj.context.id > 0) {
-					return "#division/"+(obj.context.id - 1);
-				} else {
-					return "#";
-				}
-			},
-			'.prevItemLink@class': function(obj) {
-				if (obj.context.id > 0) {
-					return "";
-				} else {
-					return "disabled";
-				}
-			},
+			'.prevItemLink@href': prevLink('division', 'href'),
+			'.prevItemLink@class': prevLink('division', 'class'),
 		},
 	},
 }
