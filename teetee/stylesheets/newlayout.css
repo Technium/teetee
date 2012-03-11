@@ -204,20 +204,24 @@ section.articles > article.offRight {
 table.magic {
   margin: 0 auto;
 }
+/* line 150, ../sass/newlayout.scss */
+table.magic td {
+  margin: 0.3em 0.3em;
+}
 
 /* Small-screen portrait mode - small nav bar at the top */
 @media screen and (orientation: portrait) and (max-width: 640px) {
-  /* line 156, ../sass/newlayout.scss */
+  /* line 160, ../sass/newlayout.scss */
   section.articles > article {
     width: 100%;
   }
 
-  /* line 160, ../sass/newlayout.scss */
+  /* line 164, ../sass/newlayout.scss */
   aside.nav {
     top: 0;
     width: 100%;
   }
-  /* line 164, ../sass/newlayout.scss */
+  /* line 168, ../sass/newlayout.scss */
   aside.nav header {
     position: absolute;
     height: 100%;
@@ -226,14 +230,14 @@ table.magic {
     text-indent: -9999px;
     width: 28%;
   }
-  /* line 165, ../sass/newlayout.scss */
+  /* line 169, ../sass/newlayout.scss */
   aside.nav header a {
     display: block;
     position: relative;
     width: 100%;
     height: 100%;
   }
-  /* line 179, ../sass/newlayout.scss */
+  /* line 183, ../sass/newlayout.scss */
   aside.nav nav {
     margin-left: 28%;
     position: absolute;
@@ -241,12 +245,12 @@ table.magic {
     left: 0;
     height: 100%;
   }
-  /* line 186, ../sass/newlayout.scss */
+  /* line 190, ../sass/newlayout.scss */
   aside.nav nav ul {
     padding-top: 0.2em;
     height: 100%;
   }
-  /* line 190, ../sass/newlayout.scss */
+  /* line 194, ../sass/newlayout.scss */
   aside.nav nav ul li {
     position: relative;
     width: 32%;
@@ -255,12 +259,12 @@ table.magic {
     margin-top: auto;
     margin-bottom: auto;
   }
-  /* line 198, ../sass/newlayout.scss */
+  /* line 202, ../sass/newlayout.scss */
   aside.nav nav ul li a {
     margin: 0 auto;
     background-color: yellow;
   }
-  /* line 199, ../sass/newlayout.scss */
+  /* line 203, ../sass/newlayout.scss */
   aside.nav nav ul li a div {
     position: absolute;
     width: 100%;
@@ -271,7 +275,7 @@ table.magic {
     background-position: center;
     background-repeat: no-repeat;
   }
-  /* line 212, ../sass/newlayout.scss */
+  /* line 216, ../sass/newlayout.scss */
   aside.nav nav ul li a span {
     position: absolute;
     left: 0;
@@ -279,75 +283,75 @@ table.magic {
     bottom: 0;
     text-align: center;
   }
-  /* line 224, ../sass/newlayout.scss */
+  /* line 228, ../sass/newlayout.scss */
   aside.nav nav ul li.league div {
     background-image: url(../images/league.png);
   }
-  /* line 225, ../sass/newlayout.scss */
+  /* line 229, ../sass/newlayout.scss */
   aside.nav nav ul li.clubs div {
     background-image: url(../images/clubs.png);
   }
-  /* line 226, ../sass/newlayout.scss */
+  /* line 230, ../sass/newlayout.scss */
   aside.nav nav ul li.myteam div {
     background-image: url(../images/myteam.png);
   }
-  /* line 230, ../sass/newlayout.scss */
+  /* line 234, ../sass/newlayout.scss */
   aside.nav footer {
     display: none;
   }
 }
 @media screen and (orientation: portrait) and (max-width: 640px) and (max-width: 640px) {
-  /* line 236, ../sass/newlayout.scss */
+  /* line 240, ../sass/newlayout.scss */
   aside.nav {
     height: 5em;
   }
-  /* line 238, ../sass/newlayout.scss */
+  /* line 242, ../sass/newlayout.scss */
   aside.nav a {
     font-size: 110%;
   }
 
-  /* line 240, ../sass/newlayout.scss */
+  /* line 244, ../sass/newlayout.scss */
   section.articles > article {
     margin-top: 5em;
   }
 }
 @media screen and (orientation: portrait) and (max-width: 640px) and (max-width: 480px) {
-  /* line 245, ../sass/newlayout.scss */
+  /* line 249, ../sass/newlayout.scss */
   aside.nav {
     height: 4em;
   }
-  /* line 247, ../sass/newlayout.scss */
+  /* line 251, ../sass/newlayout.scss */
   aside.nav a {
     font-size: 80%;
   }
 
-  /* line 249, ../sass/newlayout.scss */
+  /* line 253, ../sass/newlayout.scss */
   section.articles > article {
     margin-top: 4em;
   }
 }
 @media screen and (orientation: portrait) and (max-width: 640px) and (max-width: 356px) {
-  /* line 254, ../sass/newlayout.scss */
+  /* line 258, ../sass/newlayout.scss */
   aside.nav {
     height: 3.5em;
   }
-  /* line 256, ../sass/newlayout.scss */
+  /* line 260, ../sass/newlayout.scss */
   aside.nav a {
     font-size: 70%;
   }
 
-  /* line 258, ../sass/newlayout.scss */
+  /* line 262, ../sass/newlayout.scss */
   section.articles > article {
     margin-top: 3.5em;
   }
 }
 /* Small-screen landscape mode - small nav bar on the left */
 @media screen and (orientation: landscape) and (max-height: 640px) {
-  /* line 266, ../sass/newlayout.scss */
+  /* line 270, ../sass/newlayout.scss */
   aside.nav {
     height: 100%;
   }
-  /* line 269, ../sass/newlayout.scss */
+  /* line 273, ../sass/newlayout.scss */
   aside.nav header {
     position: relative;
     width: 100%;
@@ -356,14 +360,14 @@ table.magic {
     text-indent: -9999px;
     height: 28%;
   }
-  /* line 270, ../sass/newlayout.scss */
+  /* line 274, ../sass/newlayout.scss */
   aside.nav header a {
     display: block;
     position: relative;
     width: 100%;
     height: 100%;
   }
-  /* line 284, ../sass/newlayout.scss */
+  /* line 288, ../sass/newlayout.scss */
   aside.nav nav {
     top: 28%;
     bottom: 0;
@@ -371,7 +375,7 @@ table.magic {
     right: 0;
     position: absolute;
   }
-  /* line 291, ../sass/newlayout.scss */
+  /* line 295, ../sass/newlayout.scss */
   aside.nav nav ul {
     position: absolute;
     top: 0;
@@ -379,7 +383,7 @@ table.magic {
     left: 0;
     right: 0;
   }
-  /* line 299, ../sass/newlayout.scss */
+  /* line 303, ../sass/newlayout.scss */
   aside.nav nav ul li {
     position: relative;
     top: 0;
@@ -387,7 +391,7 @@ table.magic {
     right: 0;
     height: 32%;
   }
-  /* line 307, ../sass/newlayout.scss */
+  /* line 311, ../sass/newlayout.scss */
   aside.nav nav ul li a {
     position: absolute;
     width: 100%;
@@ -395,7 +399,7 @@ table.magic {
     margin: 0 auto;
     background-color: yellow;
   }
-  /* line 313, ../sass/newlayout.scss */
+  /* line 317, ../sass/newlayout.scss */
   aside.nav nav ul li a div {
     position: absolute;
     width: 76%;
@@ -407,102 +411,102 @@ table.magic {
     background-position: center;
     background-repeat: no-repeat;
   }
-  /* line 327, ../sass/newlayout.scss */
+  /* line 331, ../sass/newlayout.scss */
   aside.nav nav ul li a span {
     position: absolute;
     bottom: 0;
     width: 100%;
     text-align: center;
   }
-  /* line 338, ../sass/newlayout.scss */
+  /* line 342, ../sass/newlayout.scss */
   aside.nav nav ul li.league div {
     background-image: url(../images/league.png);
   }
-  /* line 339, ../sass/newlayout.scss */
+  /* line 343, ../sass/newlayout.scss */
   aside.nav nav ul li.clubs div {
     background-image: url(../images/clubs.png);
   }
-  /* line 340, ../sass/newlayout.scss */
+  /* line 344, ../sass/newlayout.scss */
   aside.nav nav ul li.myteam div {
     background-image: url(../images/myteam.png);
   }
-  /* line 345, ../sass/newlayout.scss */
+  /* line 349, ../sass/newlayout.scss */
   aside.nav footer {
     display: none;
   }
 }
 @media screen and (orientation: landscape) and (max-height: 640px) and (max-height: 640px) {
-  /* line 351, ../sass/newlayout.scss */
+  /* line 355, ../sass/newlayout.scss */
   aside.nav {
     width: 6em;
   }
-  /* line 353, ../sass/newlayout.scss */
+  /* line 357, ../sass/newlayout.scss */
   aside.nav a {
     font-size: 100%;
   }
 
-  /* line 355, ../sass/newlayout.scss */
+  /* line 359, ../sass/newlayout.scss */
   section.articles > article {
     padding-left: 6.75em;
   }
 }
 @media screen and (orientation: landscape) and (max-height: 640px) and (max-height: 480px) {
-  /* line 361, ../sass/newlayout.scss */
+  /* line 365, ../sass/newlayout.scss */
   aside.nav {
     width: 5em;
   }
-  /* line 363, ../sass/newlayout.scss */
+  /* line 367, ../sass/newlayout.scss */
   aside.nav a {
     font-size: 90%;
   }
 
-  /* line 365, ../sass/newlayout.scss */
+  /* line 369, ../sass/newlayout.scss */
   section.articles > article {
     padding-left: 5.75em;
   }
 }
 @media screen and (orientation: landscape) and (max-height: 640px) and (max-height: 320px) {
-  /* line 371, ../sass/newlayout.scss */
+  /* line 375, ../sass/newlayout.scss */
   aside.nav {
     width: 4em;
   }
-  /* line 373, ../sass/newlayout.scss */
+  /* line 377, ../sass/newlayout.scss */
   aside.nav a {
     font-size: 80%;
   }
 
-  /* line 375, ../sass/newlayout.scss */
+  /* line 379, ../sass/newlayout.scss */
   section.articles > article {
     padding-left: 4.75em;
   }
 }
 @media screen and (orientation: landscape) and (max-height: 640px) and (max-height: 240px) {
-  /* line 381, ../sass/newlayout.scss */
+  /* line 385, ../sass/newlayout.scss */
   aside.nav {
     width: 3em;
   }
-  /* line 383, ../sass/newlayout.scss */
+  /* line 387, ../sass/newlayout.scss */
   aside.nav a {
     font-size: 70%;
   }
 
-  /* line 385, ../sass/newlayout.scss */
+  /* line 389, ../sass/newlayout.scss */
   section.articles > article {
     padding-left: 3.75em;
   }
 }
 @media screen and (min-width: 641px) and (min-height: 641px) {
-  /* line 393, ../sass/newlayout.scss */
+  /* line 397, ../sass/newlayout.scss */
   section.articles > article {
     padding-left: 9.75em;
   }
 
-  /* line 397, ../sass/newlayout.scss */
+  /* line 401, ../sass/newlayout.scss */
   aside.nav {
     width: 9em;
     height: 100%;
   }
-  /* line 401, ../sass/newlayout.scss */
+  /* line 405, ../sass/newlayout.scss */
   aside.nav header {
     position: relative;
     width: 100%;
@@ -511,33 +515,33 @@ table.magic {
     text-indent: -9999px;
     height: 12em;
   }
-  /* line 402, ../sass/newlayout.scss */
+  /* line 406, ../sass/newlayout.scss */
   aside.nav header a {
     display: block;
     position: relative;
     width: 100%;
     height: 100%;
   }
-  /* line 416, ../sass/newlayout.scss */
+  /* line 420, ../sass/newlayout.scss */
   aside.nav nav {
     height: 5em;
     width: 100%;
     font-size: 70%;
   }
-  /* line 422, ../sass/newlayout.scss */
+  /* line 426, ../sass/newlayout.scss */
   aside.nav nav ul {
     position: relative;
     width: 100%;
     height: 100%;
   }
-  /* line 427, ../sass/newlayout.scss */
+  /* line 431, ../sass/newlayout.scss */
   aside.nav nav ul li {
     position: relative;
     float: left;
     width: 33%;
     height: 100%;
   }
-  /* line 433, ../sass/newlayout.scss */
+  /* line 437, ../sass/newlayout.scss */
   aside.nav nav ul li a {
     position: absolute;
     width: 100%;
@@ -545,7 +549,7 @@ table.magic {
     margin: 0 auto;
     background-color: yellow;
   }
-  /* line 438, ../sass/newlayout.scss */
+  /* line 442, ../sass/newlayout.scss */
   aside.nav nav ul li a div {
     position: absolute;
     width: 100%;
@@ -557,26 +561,26 @@ table.magic {
     background-position: center;
     background-repeat: no-repeat;
   }
-  /* line 452, ../sass/newlayout.scss */
+  /* line 456, ../sass/newlayout.scss */
   aside.nav nav ul li a span {
     position: absolute;
     bottom: 0;
     width: 100%;
     text-align: center;
   }
-  /* line 463, ../sass/newlayout.scss */
+  /* line 467, ../sass/newlayout.scss */
   aside.nav nav ul li.league div {
     background-image: url(../images/league.png);
   }
-  /* line 464, ../sass/newlayout.scss */
+  /* line 468, ../sass/newlayout.scss */
   aside.nav nav ul li.clubs div {
     background-image: url(../images/clubs.png);
   }
-  /* line 465, ../sass/newlayout.scss */
+  /* line 469, ../sass/newlayout.scss */
   aside.nav nav ul li.myteam div {
     background-image: url(../images/myteam.png);
   }
-  /* line 470, ../sass/newlayout.scss */
+  /* line 474, ../sass/newlayout.scss */
   aside.nav footer {
     display: block;
     position: absolute;
@@ -586,15 +590,15 @@ table.magic {
     padding: 0.2em 0.4em 0.2em 0.2em;
     background-color: #fce;
   }
-  /* line 480, ../sass/newlayout.scss */
+  /* line 484, ../sass/newlayout.scss */
   aside.nav footer .update {
     padding-bottom: 0.75em;
   }
-  /* line 483, ../sass/newlayout.scss */
+  /* line 487, ../sass/newlayout.scss */
   aside.nav footer .update .notice {
     text-align: center;
   }
-  /* line 487, ../sass/newlayout.scss */
+  /* line 491, ../sass/newlayout.scss */
   aside.nav footer .update .notice .icon {
     position: relative;
     display: inline-block;
@@ -605,38 +609,38 @@ table.magic {
     background-repeat: no-repeat;
     background-size: contain;
   }
-  /* line 498, ../sass/newlayout.scss */
+  /* line 502, ../sass/newlayout.scss */
   aside.nav footer .update .notice .msg {
     display: inline;
     font-size: 80%;
     margin-left: -0.3em;
   }
-  /* line 504, ../sass/newlayout.scss */
+  /* line 508, ../sass/newlayout.scss */
   aside.nav footer .update .status {
     display: block;
     font-size: 80%;
     text-align: center;
   }
-  /* line 509, ../sass/newlayout.scss */
+  /* line 513, ../sass/newlayout.scss */
   aside.nav footer .update .status .date {
     color: #2a2;
   }
-  /* line 511, ../sass/newlayout.scss */
+  /* line 515, ../sass/newlayout.scss */
   aside.nav footer .update .status .date.warn {
     color: red;
   }
-  /* line 516, ../sass/newlayout.scss */
+  /* line 520, ../sass/newlayout.scss */
   aside.nav footer .copyright {
     line-height: 120%;
     text-align: center;
   }
-  /* line 520, ../sass/newlayout.scss */
+  /* line 524, ../sass/newlayout.scss */
   aside.nav footer .copyright .author {
     font-size: 80%;
   }
 }
 @media screen and (max-width: 360px) {
-  /* line 527, ../sass/newlayout.scss */
+  /* line 531, ../sass/newlayout.scss */
   body {
     font-size: 90%;
   }
