@@ -273,6 +273,9 @@ app = {
 			}
 		}
 
+		$('.articles > article:visible').fadeOut('fast');
+		$('.articles .notfound').fadeIn('fast');
+
 		app.lastHash = newHash;
 		evt.preventDefault();
 		evt.stopPropagation();
