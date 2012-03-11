@@ -13,9 +13,11 @@
  *
  * Split app.js
  * Compile with yui
+ * Rearrange make system to make new copy for release
  */
 
 $dev = 1;
+$transitionDuration = 500;
 
 app = {
 	DATA_FILES: [ 'league', 'results' ],
@@ -211,11 +213,13 @@ app = {
 					var lastId = parseInt(app.lastHash.split('/')[1]);
 					var currentArticle = $($('section.articles > article').filter(':visible')[0]);
 					//~ console.log('current',currentArticle);
-					if (1) { // not till it works!
+					if (Modernizr.csstransitions) {
+						//console.log("transition support");
 						app.switchItems(currentArticle, target,
 							(id < lastId)? 'offRight' : 'offLeft',
-							(id < lastId)? 'offLeft' : 'offRight', 500);
+							(id < lastId)? 'offLeft' : 'offRight', transitionDuration);
 					} else {
+						//console.log("no transition support");
 						currentArticle.fadeOut('fast');
 						target.fadeIn('fast');
 					}
