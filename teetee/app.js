@@ -276,6 +276,7 @@ app = {
 		app.lastHash = newHash;
 		evt.preventDefault();
 		evt.stopPropagation();
+		return false;
 	},
 
 	instantiateTemplate: function (type, id, idList) {
