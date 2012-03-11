@@ -208,8 +208,9 @@ app = {
 	},
 
 	hashChange: function (evt) {
-		var target, slide = false;
+		var target, slide = 0;
 		var newHash = window.location.hash || "#main";
+
 		console.log('hash change', newHash, evt);
 		if (app.lastHash == newHash) { return; }
 
@@ -219,7 +220,6 @@ app = {
 			target = $('.articles .'+bits[0]);
 		} else if (bits.length == 2) {
 			//~ console.log("multi-part hash", bits);
-
 			var type = bits[0];
 			var id = parseInt(bits[1]);
 			if (type in app.db) {
@@ -228,43 +228,27 @@ app = {
 
 				// If the last hash was also a division, do fancy transitions
 				if (app.lastHash && app.lastHash.search('#'+type+'/') != -1) {
-					//~ console.log("fancy transition");
 					var lastId = parseInt(app.lastHash.split('/')[1]);
-					var currentArticle = $($('section.articles > article').filter(':visible')[0]);
-					//~ console.log('current',currentArticle);
-					if (Modernizr.csstransitions) {
-						//console.log("transition support");
-						app.switchItems(currentArticle, target,
-							(id < lastId)? 'offRight' : 'offLeft',
-							(id < lastId)? 'offLeft' : 'offRight', transitionDuration);
-					} else {
-						//console.log("no transition support");
-						currentArticle.fadeOut('fast');
-						target.fadeIn('fast');
-					}
-				} else {
-					//~ console.log("no previous matching article type");
-					var visibles = $('.articles > article:visible');
-					if (visibles.length) {
-						//~ console.log("found previously visible article");
-						visibles.fadeOut('fast');
-						target.fadeIn('fast');
-					} else {
-						//~ console.log("no previous article");
-						target.fadeIn('fast');
-					}
+					slide = (id < lastId) ? -1 : 1;
 				}
 			}
 		}
 
 		var visibles = $('.articles > article:visible');
-		if (visibles.length) {
-			visibles.fadeOut('fast');
-		}
 		if (!target || !target.length) {
 			target = $('.articles .notfound');
 		}
-		target.fadeIn('fast');
+
+		if (slide != 0) {
+			if (Modernizr.csstransitions) {
+				app.switchItems(visibles, target,
+					(slide > 0)? 'offRight' : 'offLeft',
+					(slide > 0)? 'offLeft' : 'offRight', transitionDuration);
+			}
+		} else {
+			visibles.fadeOut('fast');
+			target.fadeIn('fast');
+		}
 
 		app.lastHash = newHash;
 		evt.preventDefault();
