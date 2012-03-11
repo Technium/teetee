@@ -79,6 +79,7 @@ app = {
 			console.log("disabled click");
 			evt.preventDefault;
 			evt.stopPropagation();
+			ent.stopImmediatePropagation();
 		});
 
 		/* Stats stuff */
