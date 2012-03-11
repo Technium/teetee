@@ -75,7 +75,7 @@ app = {
 
 		/* Location/back-stack stuff */
 		$(window).hashchange(app.hashChange);
-		$('a.disabled').on('click', function(evt) {
+		$('section.articles').on('click', 'a.disabled', function(evt) {
 			console.log("disabled click");
 			evt.preventDefault;
 			evt.skipPropagation();
