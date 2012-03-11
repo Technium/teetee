@@ -148,7 +148,11 @@ table.magic {
 	margin: 0 auto;
 
 	td {
-		padding: 0.3em 0.3em;
+		padding: 0.3em;
+		text-align: center;
+	}
+	th {
+		padding: 0.3em;
 		text-align: center;
 	}
 }
