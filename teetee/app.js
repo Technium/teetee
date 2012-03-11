@@ -337,10 +337,10 @@ app = {
 	templateMapping: {
 		division: {
 			'.content_name': 'name',
-			'.prevItemLink@href': prevLink('division', 'href'),
-			'.prevItemLink@class': prevLink('division', 'class'),
-			'.nextItemLink@href': nextLink('division', 'href'),
-			'.nextItemLink@class': nextLink('division', 'class'),
+			'.prevItemLink@href': app.prevLink('division', 'href'),
+			'.prevItemLink@class': app.prevLink('division', 'class'),
+			'.nextItemLink@href': app.nextLink('division', 'href'),
+			'.nextItemLink@class': app.nextLink('division', 'class'),
 		},
 	},
 }
