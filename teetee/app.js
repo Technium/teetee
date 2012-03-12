@@ -345,6 +345,13 @@ app = {
 				}
 			},
 		},
+		'divisionNoResult': {
+			'.content_name': 'name',
+			'.prevItemLink@href': utils.prevLink('division', 'href'),
+			'.prevItemLink@class': utils.prevLink('division', 'class'),
+			'.nextItemLink@href': utils.nextLink('division', 'href'),
+			'.nextItemLink@class': utils.nextLink('division', 'class'),
+		},
 	},
 }
 
