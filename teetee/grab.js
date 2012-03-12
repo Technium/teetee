@@ -6,6 +6,7 @@ files = [
 	{ name: 'teams', tableIndex: 5 },
 	{ name: 'fix_results', tableIndex: 6 },
 	{ name: 'fix_players', tableIndex: 7 },
+	{ name: '', tableIndex:  },
 ]
 
 function csvToJson () {
@@ -21,10 +22,8 @@ function csvToJson () {
 		csvRows = csvText.split(/[\r\n]/g); // split into rows
 
 		// get rid of empty rows
-		for (var i = 0; i < csvRows.length; i++)
-		{
-			if (csvRows[i].replace(/^[\s]*|[\s]*$/g, '') == "")
-			{
+		for (var i = 0; i < csvRows.length; i++) {
+			if (csvRows[i].replace(/^[\s]*|[\s]*$/g, '') == "") {
 				csvRows.splice(i, 1);
 				i--;
 			}
