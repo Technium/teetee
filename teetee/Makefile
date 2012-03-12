@@ -14,3 +14,6 @@ prod: clean
 
 clean:
 	@rm stylesheets/*
+
+upload:
+	scp -r *.js *.html images stylesheets data t220@t220.com:public_html/tt
