@@ -9,10 +9,15 @@ indent_mode=3
 [project]
 name=TeeTee
 base_path=/home/steve/SparkleShare/sparkle/teetee
+description=
 
 [long line marker]
 long_line_behaviour=1
 long_line_column=96
 
 [files]
-current_page=0
+current_page=1
+FILE_NAME_0=5393;HTML;0;16;1;1;0;/home/steve/SparkleShare/sparkle/teetee/newlayout.html;0;4
+FILE_NAME_1=4071;Javascript;0;16;1;1;0;/home/steve/SparkleShare/sparkle/teetee/app.js;0;4
+FILE_NAME_2=5021;HTML;0;16;1;1;0;/home/steve/dev/Web/mobile/jqm/teetee/index.html;0;4
+FILE_NAME_3=335;CSS;0;16;1;1;0;/home/steve/SparkleShare/sparkle/teetee/sass/newlayout.scss;0;4
