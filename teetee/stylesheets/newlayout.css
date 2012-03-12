@@ -205,7 +205,7 @@ table.magic {
   margin: 0 auto;
 }
 /* line 150, ../sass/newlayout.scss */
-table.magic tr > td:first {
+table.magic tr > td:first-child {
   text-align: left;
 }
 /* line 154, ../sass/newlayout.scss */
