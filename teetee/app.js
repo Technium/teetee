@@ -329,7 +329,7 @@ app = {
 			'.prevItemLink@class': utils.prevLink('division', 'class'),
 			'.nextItemLink@href': utils.nextLink('division', 'href'),
 			'.nextItemLink@class': utils.nextLink('division', 'class'),
-			'table.standings': {
+			'table.standings tbody tr': {
 				'row<-standings': {
 					'td.name': function(a) {
 						var teams = a.context.teams;
