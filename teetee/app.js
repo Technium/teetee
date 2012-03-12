@@ -174,6 +174,7 @@ app = {
 		var url = 'data/'+name+'.json';
 		var req = $.ajax(url, {
 			headers: { 'If-Modified-Since': lastFetchTime.toGMTString() },
+			dataType: 'json',
 			ifModified: true,
 		});
 		req.success(function (data, status) { app.dataFetched(name, data, req, status); });
