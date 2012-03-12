@@ -333,7 +333,7 @@ app = {
 				'row<-standings': {
 					'td.name': function(a) {
 						var teams = a.context.teams;
-						return $.Enumerable.From(teams).First("$.id==a.item.teamId");
+						return $.Enumerable.From(teams).First("$.id=="+a.item.teamId);
 					},
 					'td.for': 'row.for',
 					'td.agst': 'row.agst',
