@@ -207,15 +207,12 @@ table.magic {
 /* line 150, ../sass/newlayout.scss */
 table.magic tr > td:first-child {
   text-align: left;
+  padding-right: 0.6em;
 }
-/* line 154, ../sass/newlayout.scss */
+/* line 155, ../sass/newlayout.scss */
 table.magic td, table.magic th {
   padding: 0.2em 0.4em;
   text-align: center;
-}
-/* line 158, ../sass/newlayout.scss */
-table.magic th {
-  padding-right: 0.6em;
 }
 
 /* Small-screen portrait mode - small nav bar at the top */
