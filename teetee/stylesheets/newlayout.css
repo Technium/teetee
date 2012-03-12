@@ -207,7 +207,7 @@ table.magic {
 /* line 150, ../sass/newlayout.scss */
 table.magic tr > td:first-child {
   text-align: left;
-  padding-right: 0.6em;
+  padding-right: 1em;
 }
 /* line 155, ../sass/newlayout.scss */
 table.magic td, table.magic th {
