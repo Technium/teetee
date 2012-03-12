@@ -15,7 +15,7 @@ file_patterns=
 
 [long line marker]
 long_line_behaviour=2
-long_line_column=102
+long_line_column=107
 
 [files]
 current_page=4
@@ -23,7 +23,7 @@ FILE_NAME_0=5393;HTML;0;16;1;1;0;/home/steve/SparkleShare/sparkle/teetee/newlayo
 FILE_NAME_1=4071;Javascript;0;16;1;1;0;/home/steve/SparkleShare/sparkle/teetee/app.js;0;4
 FILE_NAME_2=5021;HTML;0;16;1;1;0;/home/steve/dev/Web/mobile/jqm/teetee/index.html;0;4
 FILE_NAME_3=335;CSS;0;16;1;1;0;/home/steve/SparkleShare/sparkle/teetee/sass/newlayout.scss;0;4
-FILE_NAME_4=339;JSON;0;16;1;1;0;/home/steve/SparkleShare/sparkle/teetee/data/results.json;0;2
+FILE_NAME_4=293;JSON;0;16;1;1;0;/home/steve/SparkleShare/sparkle/teetee/data/results.json;0;2
 
 [VTE]
 last_dir=/home/steve/Downloads/sw/pynids-0.6.1
