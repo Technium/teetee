@@ -270,7 +270,7 @@ app = {
 			var data = app.db[type][id];
 			switch (type) {
 				case "division": {
-					data.standings = app.db.table[id]
+					data.standings = app.db.table[id].standings;
 				};
 			};
 			ele = $(app.templateCache[type](data))
