@@ -202,7 +202,7 @@ section.articles > article.offRight {
 
 /* line 147, ../sass/newlayout.scss */
 table.magic {
-  margin: 0 auto;
+  margin: 0.6em auto;
   border: 1px grey solid;
 }
 /* line 151, ../sass/newlayout.scss */
