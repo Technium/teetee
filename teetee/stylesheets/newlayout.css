@@ -206,7 +206,7 @@ table.magic {
 }
 /* line 150, ../sass/newlayout.scss */
 table.magic td, table.magic th {
-  padding: 0.4em 0.2em;
+  padding: 0.5em 0.2em;
   text-align: center;
 }
 
