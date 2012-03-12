@@ -268,6 +268,11 @@ app = {
 
 			// Instantiate it for this data
 			var data = app.db[type][id];
+			switch (type) {
+				case "division": {
+					data.standings = app.db.table[id]
+				};
+			};
 			ele = $(app.templateCache[type](data))
 				.addClass(type).addClass('generated')
 				.attr('id', type+'/'+id).appendTo($('section.articles'));
@@ -326,7 +331,10 @@ app = {
 			'.nextItemLink@class': utils.nextLink('division', 'class'),
 			'table.standings': {
 				'row<-standings': {
-					'td.name': function() { return utils.dbFetch('team', id).name; },
+					'td.name': function(a) {
+						var teams = a.context.teams;
+						return $.Enumerable.From(teams).First("$.id==a.item.teamId");
+					},
 					'td.for': 'row.for',
 					'td.agst': 'row.agst',
 					'td.pld': 'row.pld',
