@@ -147,6 +147,10 @@ section.articles > article {
 table.magic {
 	margin: 0 auto;
 
+	tr > td:first {
+		text-align: left;
+	}
+
 	td,th {
 		padding: 0.2em 0.4em;
 		text-align: center;
