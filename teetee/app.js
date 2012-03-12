@@ -51,6 +51,10 @@ utils = {
 			}
 		};
 	},
+
+	dbFetch: function(type, id) {
+		return $.Enumerable.From(app.db['type']).First("$.id==id");
+	},
 };
 
 app = {
@@ -320,6 +324,18 @@ app = {
 			'.prevItemLink@class': utils.prevLink('division', 'class'),
 			'.nextItemLink@href': utils.nextLink('division', 'href'),
 			'.nextItemLink@class': utils.nextLink('division', 'class'),
+			'table.standings': {
+				'row<-standings': {
+					'td.name': function() { return utils.dbFetch('team', id).name; },
+					'td.for': 'row.for',
+					'td.agst': 'row.agst',
+					'td.pld': 'row.pld',
+					'td.won': 'row.won',
+					'td.drwn': 'row.drwn',
+					'td.lost': 'row.lost',
+					'td.pts': 'row.pts',
+				}
+			},
 		},
 	},
 }
