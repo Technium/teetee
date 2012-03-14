@@ -1,7 +1,7 @@
 
 DEFAULT: dev
 
-watch:
+watch: dev data
 	@compass watch
 
 dev: clean data
