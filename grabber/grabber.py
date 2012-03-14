@@ -20,7 +20,6 @@ class Averages(Parser):
 	]
 
 
-
 class Parser(object):
 	def fetch(self):
 		data = urllib2.fetch(self.url)
