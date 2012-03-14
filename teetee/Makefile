@@ -13,7 +13,8 @@ prod: clean data
 	@compass compile -e production
 
 clean:
-	@rm stylesheets/*
+	@rm stylesheets/*.css
+	@rm data/*.json
 
 upload:
 	scp -r *.js *.html images stylesheets data t220@t220.com:public_html/tt
