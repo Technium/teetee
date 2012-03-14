@@ -17,3 +17,6 @@ clean:
 
 upload:
 	scp -r *.js *.html images stylesheets data t220@t220.com:public_html/tt
+
+data/%.json: data.in/%.js
+	node -e 'fs=require("fs");fs.writeFileSync("$@", fs.readFileSync("$<", "utf8"))'
