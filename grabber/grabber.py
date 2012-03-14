@@ -9,7 +9,9 @@ class Parser(object):
 		results = self.parse(data)
 		return results
 
-	def parse(self, data, fields=self.config):
+	def parse(self, data, fields=None):
+		if fields is None:
+			fields = self.config
 		return None
 
 
