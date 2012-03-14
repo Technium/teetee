@@ -273,8 +273,8 @@ app = {
 			var data = app.db[type][id];
 			switch (type) {
 				case "division": {
-					data.standings = ((app.db.table || {id: null})[id] || {standings: []}).standings;
-					data.averages = (app.db.averages
+					data.standings = ((app.db.table || {})[id] || {standings: []}).standings;
+					data.averages = (app.db.averages || {})[id] || [];
 				};
 			};
 			ele = $(app.templateCache[type](data))
