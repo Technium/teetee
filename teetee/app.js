@@ -19,6 +19,8 @@
 $dev = 1;
 transitionDuration = 500;
 
+//var log = function(msg) { if ($dev) console.log(msg); };
+
 utils = {
 	prevLink: function (cls, type) {
 		return function(obj) {
