@@ -28,4 +28,13 @@ class Parser(object):
 		return results
 
 	def parse(self, data, fields=self.config):
-		pass
+		return None
+
+
+
+if __name__ == '__main__':
+	from pprint import pprint
+
+	page = Averages()
+	results = pages.fetch()
+	pprint(results)
