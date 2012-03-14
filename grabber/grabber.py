@@ -2,6 +2,17 @@
 
 import urllib2
 
+
+class Parser(object):
+	def fetch(self):
+		data = urllib2.fetch(self.url)
+		results = self.parse(data)
+		return results
+
+	def parse(self, data, fields=self.config):
+		return None
+
+
 class Averages(Parser):
 	url = r'http://bwdtta.co.uk/index.php?option=com_content&view=article&id=260&Itemid=295'
 	config = [
@@ -18,16 +29,6 @@ class Averages(Parser):
 			),
 		),
 	]
-
-
-class Parser(object):
-	def fetch(self):
-		data = urllib2.fetch(self.url)
-		results = self.parse(data)
-		return results
-
-	def parse(self, data, fields=self.config):
-		return None
 
 
 
