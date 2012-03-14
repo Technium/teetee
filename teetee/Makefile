@@ -13,7 +13,7 @@ prod: clean data
 	@compass compile -e production
 
 clean:
-	-@rm stylesheets/*.css
+	@rm -f stylesheets/*.css
 	@rm data/*.json
 
 upload:
