@@ -1,0 +1,389 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+/* line 17, ../../../../.rvm/gems/ruby-1.9.3-p125/gems/compass-0.11.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* line 20, ../../../../.rvm/gems/ruby-1.9.3-p125/gems/compass-0.11.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+body {
+  line-height: 1;
+}
+
+/* line 22, ../../../../.rvm/gems/ruby-1.9.3-p125/gems/compass-0.11.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+ol, ul {
+  list-style: none;
+}
+
+/* line 24, ../../../../.rvm/gems/ruby-1.9.3-p125/gems/compass-0.11.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* line 26, ../../../../.rvm/gems/ruby-1.9.3-p125/gems/compass-0.11.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+/* line 28, ../../../../.rvm/gems/ruby-1.9.3-p125/gems/compass-0.11.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+q, blockquote {
+  quotes: none;
+}
+/* line 101, ../../../../.rvm/gems/ruby-1.9.3-p125/gems/compass-0.11.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+/* line 30, ../../../../.rvm/gems/ruby-1.9.3-p125/gems/compass-0.11.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+a img {
+  border: none;
+}
+
+/* line 114, ../../../../.rvm/gems/ruby-1.9.3-p125/gems/compass-0.11.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
+  display: block;
+}
+
+/*
+*  Simple fluid media
+*/
+/* line 17, ../sass/screen.scss */
+figure {
+  position: relative;
+}
+
+/* line 23, ../sass/screen.scss */
+figure img,
+figure object,
+figure embed,
+figure video {
+  max-width: 100%;
+  display: block;
+}
+
+/* line 27, ../sass/screen.scss */
+img {
+  border: 0;
+  -ms-interpolation-mode: bicubic;
+}
+
+/*
+*	Zoomable baseline grid
+*	type size presets
+*/
+/* line 36, ../sass/screen.scss */
+body {
+  /* 16px / 24px */
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 1em;
+  line-height: 1.5em;
+}
+
+/* line 43, ../sass/screen.scss */
+.small {
+  /* 13px / 18px */
+  font-size: 0.8125em;
+  line-height: 1.3846153846153846em;
+}
+
+/* line 49, ../sass/screen.scss */
+.normal, h4 {
+  /* 16px / 24px */
+  font-size: 1em;
+  line-height: 1.5em;
+  /* 24 */
+}
+
+/* line 57, ../sass/screen.scss */
+.large, h3 {
+  /* 26 / 36px */
+  font-size: 1.625em;
+  line-height: 1.3846153846153846em;
+}
+
+/* line 63, ../sass/screen.scss */
+.huge, h2 {
+  /* 42px / 48px */
+  font-size: 2.625em;
+  line-height: 1.1428571428571428em;
+}
+
+/* line 69, ../sass/screen.scss */
+.massive, h1 {
+  /* 68px / 72px */
+  font-size: 4.25em;
+  line-height: 1.0588235294117647em;
+}
+
+/* line 75, ../sass/screen.scss */
+.gigantic {
+  /* 110px / 120px */
+  font-size: 6.875em;
+  line-height: 1.0909090909090908em;
+}
+
+/*
+*  Fixes for IE6-8
+*  http://jonikorpi.com/leaving-old-IE-behind/
+*/
+/* line 86, ../sass/screen.scss */
+.ie body {
+  width: 40em;
+  margin: 0 auto;
+  font-size: 1.0625em;
+}
+
+/* line 91, ../sass/screen.scss */
+.ie h1 {
+  /* 42px / 48px */
+  font-size: 2.625em;
+  line-height: 1.1428571428571428em;
+  margin: 1.1428571428571428em 0 0.5714285714285714em;
+}
+
+/* line 99, ../sass/screen.scss */
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* line 105, ../sass/screen.scss */
+p {
+  margin-top: 0.3em;
+  margin-bottom: 0.3em;
+}
+
+/* line 111, ../sass/screen.scss */
+html, body, div.container {
+  height: 100%;
+}
+
+/* line 115, ../sass/screen.scss */
+.leagueLogo {
+  text-align: center;
+}
+/* line 118, ../sass/screen.scss */
+.leagueLogo img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* line 124, ../sass/screen.scss */
+.leftBigCol {
+  width: 10em;
+  padding: 0 0.75em;
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-height: 100%;
+}
+/* line 132, ../sass/screen.scss */
+.leftBigCol .bottom {
+  position: absolute;
+  bottom: 0px;
+  margin-bottom: 0.3em;
+  font-size: 0.8125em;
+  line-height: 1.3846153846153846em;
+}
+/* line 140, ../sass/screen.scss */
+.leftBigCol .bottom .info {
+  font-size: 80%/80%;
+}
+/* line 144, ../sass/screen.scss */
+.leftBigCol .bottom .warning {
+  max-width: 2em;
+  height: auto;
+  bottom: -0.5em;
+  position: relative;
+}
+
+/* line 153, ../sass/screen.scss */
+.mainCol {
+  float: left;
+  min-height: 100%;
+  width: 100%;
+  padding-left: 10.75em;
+  padding-right: 0.75em;
+}
+
+/* line 161, ../sass/screen.scss */
+.vertNavBar {
+  text-align: center;
+  margin: 0.5em -0.75em 1em -0.75em;
+}
+/* line 165, ../sass/screen.scss */
+.vertNavBar table {
+  width: 100%;
+  font-size: 70%;
+  line-height: 70%;
+}
+/* line 170, ../sass/screen.scss */
+.vertNavBar table td {
+  text-align: center;
+}
+/* line 171, ../sass/screen.scss */
+.vertNavBar table span {
+  display: block;
+}
+/* line 173, ../sass/screen.scss */
+.vertNavBar table .img {
+  width: 100%;
+  height: 3em;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+/* line 181, ../sass/screen.scss */
+.vertNavBar table .league {
+  background-image: url(../images/league.png);
+}
+/* line 182, ../sass/screen.scss */
+.vertNavBar table .clubs {
+  background-image: url(../images/clubs.png);
+}
+/* line 183, ../sass/screen.scss */
+.vertNavBar table .myteam {
+  background-image: url(../images/myteam.png);
+}
+/* line 186, ../sass/screen.scss */
+.vertNavBar ul li {
+  display: inline-block;
+}
+/* line 189, ../sass/screen.scss */
+.vertNavBar ul li a {
+  margin: 0px;
+  padding: 0px;
+  font-size: 70%;
+  line-height: 70%;
+  text-align: center;
+}
+/* line 196, ../sass/screen.scss */
+.vertNavBar ul li a * {
+  padding: 0px;
+  margin: 0px;
+}
+/* line 202, ../sass/screen.scss */
+.vertNavBar ul li img {
+  max-height: 3em;
+  padding: 0px;
+  margin: 0px;
+  vertical-align: middle;
+}
+
+/* line 219, ../sass/screen.scss */
+table.standing {
+  margin: 0.6em auto 1em auto;
+  background: white;
+  -moz-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+/* line 225, ../sass/screen.scss */
+table.standing thead tr {
+  border-bottom: 0.1em solid grey;
+}
+/* line 229, ../sass/screen.scss */
+table.standing td, table.standing th {
+  text-align: center;
+  vertical-align: middle;
+  padding: 0.1em 0.5em;
+}
+/* line 235, ../sass/screen.scss */
+table.standing td.first {
+  text-align: left;
+}
+/* line 240, ../sass/screen.scss */
+table.standing tr.even {
+  background-color: #fefefe;
+}
+
+@media screen and (min-width: 640px) and (min-height: 640px) {
+  /* line 247, ../sass/screen.scss */
+  .leftBigCol {
+    display: block;
+  }
+
+  /* line 248, ../sass/screen.scss */
+  .leftSmallCol {
+    display: none;
+  }
+
+  /* line 249, ../sass/screen.scss */
+  .topRow {
+    display: none;
+  }
+}
+@media screen and (max-height: 640px) and (orientation: landscape) {
+  /* line 252, ../sass/screen.scss */
+  .leftBigCol {
+    display: none;
+  }
+
+  /* line 253, ../sass/screen.scss */
+  .leftSmallCol {
+    display: block;
+  }
+
+  /* line 254, ../sass/screen.scss */
+  .topRow {
+    display: none;
+  }
+}
+@media screen and (max-height: 640px) and (orientation: portrait) {
+  /* line 257, ../sass/screen.scss */
+  .leftBigCol {
+    display: none;
+  }
+
+  /* line 258, ../sass/screen.scss */
+  .leftSmallCol {
+    display: none;
+  }
+
+  /* line 259, ../sass/screen.scss */
+  .topRow {
+    display: block;
+  }
+}
+@media screen and (max-width: 40em) {
+  /* line 265, ../sass/screen.scss */
+  table.standing .pri3 {
+    display: none;
+  }
+}
+@media screen and (max-width: 36em) {
+  /* line 273, ../sass/screen.scss */
+  table.standing .pri2 {
+    display: none;
+  }
+}
+@media screen and (max-width: 32em) {
+  /* line 281, ../sass/screen.scss */
+  table.standing .pri1 {
+    display: none;
+  }
+}

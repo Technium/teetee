@@ -1,0 +1,175 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+/* line 17, ../../../../.rvm/gems/ruby-1.9.3-p125/gems/compass-0.11.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* line 20, ../../../../.rvm/gems/ruby-1.9.3-p125/gems/compass-0.11.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+body {
+  line-height: 1;
+}
+
+/* line 22, ../../../../.rvm/gems/ruby-1.9.3-p125/gems/compass-0.11.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+ol, ul {
+  list-style: none;
+}
+
+/* line 24, ../../../../.rvm/gems/ruby-1.9.3-p125/gems/compass-0.11.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* line 26, ../../../../.rvm/gems/ruby-1.9.3-p125/gems/compass-0.11.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+/* line 28, ../../../../.rvm/gems/ruby-1.9.3-p125/gems/compass-0.11.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+q, blockquote {
+  quotes: none;
+}
+/* line 101, ../../../../.rvm/gems/ruby-1.9.3-p125/gems/compass-0.11.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+/* line 30, ../../../../.rvm/gems/ruby-1.9.3-p125/gems/compass-0.11.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+a img {
+  border: none;
+}
+
+/* line 114, ../../../../.rvm/gems/ruby-1.9.3-p125/gems/compass-0.11.7/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
+  display: block;
+}
+
+/* line 14, ../sass/table.scss */
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 1em;
+  line-height: 1.5em;
+}
+
+/* line 20, ../sass/table.scss */
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* line 26, ../sass/table.scss */
+p {
+  margin-top: 0.3em;
+  margin-bottom: 0.3em;
+}
+
+/* line 32, ../sass/table.scss */
+html, body, div.container {
+  height: 100%;
+}
+
+/* line 39, ../sass/table.scss */
+table.layout {
+  width: 100%;
+  height: 100%;
+  border: 1px solid grey;
+}
+/* line 44, ../sass/table.scss */
+table.layout div.logo {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+}
+/* line 50, ../sass/table.scss */
+table.layout td {
+  border: 1px solid grey;
+  text-align: center;
+  vertical-align: middle;
+  padding: 0px;
+}
+/* line 57, ../sass/table.scss */
+table.layout .leftCol {
+  width: 15%;
+}
+/* line 60, ../sass/table.scss */
+table.layout .topRow {
+  height: 15%;
+}
+/* line 63, ../sass/table.scss */
+table.layout .topRow td.logo, table.layout .topRow td.horizNav {
+  height: 15%;
+}
+/* line 66, ../sass/table.scss */
+table.layout .topRow td.logo img, table.layout .topRow td.horizNav img {
+  max-height: 3em;
+  width: auto;
+}
+/* line 74, ../sass/table.scss */
+table.layout .vertNav img {
+  max-width: 100%;
+  height: auto;
+}
+/* line 79, ../sass/table.scss */
+table.layout td.content {
+  vertical-align: top;
+  text-align: left;
+}
+/* line 84, ../sass/table.scss */
+table.layout td.vertNav, table.layout tr.vertNav {
+  height: 20%;
+}
+/* line 87, ../sass/table.scss */
+table.layout td.horizNav {
+  width: 20%;
+}
+/* line 90, ../sass/table.scss */
+table.layout .topRow td.logo {
+  width: 40%;
+}
+
+@media screen and (orientation: portrait) {
+  /* line 101, ../sass/table.scss */
+  .leftCol, .vertNav {
+    display: none;
+  }
+
+  /* line 102, ../sass/table.scss */
+  .topRow {
+    display: table-row;
+  }
+}
+@media screen and (orientation: landscape) {
+  /* line 106, ../sass/table.scss */
+  .leftCol {
+    display: table-cell;
+  }
+
+  /* line 107, ../sass/table.scss */
+  .topRow {
+    display: none;
+  }
+}
