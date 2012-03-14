@@ -22,4 +22,4 @@ upload: data
 data: data/results.json data/league.json
 
 data/%.json: data.in/%.js
-	@node -e 'fs=require("fs");fs.writeFileSync("$@", JSON.stringify(eval("d="+fs.readFileSync("$<", "utf8"))));null;'
+	@node -e 'fs=require("fs");fs.writeFileSync("$@", JSON.stringify(eval("d="+fs.readFileSync("$<", "utf8"))));' >/dev/null
