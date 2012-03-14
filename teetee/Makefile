@@ -14,7 +14,7 @@ prod: clean data
 
 clean:
 	@rm -f stylesheets/*.css
-	@rm data/*.json
+	@rm -f data/*.json
 
 upload:
 	scp -r *.js *.html images stylesheets data t220@t220.com:public_html/tt
