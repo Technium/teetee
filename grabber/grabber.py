@@ -3,6 +3,20 @@
 import urllib2
 
 
+class Element(object):
+	pass
+
+class SingleReMatch(Element):
+	def __init__(self, re, type, skip=0, optional=False, value=None):
+		self.re = re
+		self.type = type
+		self.skip = skip
+		self.optional = optional
+		self.value = value
+
+	def
+
+
 class Parser(object):
 	def fetch(self):
 		data = urllib2.fetch(self.url)
