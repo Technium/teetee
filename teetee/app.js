@@ -6,7 +6,7 @@
  *  - access to results, etc, all are easier
  * Loading animation during template compilation/rending?
  * Do prev/next for divisions and clubs, don't for teams
- * Left menu list - always there? always divisions?
+ * Left menu list - always there? always divisions?        STATIC - templated
  * Prioritised-column table... javascript needed, I think; check padding/margin size when centered
  * Decide on context for club display - never any?
  * Save stats on a timer?
