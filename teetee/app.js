@@ -54,13 +54,13 @@ utils = {
 		};
 	},
 
-	dbFetch: function(type, id) {
-		return $.Enumerable.From(app.db['type']).First("$.id==id");
+	lookupItem: function(type, id) {
+		return $.Enumerable.From(app.db[type]).First("$.id=="+id);
 	},
 };
 
 app = {
-	DATA_FILES: [ 'league', 'results' ],
+	DATA_FILES: [ 'league', 'results', 'players', 'averages' ],
 
 	state: {
 		awaitingHashReload: false,
@@ -335,10 +335,10 @@ app = {
 			'.nextItemLink@class': utils.nextLink('division', 'class'),
 			'table.standings tbody tr': {
 				'row<-standings': {
-					'td.name': function(a) {
-						var teams = a.context.teams;
-						return $.Enumerable.From(teams).First("$.id=="+a.item.teamId).name;
-					},
+					'td.name': function(a) { return utils.lookupItem('team', a.item.teamId).name; },
+					//	var teams = a.context.teams;
+					//	return $.Enumerable.From(teams).First("$.id=="+a.item.teamId).name;
+					//},
 					'td.for': 'row.for',
 					'td.agst': 'row.agst',
 					'td.pld': 'row.pld',
@@ -346,6 +346,16 @@ app = {
 					'td.drwn': 'row.drwn',
 					'td.lost': 'row.lost',
 					'td.pts': 'row.pts',
+				}
+			},
+			'table.averages tbody tr': {
+				'row<-averages.players': {
+					'td.name': function(a) {
+						return utils.lookupItem('player', a.item.playerId).name; },
+					'td.pct': function(a) {
+						return (a.item.played==0)?'n/a':(100*(a.item.won/a.item.played)).toFixed(1); },
+					'td.pld': 'row.played',
+					'td.won': 'row.won',
 				}
 			},
 		},
