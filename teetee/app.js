@@ -59,6 +59,7 @@ utils = {
 	},
 };
 
+
 app = {
 	DATA_FILES: [ 'league', 'results', 'players', 'averages' ],
 
@@ -67,6 +68,7 @@ app = {
 	},
 
 	start: function () {
+		console.log("started");
 		app.start = new Date;
 		app.random = Kybos();
 		app.templateCache = {};
@@ -80,7 +82,8 @@ app = {
 		if (app.updateRequired) { setTimeout(app.checkForUpdates, 10); }
 
 		/* Location/back-stack stuff */
-		$(window).hashchange(app.hashChange);
+		//~ $(window).hashchange(app.hashChange);
+		$(window).bind("hashchange", app.hashChange);
 		$('section.articles').on('click', 'a.disabled', false);
 
 		/* Stats stuff */
@@ -223,7 +226,9 @@ app = {
 
 		var bits = newHash.substring(1).split('/');
 		if (bits.length == 1) {
-			target = $('.articles .'+bits[0]);
+			var type = bits[0];
+			target = app.instantiateTemplate(type, null, {});
+			//~ target = $('.articles .'+bits[0]);
 		} else if (bits.length == 2) {
 			var type = bits[0];
 			var id = parseInt(bits[1]);
@@ -241,11 +246,12 @@ app = {
 
 		var visibles = $('.articles > article:visible');
 		if (!target || !target.length) {
-			target = $('.articles .notfound');
+			target = app.instantiateTemplate('notfound', null, {});
+			if (!target) { target = $('.articles .notfound-basic'); }
 		}
 
 		if (slide != 0) {
-			if (Modernizr.csstransitions) {
+			if (Modernizr.csstransitions && navigator.userAgent.search("Windows Phone OS 7")==-1) {
 				app.switchItems(visibles, target,
 					(slide > 0)? 'offRight' : 'offLeft',
 					(slide > 0)? 'offLeft' : 'offRight', transitionDuration);
@@ -261,16 +267,18 @@ app = {
 		return false;
 	},
 
-	instantiateTemplate: function (type, id, idList) {
+	instantiateTemplate: function (type, id, data) {
 		var ele = $('section.articles article[id="'+type+'/'+id+'"]').first();
 		if (ele.length == 0) {
 			// Compile the template
 			if (!(type in app.templateCache)) {
-				app.templateCache[type] = $('section.templates .'+type).compile(app.templateMapping[type]);;
+				var tmpl = $('section.templates .'+type);
+				if (!tmpl.length) { return null; }
+				app.templateCache[type] = tmpl.compile(app.templateMapping[type]);;
 			}
 
 			// Instantiate it for this data
-			var data = app.db[type][id];
+			//var data = app.db[type][id];
 			switch (type) {
 				case "division": {
 					data.standings = ((app.db.table || {})[id] || {standings: []}).standings;

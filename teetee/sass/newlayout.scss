@@ -6,6 +6,8 @@
 $gutter : 0.75em;
 $bigLeftWidth : 10em;
 $color-background: #fff;
+$transition-time: 0.3s;
+$transition-opacity: 0;
 
 @import "env";
 
@@ -126,21 +128,22 @@ section.articles > article {
 	bottom: 0;
 	left: 0;
 	width: 100%;
-	-webkit-transition: left 0.5s ease-out, opacity 0.3s linear;
-	transition: left 0.5s ease-out, opacity 0.3s linear;
+	@if $transition-opacity > 0 {
+		-webkit-transition: left $transition-time ease-out, opacity $transition-time * 0.75 linear;
+		transition: left $transition-time ease-out, opacity $transition-time * 0.75 linear;
+	}
+	@if $transition-opacity == 0 {
+		-webkit-transition: left $transition-time ease-out;
+		transition: left $transition-time ease-out;
+	}
 
 	&.offLeft {
-		//background-color: #fec;
 		left: -100%;
-		//width: 100%;
-		opacity: 0.2;
-		// need to do 'right' in order to get width right?
+		@if $transition-opacity > 0 { opacity: 0.2; }
 	}
 	&.offRight {
-		//background-color: #efc;
 		left: 100%;
-		//width: 100%;
-		opacity: 0.2;
+		@if $transition-opacity > 0 { opacity: 0.2; }
 	}
 }
 
@@ -177,6 +180,7 @@ table.magic {
 	aside.nav {
 		top: 0;
 		width: 100%;
+		background: $color-background;
 
 		header {
 			a {
