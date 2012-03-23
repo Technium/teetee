@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <script>
+			window.bind('hashchange', doThisWhenTheHashChanges);
+            //window.onhashchange = doThisWhenTheHashChanges;
+
+            function changeTheHash()
+            {
+                var newHashValue = document.getElementById("newHashInput").value;
+                var currentLocation = window.location.pathname;
+                window.location.hash = newHashValue;
+            }
+
+            function doThisWhenTheHashChanges()
+            {
+                alert("The hash has changed!");
+            }
+        </script>
+    </head>
+    <body>
+        <h1>Hash Change Test</h1>
+        <form>
+            <input type="text" id="newHashInput" autofocus>
+            <input type="button" value="Set" onclick="changeTheHash()">
+        </form>
+    </body>
+</html>
