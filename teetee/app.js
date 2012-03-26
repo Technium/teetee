@@ -19,6 +19,7 @@
 $dev = 1;
 transitionDuration = 500;
 
+// magic logging
 log = $dev ? function() { console.log.apply(console, arguments); } : function() {};
 
 utils = {
