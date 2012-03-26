@@ -18,24 +18,19 @@ long_line_behaviour=2
 long_line_column=107
 
 [files]
-current_page=9
-FILE_NAME_0=9840;Javascript;0;16;1;1;0;/home/steve/SparkleShare/sparkle/teetee/app.js;0;4
+current_page=4
+FILE_NAME_0=6859;Javascript;0;16;1;1;0;/home/steve/SparkleShare/sparkle/teetee/app.js;0;4
 FILE_NAME_1=335;CSS;0;16;1;1;0;/home/steve/SparkleShare/sparkle/teetee/sass/newlayout.scss;0;4
 FILE_NAME_2=32236;HTML;0;16;1;1;0;/home/steve/SparkleShare/sparkle/grabber/averages.html;0;4
 FILE_NAME_3=269;Python;0;16;1;1;0;/home/steve/SparkleShare/sparkle/grabber/grabber.py;0;4
-FILE_NAME_4=2229;Javascript;0;16;1;1;0;/home/steve/SparkleShare/sparkle/teetee/data.in/league.js;0;4
+FILE_NAME_4=3165;Javascript;0;16;1;1;0;/home/steve/SparkleShare/sparkle/teetee/data.in/league.js;0;4
 FILE_NAME_5=973;Javascript;0;16;1;1;0;/home/steve/SparkleShare/sparkle/teetee/data.in/results.js;0;4
 FILE_NAME_6=239;Javascript;0;16;1;1;0;/home/steve/SparkleShare/sparkle/teetee/data.in/averages.js;0;4
 FILE_NAME_7=9;Javascript;0;16;1;1;0;/home/steve/SparkleShare/sparkle/teetee/data.in/players.js;0;4
 FILE_NAME_8=270;Make;0;16;1;1;0;/home/steve/SparkleShare/sparkle/teetee/Makefile;0;4
-FILE_NAME_9=1088;HTML;0;16;1;1;0;/home/steve/SparkleShare/sparkle/teetee/index.html;0;4
-FILE_NAME_10=0;Javascript;0;16;1;1;0;/home/steve/SparkleShare/sparkle/teetee/modernizr.js;0;4
-FILE_NAME_11=0;Javascript;0;16;1;1;0;/home/steve/SparkleShare/sparkle/teetee/date-en-GB.js;0;4
-FILE_NAME_12=0;Javascript;0;16;1;1;0;/home/steve/SparkleShare/sparkle/teetee/grab.js;0;4
-FILE_NAME_13=0;Javascript;0;16;1;1;0;/home/steve/SparkleShare/sparkle/teetee/jquery.ba-hashchange.min.js;0;4
-FILE_NAME_14=0;Javascript;0;16;1;1;0;/home/steve/SparkleShare/sparkle/teetee/jquery.linq.min.js;0;4
-FILE_NAME_15=0;Javascript;0;16;1;1;0;/home/steve/SparkleShare/sparkle/teetee/Kybos.js;0;4
-FILE_NAME_16=11242;Javascript;0;16;1;1;0;/home/steve/SparkleShare/sparkle/teetee/pure_min.js;0;4
+FILE_NAME_9=1191;HTML;0;16;1;1;0;/home/steve/SparkleShare/sparkle/teetee/index.html;0;4
+FILE_NAME_10=574;HTML;0;16;1;1;0;/home/steve/SparkleShare/sparkle/teetee/hash.html;0;4
+FILE_NAME_11=0;Javascript;0;16;1;1;0;/home/steve/SparkleShare/sparkle/teetee/jquery.ba-hashchange.min.js;0;4
 
 [VTE]
 last_dir=/home/steve/Downloads/sw/pynids-0.6.1
