@@ -33,4 +33,4 @@ data/%.json: data.in/%.js
 	@echo Stringifying $<
 	@mkdir -p data
 	@node -e 'fs=require("fs");fs.writeFileSync("$@", JSON.stringify(eval("d="+fs.readFileSync("$<", "utf8"))));' >/dev/null
-	sh -c "touch -d `git log -1 --date=iso $< | grep Date: | awk '{print substr($$0, index($$0, $$2))}'` $@"
+	sh -c "touch -c -d `git log -1 --date=rfc $< | grep Date: | awk '{print substr($$0, index($$0, $$2))}'` $@"
