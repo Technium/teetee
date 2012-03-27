@@ -6,7 +6,7 @@ set URL=http://localhost:8080/joomla15
 rem This is the name of the output directory, in the same place as this script
 set OUTPUT=static
 
-rem This should be changed to the full path of the httrack.exe
+rem This should be changed to the full path of the httrack.exe (i.e. where you installed it)
 set CMD=httrack.exe
 
 rem You shouldn't have to touch anything else
