@@ -132,6 +132,7 @@ section.articles > article {
 	transform: translate3d(0,0,0);
 	//-webkit-transform-style: preserve-3d;
 	//transform-style: preserve-3d;
+	overflow: hidden;
 
 	/*
 	@if $transition-opacity > 0 {
