@@ -17,10 +17,11 @@ prod: data
 	@compass compile -e production
 
 static:
+	@rm -rf capture
 	@mkdir -p capture
 	@bash -c 'httrack http://localhost/teetee/index.html \
-	    http://localhost/teetee/data/{averages,league,players,results}.json \
-	    -o0 --purge-old= -O capture --index=0 -s0 -a --cache=1 --include-query-string'
+	    http://localhost/teetee/data/{averages,league,players,results}.json --get-files \
+	    -o0 --purge-old= -O capture --index=0 -s0 -a --include-query-string'
 
 clean:
 	@rm -f stylesheets/*.css
