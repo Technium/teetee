@@ -1,4 +1,6 @@
 
+.PHONY: dev prod clean upload data
+
 DEFAULT: dev
 
 watch: dev data
