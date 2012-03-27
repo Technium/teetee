@@ -4,7 +4,7 @@ DEFAULT: dev
 watch: dev data
 	@compass watch
 
-dev: clean data
+dev: data
 	@echo "\$$dev: 1;" > sass/_env.scss
 	@compass compile -e development
 
