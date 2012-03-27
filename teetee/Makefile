@@ -35,4 +35,4 @@ data/%.json: data.in/%.js
 	@echo Stringifying $<
 	@mkdir -p data
 	@node -e 'fs=require("fs");fs.writeFileSync("$@", JSON.stringify(eval("d="+fs.readFileSync("$<", "utf8"))));' >/dev/null
-	touch -t $$(python -c "from time import *;print strftime('%Y%m%d%H%M.%S',localtime($$(git log -1 --format=%at $<)))") $@
+	@touch -t $$(python -c "from time import *;print strftime('%Y%m%d%H%M.%S',localtime($$(git log -1 --format=%at $<)))") $@
