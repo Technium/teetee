@@ -20,7 +20,7 @@ static:
 	@rm -rf capture
 	@mkdir -p capture
 	@bash -c 'httrack http://localhost/teetee/index.html \
-	    http://localhost/teetee/data/{averages,league,players,results}.json --get-files \
+	    http://localhost/teetee/data/{averages,league,players,results}.json --cache=0 \
 	    -o0 --purge-old= -O capture --index=0 -s0 -a --include-query-string'
 
 clean:
