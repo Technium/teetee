@@ -128,10 +128,10 @@ section.articles > article {
 	bottom: 0;
 	left: 0;
 	width: 100%;
-	-webkit-perspective: 800;
-	perspective: 800;
+	-webkit-perspective: 800px;
+	perspective: 800px;
 	-webkit-transform: translate3d(0,0,0) rotate3d(0, 0, 1, 0deg);
-	transform: translate3d(0,0,0);
+	transform: translate3d(0,0,0) rotate3d(0, 0, 1, 0deg);
 	//-webkit-transform-style: preserve-3d;
 	//transform-style: preserve-3d;
 	overflow: hidden;
@@ -151,14 +151,14 @@ section.articles > article {
 	transition: transform $transition-time ease-out;
 
 	&.offLeft {
-		-webkit-transform: translate3d(-100%,0,-100) rotate3d(0, 0, 1, -45deg);
-		transform: translate3d(-100%,0,-100px);
+		-webkit-transform: translate3d(-100%,0,-100px) rotate3d(0, 0, 1, -45deg);
+		transform: translate3d(-100%,0,-100px) rotate3d(0, 0, 1, -45deg);
 		//left: -100%;
 		@if $transition-opacity > 0 { opacity: 0.2; }
 	}
 	&.offRight {
-		-webkit-transform: translate3d(100%,0,-100) rotate3d(0, 0, 1, -45deg);
-		transform: translate3d(100%,0,-100px);
+		-webkit-transform: translate3d(100%,0,-100px) rotate3d(0, 0, 1, -45deg);
+		transform: translate3d(100%,0,-100px) rotate3d(0, 0, 1, -45deg);
 		//left: 100%;
 		@if $transition-opacity > 0 { opacity: 0.2; }
 	}
