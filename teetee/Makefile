@@ -34,6 +34,6 @@ data/%.json: data.in/%.js
 	@mkdir -p data
 	@node -e 'fs=require("fs");fs.writeFileSync("$@", JSON.stringify(eval("d="+fs.readFileSync("$<", "utf8"))));' >/dev/null
 	t=`git log -1 --format=%at $<`
-	echo t=$$t
+	echo t=$t
 	f=`python -c "from time import *;print strftime('%Y%m%d%H%M.%S',localtime($$t))"`
 	echo f=$$f;touch -t $$f $@
