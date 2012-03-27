@@ -157,8 +157,8 @@ section.articles > article {
 		@if $transition-opacity > 0 { opacity: 0.2; }
 	}
 	&.offRight {
-		-webkit-transform: translate3d(100%,0,-100px) rotate3d(0, 1, 0, -45deg);
-		transform: translate3d(100%,0,-100px) rotate3d(0, 1, 0, -45deg);
+		-webkit-transform: translate3d(100%,0,-100px) rotate3d(0, 1, 0, 45deg);
+		transform: translate3d(100%,0,-100px) rotate3d(0, 1, 0, 45deg);
 		//left: 100%;
 		@if $transition-opacity > 0 { opacity: 0.2; }
 	}
