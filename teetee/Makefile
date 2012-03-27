@@ -19,8 +19,11 @@ clean:
 upload: data
 	@scp -r *.js *.html images stylesheets data t220@t220.com:public_html/tt
 
-data: data/results.json data/league.json data/averages.json data/players.json
+DATA: data/results.json data/league.json data/averages.json data/players.json
 
-data/%.json: data.in/%.js
+data:
+	mkdir -p data
+
+data/%.json: data data.in/%.js
 	@echo Stringifying $<
 	@node -e 'fs=require("fs");fs.writeFileSync("$@", JSON.stringify(eval("d="+fs.readFileSync("$<", "utf8"))));' >/dev/null
