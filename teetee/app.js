@@ -69,11 +69,7 @@ app = {
 	},
 
 	start: function () {
-<<<<<<< HEAD
-		console.log("started");
-=======
 		log("started");
->>>>>>> steves_stuff
 		app.start = new Date;
 		app.random = Kybos();
 		app.templateCache = {};
@@ -255,14 +251,9 @@ app = {
 			if (!target) { target = $('.articles .notfound-basic'); }
 		}
 
-<<<<<<< HEAD
-		if (slide != 0) {
-			if (Modernizr.csstransitions && navigator.userAgent.search("Windows Phone OS 7")==-1) {
-=======
 		if (slide != 0 &&
 			Modernizr.csstransitions &&
 			navigator.userAgent.search("Windows Phone OS 7")==-1) {
->>>>>>> steves_stuff
 				app.switchItems(visibles, target,
 					(slide > 0)? 'offRight' : 'offLeft',
 					(slide > 0)? 'offLeft' : 'offRight', transitionDuration);
