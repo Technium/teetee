@@ -1,7 +1,9 @@
-rem These should be set to match the local test address (i.e. http://localhost:8080/)
+@echo off
+
+rem These should be set to match the local test address (i.e. http://localhost:8080/joomla15)
 set PORT=8080
 set HOST=localhost
-set PATH=/
+set PATH=/joomla15
 
 rem This is the name of the output directory, in the same place as this script
 set OUTPUT=static
@@ -17,7 +19,7 @@ rem Remove any old output
 del /q /y %OUTPUT%
 
 rem Grab a new copy of the whole site
-%CMD% %URL% --path=%OUTPUT% --depth=20 --sockets=10 --retries=2 --display --index=0 --cache=0
+%CMD% %URL% --path=%OUTPUT% --cache=0 -A9999999 -n -o0 -c100 -%c100 -r10 -R2 -O capture --index=0 -s0 -a
 
 rem maybe --updatehack
 
