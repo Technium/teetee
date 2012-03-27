@@ -17,8 +17,11 @@
 $dev = 1;
 transitionDuration = 500;
 
-// magic logging
-log = $dev ? function() { console.log.apply(console, arguments); } : function() {};
+userConfigDefaults = {
+	maxDataAge: 4,
+};
+
+if (!$dev) { console.log = function() {}; }
 
 utils = {
 	prevLink: function (cls, type) {
@@ -67,29 +70,47 @@ app = {
 	},
 
 	start: function () {
-		log("started");
-		app.start = new Date;
+		//~ app.start = new Date;
 		app.random = Kybos();
 		app.templateCache = {};
 		app.dbParts = app.getConfig('dbParts', {});
 		app.stats = app.getConfig('stats', {});
+		app.userConfig = app.getConfig('userConfig', {});
 		app.updateTimes = app.getConfig('updateTimes', {});
+		app.lastGoodUpdate = app.getConfig('lastGoodUpdate', null);
 
 		/* Update stuff */
+		app.checkIfUpdatesRequired();
 		app.displayUpdateDate();
 		app.rebuildDatabase(); // Uses cached data
-		if (app.updateRequired) { setTimeout(app.checkForUpdates, 10); }
 
 		/* Location/back-stack stuff */
-		//~ $(window).hashchange(app.hashChange);
 		$(window).bind("hashchange", app.hashChange);
 		$('section.articles').on('click', 'a.disabled', false);
 
 		/* Stats stuff */
+		app.initStats();
+		app.updateStat('loaded', 1);
+	},
+
+	initStats: function () {
 		if ("undefined" == typeof app.stats.id) {
 			app.stats.id = app.random.uint32().toString(16) + app.random.uint32().toString(16);
 		}
-		app.updateStat('loaded', 1);
+	},
+
+	checkIfUpdatesRequired: function () {
+		var when = new Date(app.lastGoodUpdate || 0);
+		var maxAge = app.userConfig.maxDataAge || userConfigDefaults.maxDataAge;
+
+		if (when < new Date().add(-app.maxDataAge).day()) {
+			console.log("update required, triggering check");
+			app.updateRequired = true;
+			setTimeout(app.checkForUpdates, 25);
+		} else {
+			console.log("update not required");
+			app.updateRequired = false;
+		}
 	},
 
 	checkForUpdates: function () {
@@ -118,30 +139,40 @@ app = {
 			app.updateStat('updateFailed', 1);
 			app.markUpdateState('fail');
 		} else {
+			app.lastGoodUpdate = +new Date();
+			app.setConfig('lastGoodUpdate', app.lastGoodUpdate);
 			app.updateStat('updateCompleted', 1);
 			app.markUpdateState('okay');
 			if (app.fetches.changes) {
-				log("changed!");
+				console.log("update found changes!");
 				app.rebuildDatabase();
 			} else {
-				log("not changed :(");
+				console.log("update complete - nothing changed");
 			}
 		}
 	},
 
 	rebuildDatabase: function () {
-		log("rebuild");
+		console.log("rebuild");
 		app.db = {};
 		for (name in app.dbParts) {
 			$.extend(app.db, app.dbParts[name]);
 		}
 		$('section.articles > article.generated').remove();
+
+		app.triggerHashChange(true);
+	},
+
+	triggerHashChange: function (force) {
+		if (app.state.awaitingHashReload) { return; }
+
 		app.state.awaitingHashReload = true;
+		if (force) {
+			app.lastHash = null;
+		}
 		setTimeout(function () {
 			if (app.state.awaitingHashReload) {
-				app.lastHash = null;
-				$(window).hashchange();
-				app.state.awaitingHashReload = false;
+				app.hashChange();
 			}
 		}, 10);
 	},
@@ -149,30 +180,26 @@ app = {
 	displayUpdateDate: function () {
 		var q = $.Enumerable.From(app.updateTimes).Select("$.Value");
 		var dateField = $('.update .status .date');
-		var good;
 		if (q.Any()) {
 			var when = new Date(q.Max());
 			dateField.text(when.toString('d'));
-			good = (when > new Date().add(-7).day());
 		} else {
 			dateField.text('n/a');
-			good = false;
 		}
 
 		dateField.removeClass('good bad');
-		dateField.addClass(good ? 'good' : 'bad');
+		dateField.addClass(app.updateRequired ? 'bad' : 'good');
 
-		app.updateRequired = !good;
-		if ($dev) app.updateRequired = true;
+		//~ if ($dev) app.updateRequired = true;
 	},
 
 	markUpdateState: function (state) {
-		log("update state = "+state, (new Date).getTime() - app.start);
+		//~ console.log("update state = "+state, (new Date).getTime() - app.start);
 		$('.update .notice').attr('class', 'notice '+state);
 	},
 
 	fetchData: function (name, force) {
-		log("fetching",name);
+		console.log("fetching",name);
 		var lastFetchTime = new Date(app.updateTimes[name] || 0);
 		if (force) lastFetchTime = 0;
 		var url = 'data/'+name+'.json';
@@ -186,7 +213,7 @@ app = {
 	},
 
 	dataFetchFailed: function (name) {
-		log("fetch failed for",name);
+		console.log("fetch failed for",name);
 		app.fetches.pending -= 1;
 		app.fetches.fail = true;
 
@@ -195,9 +222,9 @@ app = {
 
 	dataFetched: function (name, data, req, status) {
 		if (status == "notmodified") {
-			log("fetch notmodified for ",name);
+			console.log("fetch notmodified for ",name);
 		} else {
-			log("fetch done for",name);
+			console.log("fetch done for",name);
 
 			// insert return data into database
 			app.dbParts[name] = data;
@@ -217,10 +244,12 @@ app = {
 	},
 
 	hashChange: function (evt) {
+		app.state.awaitingHashReload = false;
+
 		var target, slide = 0;
 		var newHash = window.location.hash || "#main";
 
-		log('hash change', newHash);
+		console.log('hash change:', newHash);
 		if (app.lastHash == newHash) { return; }
 
 		var bits = newHash.substring(1).split('/');
@@ -261,8 +290,10 @@ app = {
 		}
 
 		app.lastHash = newHash;
-		evt.preventDefault();
-		evt.stopPropagation();
+		if (evt) {
+			evt.preventDefault();
+			evt.stopPropagation();
+		}
 		return false;
 	},
 
@@ -305,11 +336,12 @@ app = {
 		if ('undefined' == typeof addValue) { addValue = 1; }
 
 		var result;
-		log(name, addValue);
 
 		app.updateConfig('stats', {}, function () {
 			result = app.stats[name] = (app.stats[name] || initValue) + addValue;
 		});
+
+		console.log('stat:', name, result);
 
 		return result;
 	},
