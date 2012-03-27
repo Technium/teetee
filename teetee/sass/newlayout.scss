@@ -142,7 +142,7 @@ section.articles > article {
 	}
 	*/
 
-	-webkit-transition: translate3d $transition-time ease-out;
+	-webkit-transition: -webkit-translate3d $transition-time ease-out;
 	transition: translate3d $transition-time ease-out;
 
 	&.offLeft {
