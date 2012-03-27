@@ -131,6 +131,7 @@ section.articles > article {
 	-webkit-transform: translate3d(0,0,0);
 	transform: translate3d(0,0,0);
 
+	/*
 	@if $transition-opacity > 0 {
 		-webkit-transition: left $transition-time ease-out, opacity $transition-time * 0.75 linear;
 		transition: left $transition-time ease-out, opacity $transition-time * 0.75 linear;
@@ -139,6 +140,10 @@ section.articles > article {
 		-webkit-transition: left $transition-time ease-out;
 		transition: left $transition-time ease-out;
 	}
+	*/
+
+	-webkit-transition: translate3d $transition-time ease-out;
+	transition: translate3d $transition-time ease-out;
 
 	&.offLeft {
 		-webkit-transform: translate3d(-100%,0,0);
