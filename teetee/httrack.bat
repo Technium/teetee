@@ -16,7 +16,7 @@ rem You shouldn't have to touch anything else
 
 
 rem Remove any old output
-del /q /y %OUTPUT%
+del /q %OUTPUT%
 
 rem Grab a new copy of the whole site
 %CMD% %URL% --path=%OUTPUT% --cache=0 -A9999999 -n -o0 -c100 -%c100 -r10 -R2 -O capture --index=0 -s0 -a
