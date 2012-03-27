@@ -1,14 +1,12 @@
 /*
  * TODO
  *
- * Common template framework for all pages - pass in (db, type, id, subtype)?
- *  - ALL of the pages are templates? would clean up DOM a bit...
- *  - access to results, etc, all are easier
+ * Common data context for all templates - pass in (db, type, id, subtype)?
  * Loading animation during template compilation/rending?
  * Do prev/next for divisions and clubs, don't for teams
- * Left menu list - always there? always divisions?        STATIC - templated
- * Prioritised-column table... javascript needed, I think; check padding/margin size when centered
- * Decide on context for club display - never any?
+ * Left menu list
+ * 	* Context sensitive - clubs mode, league mode
+ *
  * Save stats on a timer?
  *
  * Split app.js
