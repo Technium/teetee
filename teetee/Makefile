@@ -12,6 +12,12 @@ prod: data
 	@echo "\$$dev: 0;" > sass/_env.scss
 	@compass compile -e production
 
+capture:
+	@mkdir -p capture
+	@httrack http://localhost/teetee \
+	    http://localhost/teetee/data/{averages,league,players,results}.json \
+	    -o0 --purge-old= -O suck --index=0 -s0 -a --cache=1 --include-query-string
+
 clean:
 	@rm -f stylesheets/*.css
 	@rm -f data/*.json
