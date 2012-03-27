@@ -14,9 +14,9 @@ prod: data
 
 capture:
 	@mkdir -p capture
-	@httrack http://localhost/teetee \
+	@bash -c 'httrack http://localhost/teetee \
 	    http://localhost/teetee/data/{averages,league,players,results}.json \
-	    -o0 --purge-old= -O capture --index=0 -s0 -a --cache=1 --include-query-string
+	    -o0 --purge-old= -O capture --index=0 -s0 -a --cache=1 --include-query-string'
 
 clean:
 	@rm -f stylesheets/*.css
