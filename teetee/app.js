@@ -19,7 +19,8 @@
 $dev = 1;
 transitionDuration = 500;
 
-//var log = function(msg) { if ($dev) console.log(msg); };
+// magic logging
+log = $dev ? function() { console.log.apply(console, arguments); } : function() {};
 
 utils = {
 	prevLink: function (cls, type) {
@@ -68,7 +69,11 @@ app = {
 	},
 
 	start: function () {
+<<<<<<< HEAD
 		console.log("started");
+=======
+		log("started");
+>>>>>>> steves_stuff
 		app.start = new Date;
 		app.random = Kybos();
 		app.templateCache = {};
@@ -122,16 +127,16 @@ app = {
 			app.updateStat('updateCompleted', 1);
 			app.markUpdateState('okay');
 			if (app.fetches.changes) {
-				console.log("changed!");
+				log("changed!");
 				app.rebuildDatabase();
 			} else {
-				console.log("not changed :(");
+				log("not changed :(");
 			}
 		}
 	},
 
 	rebuildDatabase: function () {
-		console.log("rebuild");
+		log("rebuild");
 		app.db = {};
 		for (name in app.dbParts) {
 			$.extend(app.db, app.dbParts[name]);
@@ -168,12 +173,12 @@ app = {
 	},
 
 	markUpdateState: function (state) {
-		console.log("update state = "+state, (new Date).getTime() - app.start);
+		log("update state = "+state, (new Date).getTime() - app.start);
 		$('.update .notice').attr('class', 'notice '+state);
 	},
 
 	fetchData: function (name, force) {
-		console.log("fetching",name);
+		log("fetching",name);
 		var lastFetchTime = new Date(app.updateTimes[name] || 0);
 		if (force) lastFetchTime = 0;
 		var url = 'data/'+name+'.json';
@@ -187,7 +192,7 @@ app = {
 	},
 
 	dataFetchFailed: function (name) {
-		console.log("fetch failed for",name);
+		log("fetch failed for",name);
 		app.fetches.pending -= 1;
 		app.fetches.fail = true;
 
@@ -196,9 +201,9 @@ app = {
 
 	dataFetched: function (name, data, req, status) {
 		if (status == "notmodified") {
-			console.log("fetch notmodified for ",name);
+			log("fetch notmodified for ",name);
 		} else {
-			console.log("fetch done for",name);
+			log("fetch done for",name);
 
 			// insert return data into database
 			app.dbParts[name] = data;
@@ -221,7 +226,7 @@ app = {
 		var target, slide = 0;
 		var newHash = window.location.hash || "#main";
 
-		console.log('hash change', newHash, evt);
+		log('hash change', newHash);
 		if (app.lastHash == newHash) { return; }
 
 		var bits = newHash.substring(1).split('/');
@@ -250,12 +255,17 @@ app = {
 			if (!target) { target = $('.articles .notfound-basic'); }
 		}
 
+<<<<<<< HEAD
 		if (slide != 0) {
 			if (Modernizr.csstransitions && navigator.userAgent.search("Windows Phone OS 7")==-1) {
+=======
+		if (slide != 0 &&
+			Modernizr.csstransitions &&
+			navigator.userAgent.search("Windows Phone OS 7")==-1) {
+>>>>>>> steves_stuff
 				app.switchItems(visibles, target,
 					(slide > 0)? 'offRight' : 'offLeft',
 					(slide > 0)? 'offLeft' : 'offRight', transitionDuration);
-			}
 		} else {
 			visibles.fadeOut('fast');
 			target.fadeIn('fast');
@@ -306,7 +316,7 @@ app = {
 		if ('undefined' == typeof addValue) { addValue = 1; }
 
 		var result;
-		console.log(name, addValue);
+		log(name, addValue);
 
 		app.updateConfig('stats', {}, function () {
 			result = app.stats[name] = (app.stats[name] || initValue) + addValue;

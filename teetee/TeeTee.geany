@@ -18,8 +18,13 @@ long_line_behaviour=2
 long_line_column=107
 
 [files]
+<<<<<<< HEAD
 current_page=4
 FILE_NAME_0=6859;Javascript;0;16;1;1;0;/home/steve/SparkleShare/sparkle/teetee/app.js;0;4
+=======
+current_page=0
+FILE_NAME_0=1098;Javascript;0;16;1;1;0;/home/steve/SparkleShare/sparkle/teetee/app.js;0;4
+>>>>>>> steves_stuff
 FILE_NAME_1=335;CSS;0;16;1;1;0;/home/steve/SparkleShare/sparkle/teetee/sass/newlayout.scss;0;4
 FILE_NAME_2=32236;HTML;0;16;1;1;0;/home/steve/SparkleShare/sparkle/grabber/averages.html;0;4
 FILE_NAME_3=269;Python;0;16;1;1;0;/home/steve/SparkleShare/sparkle/grabber/grabber.py;0;4
@@ -28,8 +33,13 @@ FILE_NAME_5=973;Javascript;0;16;1;1;0;/home/steve/SparkleShare/sparkle/teetee/da
 FILE_NAME_6=239;Javascript;0;16;1;1;0;/home/steve/SparkleShare/sparkle/teetee/data.in/averages.js;0;4
 FILE_NAME_7=9;Javascript;0;16;1;1;0;/home/steve/SparkleShare/sparkle/teetee/data.in/players.js;0;4
 FILE_NAME_8=270;Make;0;16;1;1;0;/home/steve/SparkleShare/sparkle/teetee/Makefile;0;4
+<<<<<<< HEAD
 FILE_NAME_9=1191;HTML;0;16;1;1;0;/home/steve/SparkleShare/sparkle/teetee/index.html;0;4
 FILE_NAME_10=574;HTML;0;16;1;1;0;/home/steve/SparkleShare/sparkle/teetee/hash.html;0;4
+=======
+FILE_NAME_9=1170;HTML;0;16;1;1;0;/home/steve/SparkleShare/sparkle/teetee/index.html;0;4
+FILE_NAME_10=464;HTML;0;16;1;1;0;/home/steve/SparkleShare/sparkle/teetee/hash.html;0;4
+>>>>>>> steves_stuff
 FILE_NAME_11=0;Javascript;0;16;1;1;0;/home/steve/SparkleShare/sparkle/teetee/jquery.ba-hashchange.min.js;0;4
 
 [VTE]
