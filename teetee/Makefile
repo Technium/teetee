@@ -1,14 +1,14 @@
 
 DEFAULT: dev
 
-watch: dev data
+watch: dev DATA
 	@compass watch
 
-dev: clean data
+dev: clean DATA
 	@echo "\$$dev: 1;" > sass/_env.scss
 	@compass compile -e development
 
-prod: clean data
+prod: clean DATA
 	@echo "\$$dev: 0;" > sass/_env.scss
 	@compass compile -e production
 
