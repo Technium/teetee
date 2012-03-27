@@ -8,7 +8,7 @@ dev: clean data
 	@echo "\$$dev: 1;" > sass/_env.scss
 	@compass compile -e development
 
-prod: clean data
+prod: data
 	@echo "\$$dev: 0;" > sass/_env.scss
 	@compass compile -e production
 
