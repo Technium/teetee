@@ -18,7 +18,7 @@ long_line_behaviour=2
 long_line_column=107
 
 [files]
-current_page=8
+current_page=12
 FILE_NAME_0=453;Javascript;0;16;1;1;0;/home/steve/SparkleShare/sparkle/teetee/app.js;0;4
 FILE_NAME_1=2384;CSS;0;16;1;1;0;/home/steve/SparkleShare/sparkle/teetee/sass/newlayout.scss;0;4
 FILE_NAME_2=32236;HTML;0;16;1;1;0;/home/steve/SparkleShare/sparkle/grabber/averages.html;0;4
@@ -30,6 +30,8 @@ FILE_NAME_7=9;Javascript;0;16;1;1;0;/home/steve/SparkleShare/sparkle/teetee/data
 FILE_NAME_8=820;HTML;0;16;1;1;0;/home/steve/SparkleShare/sparkle/teetee/index.html;0;4
 FILE_NAME_9=464;HTML;0;16;1;1;0;/home/steve/SparkleShare/sparkle/teetee/hash.html;0;4
 FILE_NAME_10=0;Javascript;0;16;1;1;0;/home/steve/SparkleShare/sparkle/teetee/jquery.ba-hashchange.min.js;0;4
+FILE_NAME_11=535;Make;0;16;1;1;0;/home/steve/SparkleShare/sparkle/teetee/Makefile;0;4
+FILE_NAME_12=731;None;0;16;1;1;0;/home/steve/SparkleShare/sparkle/teetee/httrack.bat;0;4
 
 [VTE]
 last_dir=/home/steve/Downloads/sw/pynids-0.6.1
