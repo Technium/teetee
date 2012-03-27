@@ -1,5 +1,5 @@
 
-.PHONY: dev prod clean upload data
+.PHONY: dev prod clean upload data static
 
 DEFAULT: dev
 
@@ -14,7 +14,7 @@ prod: data
 	@echo "\$$dev: 0;" > sass/_env.scss
 	@compass compile -e production
 
-capture:
+static:
 	@mkdir -p capture
 	@bash -c 'httrack http://localhost/teetee/index.html \
 	    http://localhost/teetee/data/{averages,league,players,results}.json \
