@@ -3,6 +3,8 @@
 
 DEFAULT: dev
 
+DATA_FILES = $(shell find data.in -name '*.js')
+
 watch: dev data
 	@compass watch
 
