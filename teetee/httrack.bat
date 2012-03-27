@@ -17,10 +17,10 @@ rem Remove any old output
 del /q /y %OUTPUT%
 
 rem Grab a new copy of the whole site
-%CMD% %URL% --get-files --path=%OUTPUT% --depth=20 --sockets=10 --retries=2 --display --index=0
+%CMD% %URL% --path=%OUTPUT% --depth=20 --sockets=10 --retries=2 --display --index=0 --cache=0
 
 rem maybe --updatehack
 
-
+echo.
 echo Done.
 pause
