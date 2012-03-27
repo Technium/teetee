@@ -20,7 +20,7 @@ static:
 	@rm -rf capture
 	@bash -c 'httrack http://localhost/teetee/index.html \
 	    http://localhost/teetee/data/{averages,league,players,results}.json \
-	    --cache=0 -A9999999 -o0 -c20 -%c1000 -r10 -O capture --index=0 -s0 -a --include-query-string'
+	    --cache=0 -A9999999 -o0 -c100 -%c1000 -r10 -O capture --index=0 -s0 -a --include-query-string'
 
 clean:
 	@rm -f stylesheets/*.css
