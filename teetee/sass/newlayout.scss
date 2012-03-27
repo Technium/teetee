@@ -151,13 +151,13 @@ section.articles > article {
 	transition: transform $transition-time ease-out;
 
 	&.offLeft {
-		-webkit-transform: translate3d(-100%,0,-100px) rotate3d(0, 1, 0, 30deg);
+		-webkit-transform: translate3d(-100%,0,-100) rotate3d(0, 1, 0, 30deg);
 		transform: translate3d(-100%,0,-100px);
 		//left: -100%;
 		@if $transition-opacity > 0 { opacity: 0.2; }
 	}
 	&.offRight {
-		-webkit-transform: translate3d(100%,0,-100px) rotate3d(0, 1, 0, 30deg);
+		-webkit-transform: translate3d(100%,0,-100) rotate3d(0, 1, 0, 30deg);
 		transform: translate3d(100%,0,-100px);
 		//left: 100%;
 		@if $transition-opacity > 0 { opacity: 0.2; }
