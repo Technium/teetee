@@ -16,7 +16,7 @@ clean:
 	@rm -f stylesheets/*.css
 	@rm -f data/*.json
 
-upload: data
+upload: DATA
 	@scp -r *.js *.html images stylesheets data t220@t220.com:public_html/tt
 
 DATA: data/results.json data/league.json data/averages.json data/players.json
