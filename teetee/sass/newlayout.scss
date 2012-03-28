@@ -452,7 +452,7 @@ table.magic {
 			left: -(9em + $gutter);
 			top: 16em;
 			bottom: 6em;
-			right: 9em - $gutter;
+			width: 9em - $gutter*2;
 
 			@if ($dev) { background: lighten(blue, 30%); }
 		}
