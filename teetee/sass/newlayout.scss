@@ -449,9 +449,10 @@ table.magic {
 			position: absolute;
 			display: block;
 
-			margin-left: -(9em + $gutter);
+			left: -(9em + $gutter);
 			top: 16em;
 			bottom: 6em;
+			right:
 
 			@if ($dev) { background: lighten(blue, 30%); }
 		}
