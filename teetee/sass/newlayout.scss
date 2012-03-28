@@ -374,7 +374,7 @@ table.magic {
 							top: 0;
 							bottom: 0;
 
-							@if $dev >= 1 { background-color: pink; }
+							//@if $dev >= 1 { background-color: pink; }
 
 							background-size: contain;
 							background-position: center;
@@ -389,7 +389,7 @@ table.magic {
 						}
 						margin: 0 auto;
 
-						@if $dev >= 1 { background-color: yellow; }
+						//@if $dev >= 1 { background-color: yellow; }
 					}
 
 					&.league div { background-image: url(../images/league.png); }
@@ -461,9 +461,7 @@ table.magic {
 			width: $bigLeftWidth;
 			z-index: 110;
 
-/*
-			@if ($dev) { background: #C7C3D2; }
-*/
+			//@if ($dev) { background: #C7C3D2; }
 		}
 	}
 
@@ -515,7 +513,7 @@ table.magic {
 							top: 0;
 							bottom: 1.4em;
 
-							@if $dev >= 1 { background-color: pink; }
+							//@if $dev >= 1 { background-color: pink; }
 
 							background-size: contain;
 							background-position: center;
@@ -530,7 +528,7 @@ table.magic {
 						}
 						margin: 0 auto;
 
-						@if $dev >= 1 { background-color: yellow; }
+						//@if $dev >= 1 { background-color: yellow; }
 					}
 
 					&.league div { background-image: url(../images/league.png); }
