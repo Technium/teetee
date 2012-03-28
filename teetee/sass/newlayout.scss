@@ -79,7 +79,7 @@ section.templates {
 }
 
 section.articles > article {
-	@if $dev >= 1 { background: #efc };
+	//@if $dev >= 1 { background: #efc };
 
 	padding: $gutter;
 	h1 { font-size: 150%; }
@@ -201,7 +201,7 @@ table.magic {
 	aside.nav {
 		top: 0;
 		width: 100%;
-		background: $color-background;
+		//background: $color-background;
 
 		header {
 			a {
