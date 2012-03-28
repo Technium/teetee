@@ -444,6 +444,13 @@ table.magic {
 
 	section.articles > article {
 		padding-left: 9em + $gutter;
+
+		aside.left {
+			position: absolute;
+			display: block;
+
+			padding-left: -(9em + $gutter);
+		}
 	}
 
 	aside.nav {
