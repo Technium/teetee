@@ -443,13 +443,13 @@ table.magic {
 @media screen and (min-width: 641px) and (min-height: 641px) {
 
 	section.articles > article {
-		padding-left: 9em + $gutter;
+		margin-left: 9em + $gutter;
 
 		aside.left {
 			position: absolute;
 			display: block;
 
-			padding-left: -(9em + $gutter);
+			margin-left: -(9em + $gutter);
 		}
 	}
 
