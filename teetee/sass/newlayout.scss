@@ -451,7 +451,7 @@ table.magic {
 
 			margin-left: -(9em + $gutter);
 			top: 16em;
-			bottom: 12em;
+			bottom: 14em;
 			width: 9em;
 
 			@if ($dev) { background: lighten(blue, 30%); }
