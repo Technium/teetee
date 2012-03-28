@@ -448,16 +448,16 @@ table.magic {
 @media screen and (min-width: 641px) and (min-height: 641px) {
 
 	section.articles > article {
-		padding-left: 9em + $gutter;
+		padding-left: $bigLeftWidth + $gutter;
 
 		aside.left {
 			position: absolute;
 			display: block;
 
-			margin-left: -(9em + $gutter);
+			margin-left: -($bigLeftWidth + $gutter);
 			top: 16em;
 			bottom: 7em;
-			width: 9em;
+			width: $bigLeftWidth;
 			z-index: 110;
 
 /*
