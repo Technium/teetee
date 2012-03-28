@@ -454,7 +454,7 @@ table.magic {
 			bottom: 7em;
 			width: 9em;
 
-			@if ($dev) { background: lighten(blue, 30%); }
+			@if ($dev) { background: #B58FA7; }
 		}
 	}
 
