@@ -84,6 +84,10 @@ section.articles > article {
 	padding: $gutter;
 	h1 { font-size: 150%; }
 
+	aside.left {
+		display: none;
+	}
+
 	> header {
 		position: relative;
 		margin: 0.5em 0;
@@ -185,7 +189,6 @@ table.magic {
 	th {
 	}
 }
-
 
 ///////////////////////////////////////////////////////////////////////
 
