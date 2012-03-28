@@ -467,7 +467,7 @@ table.magic {
 	}
 
 	aside.nav {
-		width: 9em;
+		width: $bigLeftWidth;
 		//height: 100%;
 
 		header {
@@ -541,7 +541,7 @@ table.magic {
 	}
 
 	aside.bottom {
-		width: 9em;
+		width: $bigLeftWidth;
 
 		display: block;
 		position: absolute;
