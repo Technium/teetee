@@ -453,7 +453,7 @@ table.magic {
 			top: 16em;
 			bottom: 6em;
 
-			@if ($dev) { background: lighten(red, 30%); }
+			@if ($dev) { background: lighten(blue, 30%); }
 		}
 	}
 
