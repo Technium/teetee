@@ -44,7 +44,7 @@ aside.nav {
 	position: fixed;
 	z-index: 100;
 
-	@if $dev >= 1 { background: rgba(204, 238, 255, 0.5) };
+	//@if $dev >= 1 { background: rgba(204, 238, 255, 0.5) };
 
 	.update .notice {
 		&.checking {
