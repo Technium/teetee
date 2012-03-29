@@ -25,15 +25,15 @@ if (!$dev) { console.log = function() {}; }
 
 utils = {
 	prevLink: function (cls, type) {
-		return function(obj) {
-			if (obj.context.id < 1) {
+		return function(a) {
+			if (a.context[type].id < 1) {
 				switch (type) {
 					case "href": return "#";
 					case "class": return "disabled";
 				}
 			} else {
 				switch (type) {
-					case "href": return "#"+cls+"/"+(obj.context.id - 1);
+					case "href": return "#"+cls+"/"+(a.context[type].id - 1);
 					case "class": return "";
 				}
 			}
@@ -41,15 +41,15 @@ utils = {
 	},
 
 	nextLink: function (cls, type) {
-		return function(obj) {
-			if (obj.context.id > 1) {
+		return function(a) {
+			if (a.context[type].id > 1) {
 				switch (type) {
 					case "href": return "#";
 					case "class": return "disabled";
 				}
 			} else {
 				switch (type) {
-					case "href": return "#"+cls+"/"+(obj.context.id + 1);
+					case "href": return "#"+cls+"/"+(a.context[type].id + 1);
 					case "class": return "";
 				}
 			}
