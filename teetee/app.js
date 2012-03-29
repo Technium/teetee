@@ -26,14 +26,15 @@ if (!$dev) { console.log = function() {}; }
 utils = {
 	prevLink: function (cls, type) {
 		return function(a) {
-			if (a.context[cls].id < 1) {
+			var id = a.context[cls].id;
+			if (id < 1) {
 				switch (type) {
 					case "href": return "#";
 					case "class": return "disabled";
 				}
 			} else {
 				switch (type) {
-					case "href": return "#"+cls+"/"+(a.context[cls].id - 1);
+					case "href": return "#"+cls+"/"+(id - 1);
 					case "class": return "";
 				}
 			}
@@ -42,14 +43,15 @@ utils = {
 
 	nextLink: function (cls, type) {
 		return function(a) {
-			if (a.context[cls].id > 1) {
+			var id = a.context[cls].id;
+			if (id > 1) {
 				switch (type) {
 					case "href": return "#";
 					case "class": return "disabled";
 				}
 			} else {
 				switch (type) {
-					case "href": return "#"+cls+"/"+(a.context[cls].id + 1);
+					case "href": return "#"+cls+"/"+(id + 1);
 					case "class": return "";
 				}
 			}
