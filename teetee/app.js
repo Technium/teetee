@@ -34,6 +34,7 @@ utils = {
 			}
 
 			// Find the index of the current ID
+			var id = a.context[cls].id;
 			var i;
 			for (i=0; i<valids.length; i++) {
 				if (valids[i].id == id) {
