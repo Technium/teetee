@@ -48,7 +48,7 @@ utils = {
 
 			// Fetch the next ID (if valid)
 			var nextId;
-			if (!bad) { nextId = valids[i]; }
+			if (!bad) { nextId = valids[i].id; }
 
 			// Act based on what the user asked for
 			switch (type) {
