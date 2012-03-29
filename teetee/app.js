@@ -24,19 +24,25 @@ userConfigDefaults = {
 if (!$dev) { console.log = function() {}; }
 
 utils = {
-	prevLink: function (cls, type) {
+	nextPrevLink: function (cls, type, dir, valids) {
 		return function(a) {
-			var id = a.context[cls].id;
-			if (id < 1) {
-				switch (type) {
-					case "href": return "#";
-					case "class": return "disabled";
+			if (!valids) { valids = a.context[cls]; }
+
+			var i;
+			for (i=0; i<valids.length; i++) {
+				if (valids[i].id == id) {
+					break;
 				}
-			} else {
-				switch (type) {
-					case "href": return "#"+cls+"/"+(id - 1);
-					case "class": return "";
-				}
+			}
+
+			i += (dir || +1);
+			var bad = (i < 0 || i >= valids.length);
+			var nextId;
+			if (!bad) { nextId = valids[i]; }
+
+			switch (type) {
+				case "href": return "#" + (bad ? "": cls+"/"+nextId);
+				case "class": return bad ? "disabled" : "";
 			}
 		};
 	},
