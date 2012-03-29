@@ -410,14 +410,17 @@ app = {
 				},
 			},
 			'table.averages tbody tr': {
-				'row<-averages.players': {
+				'row<-generator': {
 					'td.name': function(a) {
 						return utils.lookupItem('player', a.item.playerId).name; },
 					'td.pct': function(a) {
 						return (a.item.played==0)?'n/a':(100*(a.item.won/a.item.played)).toFixed(1); },
 					'td.pld': 'row.played',
 					'td.won': 'row.won',
-				}
+				},
+				generator: function (a) {
+					return a.context.db.averages[a.context.division.id];
+				},
 			},
 		},
 	},
