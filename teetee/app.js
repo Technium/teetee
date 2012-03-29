@@ -24,9 +24,14 @@ userConfigDefaults = {
 if (!$dev) { console.log = function() {}; }
 
 utils = {
-	nextPrevLink: function (cls, type, dir, valids) {
+	nextPrevLink: function (cls, type, dir, itemsFn) {
 		return function(a) {
-			if (!valids) { valids = a.context[cls]; }
+			var valids;
+			if (itemsFn) {
+				valids = itemsFn(a);
+			} else {
+				valids = app.db[cls];
+			}
 
 			var i;
 			for (i=0; i<valids.length; i++) {
@@ -43,23 +48,6 @@ utils = {
 			switch (type) {
 				case "href": return "#" + (bad ? "": cls+"/"+nextId);
 				case "class": return bad ? "disabled" : "";
-			}
-		};
-	},
-
-	nextLink: function (cls, type) {
-		return function(a) {
-			var id = a.context[cls].id;
-			if (id > 1) {
-				switch (type) {
-					case "href": return "#";
-					case "class": return "disabled";
-				}
-			} else {
-				switch (type) {
-					case "href": return "#"+cls+"/"+(id + 1);
-					case "class": return "";
-				}
 			}
 		};
 	},
