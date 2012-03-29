@@ -33,6 +33,7 @@ utils = {
 				valids = app.db[cls];
 			}
 
+			// Find the index of the current ID
 			var i;
 			for (i=0; i<valids.length; i++) {
 				if (valids[i].id == id) {
@@ -40,11 +41,15 @@ utils = {
 				}
 			}
 
+			// Shift it, then check it's good
 			i += (dir || +1);
 			var bad = (i < 0 || i >= valids.length);
+
+			// Fetch the next ID (if valid)
 			var nextId;
 			if (!bad) { nextId = valids[i]; }
 
+			// Act based on what the user asked for
 			switch (type) {
 				case "href": return "#" + (bad ? "": cls+"/"+nextId);
 				case "class": return bad ? "disabled" : "";
@@ -384,10 +389,10 @@ app = {
 	templateMapping: {
 		division: {
 			'.content_name': 'division.name',
-			'.prevItemLink@href': utils.prevLink('division', 'href'),
-			'.prevItemLink@class': utils.prevLink('division', 'class'),
-			'.nextItemLink@href': utils.nextLink('division', 'href'),
-			'.nextItemLink@class': utils.nextLink('division', 'class'),
+			'.prevItemLink@href': utils.nextPrevLink('division', 'href', -1),
+			'.prevItemLink@class': utils.nextPrevLink('division', 'class', -1),
+			'.nextItemLink@href': utils.nextPrevLink('division', 'href', 1),
+			'.nextItemLink@class': utils.nextPrevLink('division', 'class', 1),
 			'table.standings tbody tr': {
 				'row<-generator': {
 					'td.name': function(a) {
