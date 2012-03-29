@@ -297,28 +297,48 @@ app = {
 		return false;
 	},
 
-	instantiateTemplate: function (type, id, data) {
-		var ele = $('section.articles article[id="'+type+'/'+id+'"]').first();
-		if (ele.length == 0) {
-			// Compile the template
-			if (!(type in app.templateCache)) {
-				var tmpl = $('section.templates .'+type);
-				if (!tmpl.length) { return null; }
-				app.templateCache[type] = tmpl.compile(app.templateMapping[type]);;
-			}
-
-			// Instantiate it for this data
-			//var data = app.db[type][id];
-			switch (type) {
-				case "division": {
-					data.standings = ((app.db.table || {})[id] || {standings: []}).standings;
-					data.averages = (app.db.averages || {})[id] || [];
-				};
-			};
-			ele = $(app.templateCache[type](data))
-				.addClass(type).addClass('generated')
-				.attr('id', type+'/'+id).appendTo($('section.articles'));
+	instantiateTemplate: function (type, id) {
+		var name = type;
+		if (typeof id === "number" || typeof id === "string") {
+			name += "/"+id;
 		}
+
+		// Check for a cached instance
+		var ele = $('section.articles article[id="'+name+'"]').first();
+		if (ele.length) { return ele; }
+
+		// Prepare the data
+		var data = { db: app.db };
+		if (typeof id != "undefined") {
+			data[type] = (app.db[type] || {})[id] || {};
+			if (!data[type]) { console.log("item '"+name+"' not found for instantiation"); }
+		}
+
+		// Compile the template
+		if (!(type in app.templateCache)) {
+			var tmpl = $('section.templates .'+type);
+			if (!tmpl.length) {
+				console.log("template '"+name+"' does not exist");
+				return null;
+			}
+			console.log("compiling:",type);
+			app.templateCache[type] = tmpl.compile(app.templateMapping[type]);;
+		}
+
+		// Instantiate it for this data
+		/*
+		switch (type) {
+			case "division": {
+				data.standings = ((app.db.table || {})[id] || {standings: []}).standings;
+				data.averages = (app.db.averages || {})[id] || [];
+			};
+		};
+		*/
+		console.log("instantiating:",name);
+		ele = $(app.templateCache[type](data))
+			.addClass(type).addClass('generated')
+			.attr('id', name).appendTo($('section.articles'));
+
 		return ele;
 	},
 
@@ -367,17 +387,16 @@ app = {
 
 	templateMapping: {
 		division: {
-			'.content_name': 'name',
+			'.content_name': 'division.name',
 			'.prevItemLink@href': utils.prevLink('division', 'href'),
 			'.prevItemLink@class': utils.prevLink('division', 'class'),
 			'.nextItemLink@href': utils.nextLink('division', 'href'),
 			'.nextItemLink@class': utils.nextLink('division', 'class'),
 			'table.standings tbody tr': {
-				'row<-standings': {
-					'td.name': function(a) { return utils.lookupItem('team', a.item.teamId).name; },
-					//	var teams = a.context.teams;
-					//	return $.Enumerable.From(teams).First("$.id=="+a.item.teamId).name;
-					//},
+				'row<-generator': {
+					'td.name': function(a) {
+						return utils.lookupItem('team', a.item.teamId).name;
+					},
 					'td.for': 'row.for',
 					'td.agst': 'row.agst',
 					'td.pld': 'row.pld',
@@ -385,7 +404,10 @@ app = {
 					'td.drwn': 'row.drwn',
 					'td.lost': 'row.lost',
 					'td.pts': 'row.pts',
-				}
+				},
+				generator: function (a) {
+					return a.context.db.table[a.context.division.id];
+				},
 			},
 			'table.averages tbody tr': {
 				'row<-averages.players': {

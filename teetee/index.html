@@ -49,6 +49,8 @@
 </head>
 <body>
 
+	<!----------- Layout Stuff -------------------------------------------------------->
+
 	<aside class="nav">
 		<header>
 			<a href="#main">BWDTTA</a>
@@ -83,8 +85,10 @@
 			<content><p>Something broke.</p></content>
 		</article>
 	</section>
-
 	<section class="templates">
+
+	<!----------- Content - Top Level ------------------------------------------------->
+
 		<article class="main">
 			<header>
 				<h1>Welcome!</h1>
@@ -98,10 +102,13 @@
 			</content>
 			<footer></footer>
 			<aside class="left">
-				<ul>
+				<ul class="divisions">
 					<li><a href="#division/0">Premier Division</a></li>
 					<li><a href="#division/1">Division 1</a></li>
 					<li><a href="#division/2">Division 2</a></li>
+					<li><a href="#division/2">Division 3</a></li>
+					<li><a href="#division/2">Division 4</a></li>
+					<li><a href="#division/2">Division 5</a></li>
 				</ul>
 			</aside>
 		</article>
@@ -109,10 +116,13 @@
 		<article class="divisions">
 			<header><h1>Browse the Divisions</h1></header>
 			<aside class="list">
-				<ul>
+				<ul class="divisions">
 					<li><a href="#division/0">Premier Division</a></li>
 					<li><a href="#division/1">Division 1</a></li>
 					<li><a href="#division/2">Division 2</a></li>
+					<li><a href="#division/2">Division 3</a></li>
+					<li><a href="#division/2">Division 4</a></li>
+					<li><a href="#division/2">Division 5</a></li>
 				</ul>
 			</aside>
 			<content>
@@ -135,6 +145,8 @@
 			<header><h1>Not Found</h1></header>
 			<content><p>Something broke.</p></content>
 		</article>
+
+	<!----------- Content - Database Items -------------------------------------------->
 
 		<article class="division">
 			<header>
@@ -198,6 +210,13 @@
 					</tbody>
 				</table>
 			</content>
+			<aside class="left">
+				<ul>
+					<li><a href="#division/0">Premier Division</a></li>
+					<li><a href="#division/1">Division 1</a></li>
+					<li><a href="#division/2">Division 2</a></li>
+				</ul>
+			</aside>
 		</article>
 	</section>
 
@@ -206,7 +225,7 @@
 	<script type="text/javascript" src="Kybos.js"></script>
 	<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 	<script type="text/javascript" src="jquery.linq.min.js"></script>
-	<script type="text/javascript" src="pure_min.js"></script>
+	<script type="text/javascript" src="pure.js"></script>
 	<script type="text/javascript" src="app.js"></script>
 <!--
 	<script type="text/javascript" src="jquery.ba-hashchange.min.js"></script>
