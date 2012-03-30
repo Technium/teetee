@@ -32,13 +32,13 @@
 	],
 
 	club: [
-		{ id: 1, divisionId: 2, leagueId: 0, name: 'Broadmoor Staff T.T.C',			shortName: 'Broadmoor' },
-		{ id: 2, divisionId: 2, leagueId: 0, name: 'Kingfisher T.T.C',				shortName: 'Kingfisher' },
-		{ id: 3, divisionId: 2, leagueId: 0, name: 'Nomads T.T.C',					shortName: 'Nomads' },
-		{ id: 4, divisionId: 2, leagueId: 0, name: 'OLOP (Impact) T.T.C',			shortName: 'OLOP' },
-		{ id: 5, divisionId: 2, leagueId: 0, name: 'WAMDSAD T.T.C',					shortName: 'WAMDSAD' },
-		{ id: 6, divisionId: 2, leagueId: 0, name: 'Wokingham T.T.C',				shortName: 'Wokingham' },
-		{ id: 7, divisionId: 2, leagueId: 0, name: 'Wokingham Methodist Church',	shortName: 'Wokingham Meths' },
+		{ id: 1, leagueId: 0, name: 'Broadmoor Staff T.T.C',			shortName: 'Broadmoor' },
+		{ id: 2, leagueId: 0, name: 'Kingfisher T.T.C',				shortName: 'Kingfisher' },
+		{ id: 3, leagueId: 0, name: 'Nomads T.T.C',					shortName: 'Nomads' },
+		{ id: 4, leagueId: 0, name: 'OLOP (Impact) T.T.C',			shortName: 'OLOP' },
+		{ id: 5, leagueId: 0, name: 'WAMDSAD T.T.C',					shortName: 'WAMDSAD' },
+		{ id: 6, leagueId: 0, name: 'Wokingham T.T.C',				shortName: 'Wokingham' },
+		{ id: 7, leagueId: 0, name: 'Wokingham Methodist Church',	shortName: 'Wokingham Meths' },
 	],
 
 	location: [
