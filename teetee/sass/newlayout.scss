@@ -209,10 +209,8 @@ article.club .teams {
 }
 
 aside.left ul.league {
-	& > ul {
-		& > li {
-			background-color: lighten(green, 50%);
-		}
+	& > li {
+		background-color: lighten(green, 50%);
 	}
 }
 
