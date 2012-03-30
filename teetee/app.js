@@ -585,4 +585,4 @@ app = {
 
 
 //~ $(document).ready(app.start);
-$(window).load(app.start);
+$(window).load(function() { setTimeout(app.start, 100); });
