@@ -58,7 +58,7 @@ utils = {
 		};
 	},
 
-	lookupItems: function(type, matchValue, matchField, sortField) {
+	lookupItems: function(type, matchValue, matchField, sortField, subField) {
 		return function (a) {
 			var actualMatchValue = eval('a.'+matchValue);
 			var all = $.Enumerable.From(app.db[type])
@@ -66,17 +66,25 @@ utils = {
 			if (sortField) {
 				all = all.OrderBy("$."+sortField);
 			}
+			if (subField) {
+				all = all.Select("$."+subField);
+			}
 			return all.ToArray();
 		}
 	},
 
-	lookupItem: function(type, id, idField, subField) {
+	lookupItem: function(type, id, idField, sortField, subField) {
 		return function (a) {
 			idField = idField || "id";
 			var actualId = eval('a.'+id);
-			var result = $.Enumerable.From(app.db[type]).First("$."+idField+"=="+actualId);
-			if (subField) { result = result[subField]; }
-			return result;
+			var all = $.Enumerable.From(app.db[type]).Where("$."+idField+"=="+actualId);
+			if (sortField) {
+				all = all.OrderBy("$."+sortField);
+			}
+			if (subField) {
+				all = all.Select("$."+subField);
+			}
+			return all.First();
 		}
 	},
 };
