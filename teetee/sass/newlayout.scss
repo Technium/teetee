@@ -212,6 +212,11 @@ aside.left ul.league {
 	& > li {
 		background-color: lighten(green, 60%);
 		padding: 0.2em 0.6em;
+
+		ul li {
+			background-color: white;
+			margin-left: 0.6em;
+		}
 	}
 }
 
