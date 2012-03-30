@@ -58,8 +58,9 @@ utils = {
 		};
 	},
 
-	lookupItem: function(type, id) {
-		return $.Enumerable.From(app.db[type]).First("$.id=="+id);
+	lookupItem: function(type, id, idField) {
+		idField = idField || "id";
+		return $.Enumerable.From(app.db[type]).First("$."+idField+"=="+id);
 	},
 };
 
@@ -440,7 +441,7 @@ app = {
 					'td.pts': 'row.pts',
 				},
 				generator: function (a) {
-					return a.context.db.table[a.context.division.id].standings;
+					return utils.lookupItem('table', a.context.division.id].standings;
 				},
 			},
 			'table.averages tbody tr': {
