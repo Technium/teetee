@@ -462,7 +462,6 @@ app = {
 				},
 				generator: function (a) {
 					return a.context.db.averages[a.context.division.id].players;
-					return a.context.db.averages[a.context.division.id].players;
 				},
 			},
 		},
