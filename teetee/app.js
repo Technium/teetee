@@ -60,7 +60,7 @@ utils = {
 
 	lookupItemsFn: function(type, matchValue, matchField, sortField, subField) {
 		return function (a) {
-			return this.lookupItems(a, type, matchValue, matchField, sortField, subField);
+			return utils.lookupItems(a, type, matchValue, matchField, sortField, subField);
 		};
 	},
 
@@ -79,12 +79,12 @@ utils = {
 
 	lookupItemFn: function(type, id, idField, sortField, subField) {
 		return function (a) {
-			return this.lookupItem(a, type, id, idField, sortField, subField);
+			return utils.lookupItem(a, type, id, idField, sortField, subField);
 		};
 	},
 
 	lookupItem: function(a, type, id, idField, sortField, subField) {
-		return this.lookupItems(a, type, id, idField, sortField, subField).First();
+		return utils.lookupItems(a, type, id, idField, sortField, subField).First();
 	},
 };
 
