@@ -18,9 +18,15 @@ long_line_behaviour=2
 long_line_column=107
 
 [files]
+<<<<<<< HEAD
 current_page=9
 FILE_NAME_0=11080;Javascript;0;16;1;1;0;/home/steve/SparkleShare/sparkle/teetee/app.js;0;4
 FILE_NAME_1=3838;CSS;0;16;1;1;0;/home/steve/SparkleShare/sparkle/teetee/sass/newlayout.scss;0;4
+=======
+current_page=0
+FILE_NAME_0=10584;Javascript;0;16;1;1;0;/home/steve/SparkleShare/sparkle/teetee/app.js;0;4
+FILE_NAME_1=3521;CSS;0;16;1;1;0;/home/steve/SparkleShare/sparkle/teetee/sass/newlayout.scss;0;4
+>>>>>>> ac9aa5307248a5f7953217bd3f53c3e59e98b0c0
 FILE_NAME_2=32236;HTML;0;16;1;1;0;/home/steve/SparkleShare/sparkle/grabber/averages.html;0;4
 FILE_NAME_3=269;Python;0;16;1;1;0;/home/steve/SparkleShare/sparkle/grabber/grabber.py;0;4
 FILE_NAME_4=10;Javascript;0;16;1;1;0;/home/steve/SparkleShare/sparkle/teetee/data.in/league.js;0;4
