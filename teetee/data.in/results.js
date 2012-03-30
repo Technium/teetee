@@ -41,5 +41,5 @@
 				{ order: 7, teamId: 24, pld: 16, won: 0, drwn: 6, lost: 10, for: 51, agst: 109, pts: 51 }
 			],
 		},
-    },
+    ],
 }
