@@ -30,14 +30,20 @@
 	<script>
 		function hideAddressBar()
 		{
-			if (!window.location.hash)
+			if (!window.pageYOffset)
 			{
-				setTimeout(function() { window.scrollTo(0, 1); }, 50);
+				setTimeout(function() {
+					if (window) {
+						window.scrollTo(0, 1);
+					} else {
+						console.log("hideAddressBar - window not found");
+					}
+				}, 50);
 			}
 		}
 
-		window.addEventListener("load", function(){ if(!window.pageYOffset){ hideAddressBar(); } } );
-		window.addEventListener("orientationchange", hideAddressBar );
+		window.addEventListener("load", hideAddressBar);
+		window.addEventListener("orientationchange", hideAddressBar);
 	</script>
 
 	<style>
