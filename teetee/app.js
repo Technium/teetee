@@ -487,10 +487,7 @@ app = {
 					'span.name': 'team.name',
 					'span.division': utils.lookupItem('division', 'item.divisionId', null, 'name'),
 				},
-				generator: utils.lookupItems('team', 'context.club.id', 'clubId'),
-				//~ function (arg) {
-					//~ return $.Enumerable.From(app.db.team).Where("$.clubId == "+arg.context.club.id).ToArray();
-				//~ },
+				generator: utils.lookupItems('team', 'context.club.id', 'clubId', 'name'),
 			},
 		},
 	},
