@@ -59,7 +59,9 @@ utils = {
 	},
 
 	lookupItemsFn: function(type, matchValue, matchField, sortField, subField) {
-		return this.lookupItems(a, type, matchValue, matchField, sortField, subField);
+		return function (a) {
+			return this.lookupItems(a, type, matchValue, matchField, sortField, subField);
+		};
 	},
 
 	lookupItems: function (a, type, matchValue, matchField, sortField, subField) {
@@ -75,10 +77,14 @@ utils = {
 		return all.ToArray();
 	},
 
-	lookupItem: function(type, id, idField, sortField, subField) {
+	lookupItemFn: function(type, id, idField, sortField, subField) {
 		return function (a) {
-			return this.lookupItems(type, id, idField, sortField, subField).First();
+			return this.lookupItem(a, type, id, idField, sortField, subField);
 		};
+	},
+
+	lookupItem: function(a, type, id, idField, sortField, subField) {
+		return this.lookupItems(a, type, id, idField, sortField, subField).First();
 	},
 };
 
@@ -447,7 +453,7 @@ app = {
 			'table.standings tbody tr': {
 				'row<-generator': {
 					'td.name a@href+': 'row.teamId',
-					'td.name a': utils.lookupItem('team', 'item.teamId', null, 'name'),
+					'td.name a': utils.lookupItemFn('team', 'item.teamId', null, null, 'name'),
 					'td.for': 'row.for',
 					'td.agst': 'row.agst',
 					'td.pld': 'row.pld',
@@ -456,18 +462,18 @@ app = {
 					'td.lost': 'row.lost',
 					'td.pts': 'row.pts',
 				},
-				generator: utils.lookupItem('table', 'context.division.id', null, 'standings'),
+				generator: utils.lookupItemFn('table', 'context.division.id', null, null, 'standings'),
 			},
 			'table.averages tbody tr': {
 				'row<-generator': {
-					'td.name': utils.lookupItem('player', 'item.playerId', null, 'name'),
+					'td.name': utils.lookupItemFn('player', 'item.playerId', null, null, 'name'),
 					'td.pct': function(a) {
 						return (a.item.played==0)?'n/a':(100*(a.item.won/a.item.played)).toFixed(1);
 					},
 					'td.pld': 'row.played',
 					'td.won': 'row.won',
 				},
-				generator: utils.lookupItem("averages", 'context.division.id', "divisionId", 'players'),
+				generator: utils.lookupItemFn("averages", 'context.division.id', "divisionId", null, 'players'),
 			},
 		},
 		club: {
@@ -486,9 +492,9 @@ app = {
 				'team<-generator': {
 					'a@href+': 'team.id',
 					'span.name': 'team.name',
-					'span.division': utils.lookupItem('division', 'item.divisionId', null, 'name'),
+					'span.division': utils.lookupItemFn('division', 'item.divisionId', null, null, 'name'),
 				},
-				generator: utils.lookupItems('team', 'context.club.id', 'clubId', 'name'),
+				generator: utils.lookupItemsFn('team', 'context.club.id', 'clubId', 'name'),
 			},
 		},
 	},
