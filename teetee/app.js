@@ -466,8 +466,7 @@ app = {
 					'td.pld': 'row.played',
 					'td.won': 'row.won',
 				},
-				generator: utils.lookupItem("averages", 'context.division.id', "divisionId", 'players');
-				},
+				generator: utils.lookupItem("averages", 'context.division.id', "divisionId", 'players'),
 			},
 		},
 		club: {
