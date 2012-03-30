@@ -448,7 +448,7 @@ app = {
 					'td.pts': 'row.pts',
 				},
 				generator: function (a) {
-					return utils.lookupItem('table', a.context.division.id].standings;
+					return utils.lookupItem('table', a.context.division.id).standings;
 				},
 			},
 			'table.averages tbody tr': {
