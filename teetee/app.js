@@ -23,18 +23,25 @@ userConfigDefaults = {
 
 if (!$dev) { console.log = function() {}; }
 
-utils = {
-	nextPrevLink: function (cls, type, dir, itemsFn) {
+tmpl = {
+	nextLink: function (attr, items) {
+		return tmpl.nextPrevLink(attr, 1, items);
+	},
+	prevLink: function (attr, items) {
+		return tmpl.nextPrevLink(attr, -1, items);
+	},
+
+	nextPrevLink: function (attr, dir, items) {
 		return function(a) {
 			var valids;
-			if (itemsFn) {
-				valids = itemsFn(a);
+			if (typeof items === "function") {
+				valids = items(a);
 			} else {
 				valids = app.db[cls];
 			}
 
 			// Find the index of the current ID
-			var id = a.context[cls].id;
+			var id = a.context.obj.id;
 			var i;
 			for (i=0; i<valids.length; i++) {
 				if (valids[i].id == id) {
@@ -51,46 +58,65 @@ utils = {
 			if (!bad) { nextId = valids[i].id; }
 
 			// Act based on what the user asked for
-			switch (type) {
-				case "href": return "#" + (bad ? "": cls+"/"+nextId);
+			switch (attr) {
+				case "href": return "#" + (bad ? "": a.context.obj_type+"/"+nextId);
 				case "class": return bad ? "disabled" : "";
 			}
 		};
 	},
 
-	lookupItemsFn: function(type, matchValue, matchField, sortField, subField) {
-		return function (a) {
-			return utils.lookupItems(a, type, matchValue, matchField, sortField, subField);
+	if: function($test, $value, $elseValue) {
+		return function (ctx) {
+			with (ctx) {
+				return eval($test) ? $value : $elseValue;
+			}
 		};
 	},
 
-	lookupItems: function (a, type, matchValue, matchField, sortField, subField) {
-		var actualMatchValue = eval('a.'+matchValue);
-		var all = $.Enumerable.From(app.db[type])
-			.Where(function(obj) { return obj[matchField] == actualMatchValue; });
-		if (sortField) {
-			all = all.OrderBy("$."+sortField);
+	lookup: function(type, id, options) {
+		return function (a) {
+			return tmpl.lookupAction(a, type, id, options);
+		};
+	},
+
+	lookupAction: function(a, type, id, options) {
+		return tmpl.itemsAction(a, type, id, options)[0];
+	},
+
+	items: function(type, value, options) {
+		return function (a) {
+			return tmpl.itemsAction(a, type, value, options);
+		};
+	},
+
+	itemsAction: function (a, type, value, options) {
+		if (!options) { options = {}; }
+		if (!('key' in options)) { options.key = 'id'; }
+
+		var all = $.Enumerable.From(app.db[type]);
+
+		if ('where' in options) {
+			with (a) {
+				all = all.Where(function ($) { return eval(options.where); });
+			}
+		} else if (typeof value != "undefined" && value != null) {
+			var actualValue = eval('a.'+value);
+			all = all.Where(function(obj) { return obj[options.key] == actualValue; });
 		}
-		if (subField) {
-			all = all.Select("$."+subField);
+
+		if ('sort' in options) {
+			all = all.OrderBy("$."+options.sort);
+		}
+		if ('field' in options) {
+			all = all.Select("$."+options.field);
 		}
 		return all.ToArray();
-	},
-
-	lookupItemFn: function(type, id, idField, sortField, subField) {
-		return function (a) {
-			return utils.lookupItem(a, type, id, idField, sortField, subField);
-		};
-	},
-
-	lookupItem: function(a, type, id, idField, sortField, subField) {
-		return utils.lookupItems(a, type, id, idField, sortField, subField).First();
 	},
 };
 
 
 app = {
-	DATA_FILES: [ 'league', 'results', 'players', 'averages' ],
+	DATA_FILES: [ 'league', 'results', 'players', 'averages', 'fixtures' ],
 
 	state: {
 		awaitingHashReload: false,
@@ -283,7 +309,6 @@ app = {
 		if (bits.length == 1) {
 			var type = bits[0];
 			target = app.instantiateTemplate(type, null, {});
-			//~ target = $('.articles .'+bits[0]);
 		} else if (bits.length == 2) {
 			var type = bits[0];
 			var id = parseInt(bits[1]);
@@ -340,6 +365,8 @@ app = {
 			var store = app.db[type];
 			if (store) {
 				data[type] = $.Enumerable.From(store).Where("$.id == "+id).First();
+				data.obj = data[type];
+				data.obj_type = type;
 			}
 			if (!data[type]) { console.log("item '"+name+"' not found for instantiation"); }
 		}
@@ -409,51 +436,49 @@ app = {
 
 	templateMapping: {
 		main: {
-			'ul.divisions li': {
+			'aside ul.league > li': {
 				'division<-db.division': {
 					'a@href+': 'division.id',
 					'a': 'division.name',
 				},
 			},
 		},
+
 		divisions: {
-			'ul.divisions li': {
+			'aside ul.league > li': {
 				'division<-db.division': {
 					'a@href+': 'division.id',
 					'a': 'division.name',
 				},
 			},
 		},
+
 		clubs: {
-			'ul.clubs li': {
+			'content ul.clubs > li': {
 				'club<-db.club': {
 					'a@href+': 'club.id',
 					'span.name': 'club.name',
 				},
 			},
-			'ul.clubs-aside li': {
+			'aside ul.clubs > li': {
 				'club<-db.club': {
 					'a@href+': 'club.id',
 					'a': 'club.shortName',
 				},
 			},
 		},
+
 		division: {
 			'header .name': 'division.name',
-			'.prevItemLink@href': utils.nextPrevLink('division', 'href', -1),
-			'.prevItemLink@class': utils.nextPrevLink('division', 'class', -1),
-			'.nextItemLink@href': utils.nextPrevLink('division', 'href', 1),
-			'.nextItemLink@class': utils.nextPrevLink('division', 'class', 1),
-			'ul.divisions li': {
-				'division<-db.division': {
-					'a@href+': 'division.id',
-					'a': 'division.name',
-				},
-			},
+			'.prevItemLink@href': tmpl.prevLink('href', tmpl.items('division')),
+			'.prevItemLink@class': tmpl.prevLink('class', tmpl.items('division')),
+			'.nextItemLink@href': tmpl.nextLink('href', tmpl.items('division')),
+			'.nextItemLink@class': tmpl.nextLink('class', tmpl.items('division')),
 			'table.standings tbody tr': {
+				generator: tmpl.lookup('table', 'context.division.id', { field:'standings' }),
 				'row<-generator': {
 					'td.name a@href+': 'row.teamId',
-					'td.name a': utils.lookupItemFn('team', 'item.teamId', null, null, 'name'),
+					'td.name a': tmpl.lookup('team', 'item.teamId', { field:'name' }),
 					'td.for': 'row.for',
 					'td.agst': 'row.agst',
 					'td.pld': 'row.pld',
@@ -462,39 +487,97 @@ app = {
 					'td.lost': 'row.lost',
 					'td.pts': 'row.pts',
 				},
-				generator: utils.lookupItemFn('table', 'context.division.id', null, null, 'standings'),
 			},
 			'table.averages tbody tr': {
+				generator: tmpl.lookup("averages", 'context.division.id', { key:"divisionId", field:'players' }),
 				'row<-generator': {
-					'td.name': utils.lookupItemFn('player', 'item.playerId', null, null, 'name'),
+					'td.name': tmpl.lookup('player', 'item.playerId', { field:'name' }),
 					'td.pct': function(a) {
 						return (a.item.played==0)?'n/a':(100*(a.item.won/a.item.played)).toFixed(1);
 					},
 					'td.pld': 'row.played',
 					'td.won': 'row.won',
 				},
-				generator: utils.lookupItemFn("averages", 'context.division.id', "divisionId", null, 'players'),
+			},
+			'table.fixtures tbody tr': {
+				generator: tmpl.items('fixture', 'context.division.id', { sort:'matchDate', key:'divisionId' }),
+				'fixture<-generator': {
+					'td.matchDate': 'fixture.matchDate',
+					'td.homeTeam a@href+': 'fixture.homeTeamId',
+					'td.homeTeam a': tmpl.lookup('team', 'item.homeTeamId', { field: 'name' }),
+					'td.awayTeam a@href+': 'fixture.awayTeamId',
+					'td.awayTeam a': tmpl.lookup('team', 'item.awayTeamId', { field: 'name' }),
+					'td.notes': function() { return ""; },
+				},
+			},
+			'aside ul.league > li': {
+				'division<-db.division': {
+					'aside ul.league > li > a@href+': 'division.id',
+					'aside ul.league > li > a': 'division.name',
+					'aside ul.teams@style': tmpl.if("context.division.id != item.id", "display:none"),
+					'aside ul.teams > li': {
+						generator: tmpl.items('team', 'item.id', { key:'divisionId', sort:'order' }),
+						'team<-generator': {
+							'a@href+': 'team.id',
+							'a': 'team.name',
+						},
+					},
+				},
 			},
 		},
+
 		club: {
-			'.name': 'club.name',
-			'.prevItemLink@href': utils.nextPrevLink('club', 'href', -1),
-			'.prevItemLink@class': utils.nextPrevLink('club', 'class', -1),
-			'.nextItemLink@href': utils.nextPrevLink('club', 'href', 1),
-			'.nextItemLink@class': utils.nextPrevLink('club', 'class', 1),
-			'ul.clubs-aside li': {
+			'header .name': 'club.name',
+			'.prevItemLink@href': tmpl.prevLink('href', tmpl.items('club')),
+			'.prevItemLink@class': tmpl.prevLink('class', tmpl.items('club')),
+			'.nextItemLink@href': tmpl.nextLink('href', tmpl.items('club')),
+			'.nextItemLink@class': tmpl.nextLink('class', tmpl.items('club')),
+			'table.teams tr': {
+				generator: tmpl.items('team', 'context.club.id', { key:'clubId', sort:'name' }),
+				'team<-generator': {
+					'a@href+': 'team.id',
+					'span.name': 'team.name',
+					'span.division': tmpl.lookup('division', 'item.divisionId', { field:'name' }),
+				},
+			},
+			'aside ul.clubs > li': {
 				'club<-db.club': {
 					'a@href+': 'club.id',
 					'a': 'club.shortName',
 				},
 			},
-			'table.teams tr': {
-				'team<-generator': {
-					'a@href+': 'team.id',
-					'span.name': 'team.name',
-					'span.division': utils.lookupItemFn('division', 'item.divisionId', null, null, 'name'),
+		},
+
+		team: {
+			'header .name': 'team.name',
+			'.prevItemLink@href': tmpl.prevLink('href', tmpl.items('team', "context.team.divisionId", { key:"divisionId" })),
+			'.prevItemLink@class': tmpl.prevLink('class', tmpl.items('team', "context.team.divisionId", { key:"divisionId" })),
+			'.nextItemLink@href': tmpl.nextLink('href', tmpl.items('team', "context.team.divisionId", { key:"divisionId" })),
+			'.nextItemLink@class': tmpl.nextLink('class', tmpl.items('team', "context.team.divisionId", { key:"divisionId" })),
+			'table.fixtures tbody tr': {
+				generator: tmpl.items('fixture', null, { sort:'matchDate', where:'$.homeTeamId == context.team.id || $.awayTeamId == context.team.id' }),
+				'fixture<-generator': {
+					'td.matchDate': 'fixture.matchDate',
+					'td.homeTeam a@href+': 'fixture.homeTeamId',
+					'td.homeTeam a': tmpl.lookup('team', 'item.homeTeamId', { field: 'name' }),
+					'td.awayTeam a@href+': 'fixture.awayTeamId',
+					'td.awayTeam a': tmpl.lookup('team', 'item.awayTeamId', { field: 'name' }),
+					'td.notes': function() { return ""; },
 				},
-				generator: utils.lookupItemsFn('team', 'context.club.id', 'clubId', 'name'),
+			},
+			'aside ul.league > li': {
+				'division<-db.division': {
+					'aside ul.league > li > a@href+': 'division.id',
+					'aside ul.league > li > a': 'division.name',
+					'aside ul.teams@style': tmpl.if("context.team.divisionId != item.id", "display:none"),
+					'aside ul.teams > li': {
+						generator: tmpl.items('team', 'item.id', { key:'divisionId', sort:'order' }),
+						'team<-generator': {
+							'a@href+': 'team.id',
+							'a': 'team.name',
+						},
+					},
+				},
 			},
 		},
 	},

@@ -108,7 +108,7 @@
 			</content>
 			<footer></footer>
 			<aside class="left">
-				<ul class="divisions">
+				<ul class="league">
 					<li><a href="#division/">Top Division</a></li>
 				</ul>
 			</aside>
@@ -122,6 +122,13 @@
 					<li><a href="#division/">Top Division</a></li>
 				</ul>
 			</content>
+			<aside class="left">
+				<ul class="league">
+					<li>
+						<a href="#division/">Some Division</a>
+					</li>
+				</ul>
+			</aside>
 		</article>
 
 		<article class="clubs">
@@ -137,7 +144,7 @@
 				</ul>
 			</content>
 			<aside class="left">
-				<ul class="clubs-aside">
+				<ul class="clubs">
 					<li><a href="#club/">Club Name</a></li>
 				</ul>
 			</aside>
@@ -161,6 +168,52 @@
 
 	<!----------- Content - Database Items -------------------------------------------->
 
+		<article class="team">
+			<header>
+				<nav>
+					<a class="prevItemLink disabled" href="#">Prev</a>
+					<a class="nextItemLink" href="#">Next</a>
+				</nav>
+			</header>
+			<content>
+				<header>
+					<h1 class="name">Some Team</h1>
+				</header>
+
+				<table class="magic fixtures">
+					<caption>Upcoming Fixtures</caption>
+					<thead>
+						<tr>
+							<th></th>
+							<th>Home</th>
+							<th></th>
+							<th>Away</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="matchDate">Mon 1st April</td>
+							<td class="homeTeam"><a href="#team/">OLOP A</a></td>
+							<td> v </td>
+							<td class="awayTeam"><a href="#team/">OLOP B</a></td>
+							<td class="notes">*Early start</td>
+						</tr>
+					</tbody>
+				</table>
+			</content>
+			<aside class="left">
+				<ul class="league">
+					<li>
+						<a href="#division/">Some Division</a>
+						<ul class="teams">
+							<li><a href="#team/">Some Team</a></li>
+						</ul>
+					</li>
+				</ul>
+			</aside>
+		</article>
+
 		<article class="club">
 			<header>
 				<nav>
@@ -174,7 +227,9 @@
 				</header>
 				<p class="description">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumyeirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diamvoluptua.</p>
 				<p class="address">Its Address</p>
+
 				<table class="teams">
+					<caption>Teams</caption>
 					<tr>
 						<td>
 							<a href="#team/">
@@ -183,11 +238,30 @@
 						</td>
 						<td><span class="division">Middle Division</span></td>
 					</tr>
-					<caption>Teams</caption>
+				</table>
+
+				<table class="magic fixtures">
+					<caption>Upcoming Fixtures</caption>
+					<thead>
+						<tr>
+							<th>Date</th>
+							<th>Home</th>
+							<th>Away</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Mon 1st April</td>
+							<td>OLOP A</td>
+							<td>OLOP B</td>
+							<td>*Early start</td>
+						</tr>
+					</tbody>
 				</table>
 			</content>
 			<aside class="left">
-				<ul class="clubs-aside">
+				<ul class="clubs">
 					<li><a href="#club/">Club Name</a></li>
 				</ul>
 			</aside>
@@ -254,11 +328,37 @@
 						</tr>
 					</tbody>
 				</table>
+
+				<table class="magic fixtures">
+					<caption>Upcoming Fixtures</caption>
+					<thead>
+						<tr>
+							<th></th>
+							<th>Home</th>
+							<th></th>
+							<th>Away</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="matchDate">Mon 1st April</td>
+							<td class="homeTeam"><a href="#team/">OLOP A</a></td>
+							<td> v </td>
+							<td class="awayTeam"><a href="#team/">OLOP B</a></td>
+							<td class="notes">*Early start</td>
+						</tr>
+					</tbody>
+				</table>
 			</content>
 			<aside class="left">
-				<ul class="divisions">
-					<li><a href="#division/">Top Division</a></li>
-				</ul>
+				<ul class="league">
+					<li>
+						<a href="#division/">Some Division</a>
+						<ul class="teams">
+							<li><a href="#team/">Some Team</a></li>
+						</ul>
+					</li>
 				</ul>
 			</aside>
 		</article>

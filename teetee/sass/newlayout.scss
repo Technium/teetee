@@ -194,12 +194,25 @@ table.magic {
 	}
 }
 
+table.fixtures {
+	td.homeTeam { text-align: right; }
+	td.awayTeam { text-align: left; }
+}
+
 article.club .teams {
 	margin: 0 auto;
 	padding: 0.75em;
 
 	td {
 		padding: 0.3em 0.6em;
+	}
+}
+
+aside.league {
+	& > ul {
+		& > li {
+			background-color: lighten(green, 50%);
+		}
 	}
 }
 

@@ -1,0 +1,13 @@
+<html>
+<script>
+
+var ctx = { scope: 'window' };
+
+var makeFn = function (test) {
+	var ctx = { scope: 'makeFn' };
+	var fn = new Function("return ("+test+");");
+	return fn;
+};
+
+</script>
+</html>
