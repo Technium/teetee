@@ -59,19 +59,19 @@ utils = {
 	},
 
 	lookupItems: function(type, matchValue, matchField, sortField) {
-		return function (a, type, matchValue, matchField, sortField) {
+		return function (a) {
 			var actualMatchValue = eval('a.'+matchValue);
 			var all = $.Enumerable.From(app.db[type])
 				.Where(function(obj) { return obj[matchField] == actualMatchValue; });
-			if (sortBy) {
-				all = all.OrderBy("$."+sortBy);
+			if (sortField) {
+				all = all.OrderBy("$."+sortField);
 			}
 			return all.ToArray();
 		}
 	},
 
 	lookupItem: function(type, id, idField, subField) {
-		return function (a, type, id, idField, subField) {
+		return function (a) {
 			idField = idField || "id";
 			var actualId = eval('a.'+id);
 			var result = $.Enumerable.From(app.db[type]).First("$."+idField+"=="+actualId);
