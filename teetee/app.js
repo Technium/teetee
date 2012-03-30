@@ -60,8 +60,9 @@ utils = {
 
 	lookupItems: function(type, matchValue, matchField, sortField) {
 		return function (a) {
+			var actualMatchValue = eval('a.'+matchValue);
 			var all = $.Enumerable.From(app.db[type])
-				.Where(function(obj) { return obj[matchField] == matchValue; });
+				.Where(function(obj) { return obj[matchField] == actualMatchValue; });
 			if (sortBy) {
 				all = all.OrderBy("$."+sortBy);
 			}
@@ -72,7 +73,8 @@ utils = {
 	lookupItem: function(type, id, idField, subField) {
 		return function (a) {
 			idField = idField || "id";
-			var result = $.Enumerable.From(app.db[type]).First("$."+idField+"=="+id);
+			var actualId = eval('a.'+id);
+			var result = $.Enumerable.From(app.db[type]).First("$."+idField+"=="+actualId);
 			if (subField) { result = result[subField]; }
 			return result;
 		}
@@ -444,9 +446,7 @@ app = {
 			'table.standings tbody tr': {
 				'row<-generator': {
 					'td.name a@href+': 'row.teamId',
-					'td.name a': function(a) {
-						return utils.lookupItem('team', a.item.teamId).name;
-					},
+					'td.name a': utils.lookupItem('team', 'item.teamId', null, 'name'),
 					'td.for': 'row.for',
 					'td.agst': 'row.agst',
 					'td.pld': 'row.pld',
@@ -455,21 +455,18 @@ app = {
 					'td.lost': 'row.lost',
 					'td.pts': 'row.pts',
 				},
-				generator: function (a) {
-					return utils.lookupItem('table', a.context.division.id).standings;
-				},
+				generator: utils.lookupItem('table', 'context.division.id', null, 'standings'),
 			},
 			'table.averages tbody tr': {
 				'row<-generator': {
-					'td.name': function(a) {
-						return utils.lookupItem('player', a.item.playerId).name; },
+					'td.name': utils.lookupItem('player', 'item.playerId', null, 'name'),
 					'td.pct': function(a) {
-						return (a.item.played==0)?'n/a':(100*(a.item.won/a.item.played)).toFixed(1); },
+						return (a.item.played==0)?'n/a':(100*(a.item.won/a.item.played)).toFixed(1);
+					},
 					'td.pld': 'row.played',
 					'td.won': 'row.won',
 				},
-				generator: function (a) {
-					return utils.lookupItem("averages", a.context.division.id, "divisionId").players;
+				generator: utils.lookupItem("averages", 'context.division.id', "divisionId", 'players');
 				},
 			},
 		},
@@ -489,13 +486,12 @@ app = {
 				'team<-generator': {
 					'a@href+': 'team.id',
 					'span.name': 'team.name',
-					'span.division': function (arg) {
-						return utils.lookupItem('division', arg.item.divisionId).name;
-					},
+					'span.division': utils.lookupItem('division', 'item.divisionId', null, 'name'),
 				},
-				generator: function (arg) {
-					return $.Enumerable.From(app.db.team).Where("$.clubId == "+arg.context.club.id).ToArray();
-				},
+				generator: utils.lookupItems('team', 'context.club.id', 'clubId'),
+				//~ function (arg) {
+					//~ return $.Enumerable.From(app.db.team).Where("$.clubId == "+arg.context.club.id).ToArray();
+				//~ },
 			},
 		},
 	},
