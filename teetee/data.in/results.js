@@ -2,7 +2,7 @@
     table: [
         {
 			id: 0,
-			divisionId: 0,
+			divisionId: 1,
 			standings: [
 				{ order: 0, teamId: 7, pld: 17, won: 16, drwn: 1, lost: 0, for: 140, agst: 30, pts: 140 },
 				{ order: 1, teamId: 1, pld: 17, won: 14, drwn: 1, lost: 2, for: 128, agst: 42, pts: 128 },
@@ -16,7 +16,7 @@
 		},
         {
 			id: 1,
-			divisionId: 1,
+			divisionId: 2,
 			standings: [
 				{ order: 0, teamId: 11, pld: 17, won: 16, drwn: 1, lost: 0, for: 140, agst: 30, pts: 140 },
 				{ order: 1, teamId: 16, pld: 17, won: 14, drwn: 1, lost: 2, for: 128, agst: 42, pts: 128 },
@@ -30,7 +30,7 @@
 		},
         {
 			id: 2,
-			divisionId: 2,
+			divisionId: 3,
 			standings: [
 				{ order: 0, teamId: 14, pld: 17, won: 16, drwn: 1, lost: 0, for: 140, agst: 30, pts: 140 },
 				{ order: 1, teamId: 22, pld: 17, won: 14, drwn: 1, lost: 2, for: 128, agst: 42, pts: 128 },
