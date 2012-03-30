@@ -103,31 +103,38 @@
 			<footer></footer>
 			<aside class="left">
 				<ul class="divisions">
-					<li><a href="#division/0">Premier Division</a></li>
-					<li><a href="#division/1">Division 1</a></li>
-					<li><a href="#division/2">Division 2</a></li>
-					<li><a href="#division/2">Division 3</a></li>
-					<li><a href="#division/2">Division 4</a></li>
-					<li><a href="#division/2">Division 5</a></li>
+					<li><a href="#division/">Top Division</a></li>
 				</ul>
 			</aside>
 		</article>
 
 		<article class="divisions">
 			<header><h1>Browse the Divisions</h1></header>
-			<aside class="list">
-				<ul class="divisions">
-					<li><a href="#division/0">Premier Division</a></li>
-					<li><a href="#division/1">Division 1</a></li>
-					<li><a href="#division/2">Division 2</a></li>
-					<li><a href="#division/2">Division 3</a></li>
-					<li><a href="#division/2">Division 4</a></li>
-					<li><a href="#division/2">Division 5</a></li>
-				</ul>
-			</aside>
 			<content>
 				<p>Montes et turpis amet? Diam! Mid ultrices. Et magnis ridiculus dictumst urna. Ultrices sagittis mus. Natoque ultricies! Odio mus natoque parturient habitasse est elementum, scelerisque turpis egestas, lacus ac sit natoque nisi parturient scelerisque, a phasellus sit diam sagittis, porttitor, amet tincidunt dolor, tristique in in dignissim amet ridiculus.</p>
+				<ul class="divisions">
+					<li><a href="#division/">Top Division</a></li>
+				</ul>
 			</content>
+		</article>
+
+		<article class="clubs">
+			<header><h1>Browse the Clubs</h1></header>
+			<content>
+				<ul class="clubs">
+					<li>
+						<a href="#club/">
+							<span class="name">Some Club</span>
+							<span class="address">Its Address, Some Town, PO5T COD3</span>
+						</a>
+					</li>
+				</ul>
+			</content>
+			<aside class="left">
+				<ul class="clubs-aside">
+					<li><a href="#club/">Club Name</a></li>
+				</ul>
+			</aside>
 		</article>
 
 		<article class="myteam">
@@ -148,6 +155,38 @@
 
 	<!----------- Content - Database Items -------------------------------------------->
 
+		<article class="club">
+			<header>
+				<nav>
+					<a class="prevItemLink disabled" href="#">Prev</a>
+					<a class="nextItemLink" href="#">Next</a>
+				</nav>
+			</header>
+			<content>
+				<header>
+					<h1 class="name">Some Division</h1>
+				</header>
+				<p class="description">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumyeirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diamvoluptua.</p>
+				<p class="address">Its Address</p>
+				<table class="teams">
+					<tr>
+						<td>
+							<a href="#team/">
+								<span class="name">Team Name</span>
+							</a>
+						</td>
+						<td><span class="division">Middle Division</span></td>
+					</tr>
+					<caption>Teams</caption>
+				</table>
+			</content>
+			<aside class="left">
+				<ul class="clubs-aside">
+					<li><a href="#club/">Club Name</a></li>
+				</ul>
+			</aside>
+		</article>
+
 		<article class="division">
 			<header>
 				<nav>
@@ -157,7 +196,7 @@
 			</header>
 			<content>
 				<header>
-					<h1 class="content_name">Some Division</h1>
+					<h1 class="name">Some Club's Name</h1>
 				</header>
 
 				<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumyeirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diamvoluptua.</p>
@@ -178,7 +217,7 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td class="pri0 name">OLOP A</td>
+							<td class="pri0 name"><a href="#team/">OLOP A</a></td>
 							<td class="pri3 for">140</td>
 							<td class="pri3 agst">30</td>
 							<td class="pri2 pld">17</td>
@@ -211,10 +250,9 @@
 				</table>
 			</content>
 			<aside class="left">
-				<ul>
-					<li><a href="#division/0">Premier Division</a></li>
-					<li><a href="#division/1">Division 1</a></li>
-					<li><a href="#division/2">Division 2</a></li>
+				<ul class="divisions">
+					<li><a href="#division/">Top Division</a></li>
+				</ul>
 				</ul>
 			</aside>
 		</article>

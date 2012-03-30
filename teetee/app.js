@@ -306,19 +306,22 @@ app = {
 		}
 
 		// Check for a cached instance
-		var ele = $('section.articles article[id="'+name+'"]').first();
+		var ele = $('section.articles > article[id="'+name+'"]').first();
 		if (ele.length) { return ele; }
 
 		// Prepare the data
 		var data = { db: app.db };
 		if (typeof id != "undefined") {
-			data[type] = (app.db[type] || {})[id] || {};
+			var store = app.db[type];
+			if (store) {
+				data[type] = $.Enumerable.From(store).Where("$.id == "+id).First();
+			}
 			if (!data[type]) { console.log("item '"+name+"' not found for instantiation"); }
 		}
 
 		// Compile the template
 		if (!(type in app.templateCache)) {
-			var tmpl = $('section.templates .'+type);
+			var tmpl = $('section.templates > article.'+type);
 			if (!tmpl.length) {
 				console.log("template '"+name+"' does not exist");
 				return null;
@@ -328,14 +331,6 @@ app = {
 		}
 
 		// Instantiate it for this data
-		/*
-		switch (type) {
-			case "division": {
-				data.standings = ((app.db.table || {})[id] || {standings: []}).standings;
-				data.averages = (app.db.averages || {})[id] || [];
-			};
-		};
-		*/
 		console.log("instantiating:",name);
 		ele = $(app.templateCache[type](data))
 			.addClass(type).addClass('generated')
@@ -388,15 +383,52 @@ app = {
 	},
 
 	templateMapping: {
+		main: {
+			'ul.divisions li': {
+				'division<-db.division': {
+					'a@href+': 'division.id',
+					'a': 'division.name',
+				},
+			},
+		},
+		divisions: {
+			'ul.divisions li': {
+				'division<-db.division': {
+					'a@href+': 'division.id',
+					'a': 'division.name',
+				},
+			},
+		},
+		clubs: {
+			'ul.clubs li': {
+				'club<-db.club': {
+					'a@href+': 'club.id',
+					'span.name': 'club.name',
+				},
+			},
+			'ul.clubs-aside li': {
+				'club<-db.club': {
+					'a@href+': 'club.id',
+					'a': 'club.shortName',
+				},
+			},
+		},
 		division: {
-			'.content_name': 'division.name',
+			'header .name': 'division.name',
 			'.prevItemLink@href': utils.nextPrevLink('division', 'href', -1),
 			'.prevItemLink@class': utils.nextPrevLink('division', 'class', -1),
 			'.nextItemLink@href': utils.nextPrevLink('division', 'href', 1),
 			'.nextItemLink@class': utils.nextPrevLink('division', 'class', 1),
+			'ul.divisions li': {
+				'division<-db.division': {
+					'a@href+': 'division.id',
+					'a': 'division.name',
+				},
+			},
 			'table.standings tbody tr': {
 				'row<-generator': {
-					'td.name': function(a) {
+					'td.name a@href+': 'row.teamId',
+					'td.name a': function(a) {
 						return utils.lookupItem('team', a.item.teamId).name;
 					},
 					'td.for': 'row.for',
@@ -425,8 +457,34 @@ app = {
 				},
 			},
 		},
+		club: {
+			'.name': 'club.name',
+			'.prevItemLink@href': utils.nextPrevLink('club', 'href', -1),
+			'.prevItemLink@class': utils.nextPrevLink('club', 'class', -1),
+			'.nextItemLink@href': utils.nextPrevLink('club', 'href', 1),
+			'.nextItemLink@class': utils.nextPrevLink('club', 'class', 1),
+			'ul.clubs-aside li': {
+				'club<-db.club': {
+					'a@href+': 'club.id',
+					'a': 'club.shortName',
+				},
+			},
+			'table.teams tr': {
+				'team<-generator': {
+					'a@href+': 'team.id',
+					'span.name': 'team.name',
+					'span.division': function (arg) {
+						return utils.lookupItem('division', arg.item.divisionId).name;
+					},
+				},
+				generator: function (arg) {
+					return $.Enumerable.From(app.db.team).Where("$.clubId == "+arg.context.club.id).ToArray();
+				},
+			},
+		},
 	},
 }
 
 
-$(document).ready(app.start);
+//~ $(document).ready(app.start);
+$(window).load(app.start);
