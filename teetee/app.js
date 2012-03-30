@@ -438,7 +438,7 @@ app = {
 			'table.standings tbody tr': {
 				'row<-generator': {
 					'td.name a@href+': 'row.teamId',
-					'td.name a': "utils.lookupItem('team', a.item.teamId).name;",
+					'td.name a': function(a) { return utils.lookupItem('team', a.item.teamId).name;"; },
 					'td.for': 'row.for',
 					'td.agst': 'row.agst',
 					'td.pld': 'row.pld',
