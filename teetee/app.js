@@ -59,17 +59,21 @@ utils = {
 	},
 
 	lookupItems: function(type, matchValue, matchField, sortField) {
-		var all = $.Enumerable.From(app.db[type])
-			.Where(function(obj) { return obj[matchField] == matchValue; });
-		if (sortBy) {
-			all = all.OrderBy("$."+sortBy);
+		return function (a) {
+			var all = $.Enumerable.From(app.db[type])
+				.Where(function(obj) { return obj[matchField] == matchValue; });
+			if (sortBy) {
+				all = all.OrderBy("$."+sortBy);
+			}
+			return all.ToArray();
 		}
-		return all.ToArray();
 	},
 
 	lookupItem: function(type, id, idField) {
-		idField = idField || "id";
-		return $.Enumerable.From(app.db[type]).First("$."+idField+"=="+id);
+		return function (a) {
+			idField = idField || "id";
+			return $.Enumerable.From(app.db[type]).First("$."+idField+"=="+id);
+		}
 	},
 };
 
