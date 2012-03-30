@@ -58,6 +58,15 @@ utils = {
 		};
 	},
 
+	lookupItems: function(type, matchValue, matchField, sortField) {
+		var all = $.Enumerable.From(app.db[type])
+			.Where(function(obj) { return obj[matchField] == matchValue; });
+		if (sortBy) {
+			all = all.OrderBy("$."+sortBy);
+		}
+		return all.ToArray();
+	},
+
 	lookupItem: function(type, id, idField) {
 		idField = idField || "id";
 		return $.Enumerable.From(app.db[type]).First("$."+idField+"=="+id);
