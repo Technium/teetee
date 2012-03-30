@@ -461,7 +461,7 @@ app = {
 					'td.won': 'row.won',
 				},
 				generator: function (a) {
-					return a.context.db.averages[a.context.division.id].players;
+					return utils.lookupItem("averages", a.context.division.id, "divisionId").players;
 				},
 			},
 		},
