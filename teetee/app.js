@@ -59,7 +59,7 @@ utils = {
 	},
 
 	lookupItems: function(type, matchValue, matchField, sortField) {
-		return function (a) {
+		return function (a, type, matchValue, matchField, sortField) {
 			var actualMatchValue = eval('a.'+matchValue);
 			var all = $.Enumerable.From(app.db[type])
 				.Where(function(obj) { return obj[matchField] == actualMatchValue; });
@@ -71,7 +71,7 @@ utils = {
 	},
 
 	lookupItem: function(type, id, idField, subField) {
-		return function (a) {
+		return function (a, type, id, idField, subField) {
 			idField = idField || "id";
 			var actualId = eval('a.'+id);
 			var result = $.Enumerable.From(app.db[type]).First("$."+idField+"=="+actualId);
