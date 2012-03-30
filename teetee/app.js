@@ -440,7 +440,7 @@ app = {
 					'td.pts': 'row.pts',
 				},
 				generator: function (a) {
-					return a.context.db.table[a.context.division.id];
+					return a.context.db.table[a.context.division.id].standings;
 				},
 			},
 			'table.averages tbody tr': {
