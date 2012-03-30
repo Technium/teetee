@@ -475,7 +475,7 @@ app = {
 			'.nextItemLink@href': tmpl.nextLink('href', tmpl.items('division')),
 			'.nextItemLink@class': tmpl.nextLink('class', tmpl.items('division')),
 			'table.standings tbody tr': {
-				generator: tmpl.lookup('table', 'context.division.id', { 'key:'divisionId', field:'standings' }),
+				generator: tmpl.lookup('table', 'context.division.id', { key:'divisionId', field:'standings' }),
 				'row<-generator': {
 					'td.name a@href+': 'row.teamId',
 					'td.name a': tmpl.lookup('team', 'item.teamId', { field:'name' }),
