@@ -58,34 +58,27 @@ utils = {
 		};
 	},
 
-	lookupItems: function(type, matchValue, matchField, sortField, subField) {
-		return function (a) {
-			var actualMatchValue = eval('a.'+matchValue);
-			var all = $.Enumerable.From(app.db[type])
-				.Where(function(obj) { return obj[matchField] == actualMatchValue; });
-			if (sortField) {
-				all = all.OrderBy("$."+sortField);
-			}
-			if (subField) {
-				all = all.Select("$."+subField);
-			}
-			return all.ToArray();
+	lookupItemsFn: function(type, matchValue, matchField, sortField, subField) {
+		return this.lookupItems(a, type, matchValue, matchField, sortField, subField);
+	},
+
+	lookupItems: function (a, type, matchValue, matchField, sortField, subField) {
+		var actualMatchValue = eval('a.'+matchValue);
+		var all = $.Enumerable.From(app.db[type])
+			.Where(function(obj) { return obj[matchField] == actualMatchValue; });
+		if (sortField) {
+			all = all.OrderBy("$."+sortField);
 		}
+		if (subField) {
+			all = all.Select("$."+subField);
+		}
+		return all.ToArray();
 	},
 
 	lookupItem: function(type, id, idField, sortField, subField) {
 		return function (a) {
-			idField = idField || "id";
-			var actualId = eval('a.'+id);
-			var all = $.Enumerable.From(app.db[type]).Where("$."+idField+"=="+actualId);
-			if (sortField) {
-				all = all.OrderBy("$."+sortField);
-			}
-			if (subField) {
-				all = all.Select("$."+subField);
-			}
-			return all.First();
-		}
+			return this.lookupItems(type, id, idField, sortField, subField).First();
+		};
 	},
 };
 
