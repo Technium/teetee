@@ -69,10 +69,12 @@ utils = {
 		}
 	},
 
-	lookupItem: function(type, id, idField) {
+	lookupItem: function(type, id, idField, subField) {
 		return function (a) {
 			idField = idField || "id";
-			return $.Enumerable.From(app.db[type]).First("$."+idField+"=="+id);
+			var result = $.Enumerable.From(app.db[type]).First("$."+idField+"=="+id);
+			if (subField) { result = result[subField]; }
+			return result;
 		}
 	},
 };
