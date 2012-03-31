@@ -565,6 +565,24 @@ app = {
 					'td.notes': function() { return ""; },
 				},
 			},
+			'table.averages tbody tr': {
+				generator: function (a) {
+					var playerAvgs = $.Enumerable.From(app.db.averages).First("$.divisionId == "+a.context.team.divisionId).players;
+					var teamPlayers = $.Enumerable.From(app.db.player).Where("$.teamId == "+a.context.team.id);
+					var teamAvgs = teamPlayers.Join(playerAvgs, "$.id", "$.playerId",
+						"{ id: $.id, name: $.name, played: $$.played, won: $$.won }")
+						.OrderByDescending("$.won / $.played");
+					return teamAvgs.ToArray();
+				},
+				'row<-generator': {
+					'td.name': "row.name",
+					'td.pct': function(a) {
+						return (a.item.played==0)?'n/a':(100*(a.item.won/a.item.played)).toFixed(1);
+					},
+					'td.pld': 'row.played',
+					'td.won': 'row.won',
+				},
+			},
 			'aside ul.league > li': {
 				'division<-db.division': {
 					'aside ul.league > li > a@href+': 'division.id',
@@ -584,5 +602,5 @@ app = {
 }
 
 
-//~ $(document).ready(app.start);
-$(window).load(function() { setTimeout(app.start, 100); });
+$(document).ready(app.start);
+//~ $(window).load(function() { setTimeout(app.start, 100); });
