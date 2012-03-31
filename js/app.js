@@ -150,12 +150,40 @@ app = {
 		app.rebuildDatabase(); // Uses cached data
 
 		/* Location/back-stack stuff */
-		$(window).bind("hashchange", app.hashChange);
+		$(window).hashchange(app.hashChange);
+		$(window).hashchange(function() {
+			_gaq.push(['_trackPageview',location.pathname + location.search  + location.hash]);
+		});
 		$('section.articles').on('click', 'a.disabled', false);
 
 		/* Stats stuff */
 		app.initStats();
 		app.updateStat('loaded', 1);
+	},
+
+	toggleMyTeam: function () {
+		if (app.currentPageType != 'team') {
+			console.log("toggleMyTeam on a non-team page");
+			return;
+		}
+
+		if (app.userConfig.myTeamId == app.currentItemId) {
+			console.log("clearing myTeam");
+			delete app.userConfig.myTeamId;
+		} else {
+			console.log("setting myTeam to", app.currentItemId);
+			app.userConfig.myTeamId = app.currentItemId;
+		}
+		app.setConfig('userConfig', app.userConfig);
+
+		app.updateMyTeam();
+	},
+
+	updateMyTeam: function() {
+		$('article.team span.fav').removeClass("checked");
+		if ('myTeamId' in app.userConfig) {
+			$('article#team'+app.userConfig.myTeamId+' span.fav').addClass("checked");
+		}
 	},
 
 	initStats: function () {
@@ -310,20 +338,23 @@ app = {
 
 	hashChange: function (evt) {
 		app.state.awaitingHashReload = false;
-
 		var target, slide = 0;
+
 		var newHash = window.location.hash || "#main";
+		if (newHash == "#myteam" && 'myTeamId' in app.userConfig) {
+			newHash = "#team/"+app.userConfig.myTeamId;
+		}
 
 		console.log('hash change:', newHash);
 		if (app.lastHash == newHash) { return; }
 
 		var bits = newHash.substring(1).split('/');
+		var type = bits[0];
+		var id = undefined;
 		if (bits.length == 1) {
-			var type = bits[0];
 			target = app.instantiateTemplate(type, null, {});
 		} else if (bits.length == 2) {
-			var type = bits[0];
-			var id = parseInt(bits[1]);
+			id = parseInt(bits[1]);
 			if (type in app.db) {
 				var data = $.Enumerable.From(app.db[type]).Where("$.id == "+id).First();
 				target = app.instantiateTemplate(type, id, data);
@@ -354,6 +385,8 @@ app = {
 		}
 
 		app.lastHash = newHash;
+		app.currentPageType = type;
+		app.currentItemId = id;
 		if (evt) {
 			evt.preventDefault();
 			evt.stopPropagation();
@@ -364,7 +397,7 @@ app = {
 	instantiateTemplate: function (type, id) {
 		var name = type;
 		if (typeof id === "number" || typeof id === "string") {
-			name += "/"+id;
+			name += id;
 		}
 
 		// Check for a cached instance
@@ -399,6 +432,8 @@ app = {
 		ele = $(app.templateCache[type](data))
 			.addClass(type).addClass('generated')
 			.attr('id', name).appendTo($('section.articles'));
+
+		if (type == "team") { app.updateMyTeam(); }
 
 		return ele;
 	},

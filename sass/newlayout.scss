@@ -139,23 +139,9 @@ section.articles > article {
 	bottom: 0;
 	left: 0;
 	width: 100%;
-	overflow: scroll;
-	-webkit-transform: translate3d(0,0,0);// rotate3d(1, 1, 1, 0deg);
-	transform: translate3d(0,0,0);// rotate3d(1, 1, 1, 0deg);
-	//-webkit-transform-style: preserve-3d;
-	//transform-style: preserve-3d;
-
-	/*
-	@if $transition-opacity > 0 {
-		-webkit-transition: left $transition-time ease-out, opacity $transition-time * 0.75 linear;
-		transition: left $transition-time ease-out, opacity $transition-time * 0.75 linear;
-	}
-	@if $transition-opacity == 0 {
-		-webkit-transition: left $transition-time ease-out;
-		transition: left $transition-time ease-out;
-	}
-	*/
-
+	overflow: auto;
+	-webkit-transform: translate3d(0,0,0);
+	transform: translate3d(0,0,0);
 	-webkit-transition: -webkit-transform $transition-time ease-out;
 	transition: transform $transition-time ease-out;
 
@@ -217,6 +203,22 @@ aside.left ul.league {
 			margin-left: 0.6em;
 			font-weight: normal;
 		}
+	}
+}
+
+span.fav {
+	height: 100%;
+	width: auto;
+	position: relative;
+	float: left;
+	text-indent: -9999px;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-image: url(../images/openstar.png);
+
+	&.checked {
+		background-image: url(../images/myteam.png);
 	}
 }
 
