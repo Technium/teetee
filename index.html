@@ -86,6 +86,8 @@
 	</aside>
 
 	<section class="articles">
+		<div class="console">
+		</div>
 		<article class="notfound-basic">
 			<header><h1>Not Found</h1></header>
 			<content><p>Something broke.</p></content>
@@ -105,6 +107,10 @@
 					<p>Montes et turpis amet? Diam! Mid ultrices. Et magnis ridiculus dictumst urna. Ultrices sagittis mus. Natoque ultricies! Odio mus natoque parturient habitasse est elementum, scelerisque turpis egestas, lacus ac sit natoque nisi parturient scelerisque, a phasellus sit diam sagittis, porttitor, amet tincidunt dolor, tristique in in dignissim amet ridiculus.</p>
 				</section>
 				<p>Dolor! Montes dolor penatibus, porttitor! Ultricies sociis! Turpis ut, nunc adipiscing porta eros. Dictumst, enim ut in. Urna. Aliquet, in penatibus lorem integer ac vel? Etiam ut? Sed velit. Pellentesque nisi! Cum egestas egestas! Amet in turpis lacus nec? Vut cursus placerat integer. Lundium! Dictumst amet, pellentesque purus placerat.</p>
+				<p>
+					Update now:
+					<button onclick="app.checkForUpdates()">Update</button>
+				</p>
 			</content>
 			<footer></footer>
 			<aside class="left">
@@ -186,10 +192,10 @@
 					<caption>Team averages</caption>
 					<thead>
 						<tr>
-							<td>Player</td>
-							<td>Pld</td>
-							<td>Won</td>
-							<td>%</td>
+							<td class="pri0">Player</td>
+							<td class="pri1">Pld</td>
+							<td class="pri2">Won</td>
+							<td class="pri0">%</td>
 						</tr>
 					</thead>
 					<tbody>
@@ -206,20 +212,20 @@
 					<caption>Upcoming Fixtures</caption>
 					<thead>
 						<tr>
-							<th></th>
-							<th class="homeTeam">Home</th>
-							<th></th>
-							<th class="awayTeam">Away</th>
+							<th class="pri0"></th>
+							<th class="pri0 homeTeam">Home</th>
+							<th class="pri0"></th>
+							<th class="pri0 awayTeam">Away</th>
 							<th></th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
-							<td class="matchDate">Mon 1st April</td>
-							<td class="homeTeam"><a href="#team/">OLOP A</a></td>
-							<td> v </td>
-							<td class="awayTeam"><a href="#team/">OLOP B</a></td>
-							<td class="notes">*Early start</td>
+							<td class="pri0 matchDate">Mon 1st April</td>
+							<td class="pri0 homeTeam"><a href="#team/">OLOP A</a></td>
+							<td class="pri0"> v </td>
+							<td class="pri0 awayTeam"><a href="#team/">OLOP B</a></td>
+							<td class="pri0 notes">*Early start</td>
 						</tr>
 					</tbody>
 				</table>
@@ -266,20 +272,20 @@
 					<caption>Upcoming Fixtures</caption>
 					<thead>
 						<tr>
-							<th></th>
-							<th class="homeTeam">Home</th>
-							<th></th>
-							<th class="awayTeam">Away</th>
+							<th class="pri0"></th>
+							<th class="pri0 homeTeam">Home</th>
+							<th class="pri0"></th>
+							<th class="pri0 awayTeam">Away</th>
 							<th></th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
-							<td class="matchDate">Mon 1st April</td>
-							<td class="homeTeam"><a href="#team/">OLOP A</a></td>
-							<td> v </td>
-							<td class="awayTeam"><a href="#team/">OLOP B</a></td>
-							<td class="notes">*Early start</td>
+							<td class="pri0 matchDate">Mon 1st April</td>
+							<td class="pri0 homeTeam"><a href="#team/">OLOP A</a></td>
+							<td class="pri0"> v </td>
+							<td class="pri0 awayTeam"><a href="#team/">OLOP B</a></td>
+							<td class="pri0 notes">*Early start</td>
 						</tr>
 					</tbody>
 				</table>
@@ -312,10 +318,10 @@
 							<th class="pri0"/>
 							<th class="pri3">For</th>
 							<th class="pri3">Agst</th>
-							<th class="pri1">Pld</th>
-							<th class="pri2">Won</th>
-							<th class="pri2">Drew</th>
-							<th class="pri2">Lost</th>
+							<th class="pri2">Pld</th>
+							<th class="pri1">Won</th>
+							<th class="pri1">Drew</th>
+							<th class="pri1">Lost</th>
 							<th class="pri0">Pts</th>
 						</tr>
 					</thead>
@@ -337,10 +343,10 @@
 					<caption>Player averages</caption>
 					<thead>
 						<tr>
-							<td>Player</td>
-							<td>Pld</td>
-							<td>Won</td>
-							<td>%</td>
+							<td class="pri0">Player</td>
+							<td class="pri1">Pld</td>
+							<td class="pri2">Won</td>
+							<td class="pri0">%</td>
 						</tr>
 					</thead>
 					<tbody>
@@ -357,20 +363,20 @@
 					<caption>Upcoming Fixtures</caption>
 					<thead>
 						<tr>
-							<th></th>
-							<th class="homeTeam">Home</th>
-							<th></th>
-							<th class="awayTeam">Away</th>
+							<th class="pri0"></th>
+							<th class="pri0 homeTeam">Home</th>
+							<th class="pri0"></th>
+							<th class="pri0 awayTeam">Away</th>
 							<th></th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
-							<td class="matchDate">Mon 1st April</td>
-							<td class="homeTeam"><a href="#team/">OLOP A</a></td>
-							<td> v </td>
-							<td class="awayTeam"><a href="#team/">OLOP B</a></td>
-							<td class="notes">*Early start</td>
+							<td class="pri0 matchDate">Mon 1st April</td>
+							<td class="pri0 homeTeam"><a href="#team/">OLOP A</a></td>
+							<td class="pri0"> v </td>
+							<td class="pri0 awayTeam"><a href="#team/">OLOP B</a></td>
+							<td class="pri0 notes">*Early start</td>
 						</tr>
 					</tbody>
 				</table>

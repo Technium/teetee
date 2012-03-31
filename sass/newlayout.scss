@@ -139,11 +139,11 @@ section.articles > article {
 	bottom: 0;
 	left: 0;
 	width: 100%;
+	overflow: scroll;
 	-webkit-transform: translate3d(0,0,0);// rotate3d(1, 1, 1, 0deg);
 	transform: translate3d(0,0,0);// rotate3d(1, 1, 1, 0deg);
 	//-webkit-transform-style: preserve-3d;
 	//transform-style: preserve-3d;
-	overflow: hidden;
 
 	/*
 	@if $transition-opacity > 0 {
@@ -226,6 +226,9 @@ aside.left ul.league {
 @media screen and (orientation: portrait) and (max-width: 640px) {
 	section.articles > article {
 		width: 100%;
+/*
+		overflow: scroll;
+*/
 	}
 
 	aside.nav {

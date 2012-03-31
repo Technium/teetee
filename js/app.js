@@ -21,7 +21,18 @@ userConfigDefaults = {
 	maxDataAge: 4,
 };
 
-if (!$dev) { console.log = function() {}; }
+if (!('console' in window)) {
+	window.console = { log: function() {} };
+}
+if (!$dev) {
+	console.log = function() {};
+} else if ($dev >= 2) {
+	console.log = function() {
+		var args = $.Enumerable.From(arguments).Select("$.toString()").ToArray();
+		var str = args.join(' ');
+		$('div.console').append('<p>'+str+'</p>');
+	};
+}
 
 tmpl = {
 	nextLink: function (attr, items) {
@@ -608,7 +619,4 @@ app = {
 	},
 }
 
-$(window).bind('hashchange', function() { console.log("HASH CHANGE"); });
-
 $(document).ready(app.start);
-//~ $(window).load(function() { setTimeout(app.start, 100); });
