@@ -17,4 +17,5 @@ Still to be added:
 
 
 Notes:
+
  * pure.js has been extended to accept a generator function for lists. See [my fork](https://github.com/Technium/pure) for details.
