@@ -18,19 +18,17 @@ long_line_behaviour=2
 long_line_column=107
 
 [files]
-current_page=0
-FILE_NAME_0=10584;Javascript;0;16;1;1;0;/home/steve/SparkleShare/sparkle/teetee/app.js;0;4
-FILE_NAME_1=3521;CSS;0;16;1;1;0;/home/steve/SparkleShare/sparkle/teetee/sass/newlayout.scss;0;4
-FILE_NAME_2=32236;HTML;0;16;1;1;0;/home/steve/SparkleShare/sparkle/grabber/averages.html;0;4
-FILE_NAME_3=269;Python;0;16;1;1;0;/home/steve/SparkleShare/sparkle/grabber/grabber.py;0;4
-FILE_NAME_4=10;Javascript;0;16;1;1;0;/home/steve/SparkleShare/sparkle/teetee/data.in/league.js;0;4
-FILE_NAME_5=2203;Javascript;0;16;1;1;0;/home/steve/SparkleShare/sparkle/teetee/data.in/results.js;0;4
-FILE_NAME_6=187;Javascript;0;16;1;1;0;/home/steve/SparkleShare/sparkle/teetee/data.in/averages.js;0;4
-FILE_NAME_7=9;Javascript;0;16;1;1;0;/home/steve/SparkleShare/sparkle/teetee/data.in/players.js;0;4
-FILE_NAME_8=560;Make;0;16;1;1;0;/home/steve/SparkleShare/sparkle/teetee/Makefile;0;4
-FILE_NAME_9=709;HTML;0;16;1;1;0;/home/steve/SparkleShare/sparkle/teetee/index.html;0;4
-FILE_NAME_10=630;HTML;0;16;1;1;0;/home/steve/SparkleShare/sparkle/teetee/hash.html;0;4
-FILE_NAME_11=11617;Javascript;0;16;1;1;0;/home/steve/SparkleShare/sparkle/teetee/pure.js;0;4
+current_page=9
+FILE_NAME_0=3521;CSS;0;16;1;1;0;/home/steve/SparkleShare/sparkle/teetee/sass/newlayout.scss;0;4
+FILE_NAME_1=32236;HTML;0;16;1;1;0;/home/steve/SparkleShare/sparkle/grabber/averages.html;0;4
+FILE_NAME_2=269;Python;0;16;1;1;0;/home/steve/SparkleShare/sparkle/grabber/grabber.py;0;4
+FILE_NAME_3=10;Javascript;0;16;1;1;0;/home/steve/SparkleShare/sparkle/teetee/data.in/league.js;0;4
+FILE_NAME_4=2203;Javascript;0;16;1;1;0;/home/steve/SparkleShare/sparkle/teetee/data.in/results.js;0;4
+FILE_NAME_5=187;Javascript;0;16;1;1;0;/home/steve/SparkleShare/sparkle/teetee/data.in/averages.js;0;4
+FILE_NAME_6=9;Javascript;0;16;1;1;0;/home/steve/SparkleShare/sparkle/teetee/data.in/players.js;0;4
+FILE_NAME_7=632;Make;0;16;1;1;0;/home/steve/SparkleShare/sparkle/teetee/Makefile;0;4
+FILE_NAME_8=4696;HTML;0;16;1;1;0;/home/steve/SparkleShare/sparkle/teetee/index.html;0;4
+FILE_NAME_9=2741;Javascript;0;16;1;1;0;/home/steve/SparkleShare/sparkle/teetee/js/app.js;0;4
 
 [VTE]
 last_dir=/home/steve/Downloads/sw/pynids-0.6.1
