@@ -126,6 +126,7 @@ app = {
 		//~ app.start = new Date;
 		app.random = Kybos();
 		app.templateCache = {};
+		app.lastHash = null;
 		app.dbParts = app.getConfig('dbParts', {});
 		app.stats = app.getConfig('stats', {});
 		app.userConfig = app.getConfig('userConfig', {});
@@ -451,6 +452,12 @@ app = {
 					'a': 'division.name',
 				},
 			},
+			'content ul.league > li': {
+				'division<-db.division': {
+					'a@href+': 'division.id',
+					'a': 'division.name',
+				},
+			},
 		},
 
 		clubs: {
@@ -601,6 +608,7 @@ app = {
 	},
 }
 
+$(window).bind('hashchange', function() { console.log("HASH CHANGE"); });
 
 $(document).ready(app.start);
 //~ $(window).load(function() { setTimeout(app.start, 100); });
