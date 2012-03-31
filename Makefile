@@ -27,7 +27,7 @@ clean:
 	@rm -f data/*.json
 
 upload: prod data
-	@scp -rp index.html js images stylesheets data t220@t220.com:public_html/tt
+	@scp -rp index.html js images stylesheets data tt:public_html/tt
 
 data: data/results.json data/league.json data/averages.json data/players.json data/fixtures.json
 
