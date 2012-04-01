@@ -90,7 +90,7 @@ section.articles > article {
 
 	aside.left {
 		display: none;
-		padding: 0.5em 0.4em;
+		padding: 0.5em 0.2em;
 	}
 
 	> header {
@@ -160,7 +160,7 @@ section.articles > article {
 }
 
 table.magic {
-	margin: 0.6em auto;
+	margin: 1.5em auto;
 	border: 1px grey solid;
 
 	tr > td:first-child {
@@ -478,11 +478,15 @@ span.fav {
 /* Full mode - big nav bar on the left */
 @media screen and (min-width: 641px) and (min-height: 641px) {
 
+	body {
+		font-size: 105%;
+	}
+
 	section.articles > article {
 		padding-left: $bigLeftWidth + $gutter;
 
 		aside.left {
-			position: absolute;
+			position: fixed;
 			display: block;
 
 			margin-left: -($bigLeftWidth + $gutter);
