@@ -20,14 +20,14 @@ static:
 	@rm -rf capture
 	@bash -c 'httrack http://localhost/teetee/index.html \
 	    http://localhost/teetee/data/{averages,league,players,results,fixtures}.json \
-	    --cache=0 -A9999999 -n -o0 -c100 -%c100 -r10 -O capture --index=0 -s0 -a --include-query-string'
+	    --cache=0 -A9999999 -n -o0 -c100 -%c100 -r10 -O capture --index=0 -s0 -a --include-query-string -%P'
 
 clean:
 	@rm -f stylesheets/*.css
 	@rm -f data/*.json
 
 upload: prod data
-	@scp -rp index.html js images stylesheets data tt:public_html/tt
+	@rsync -rtv --del index.html js images stylesheets data tt:public_html/tt
 
 data: data/results.json data/league.json data/averages.json data/players.json data/fixtures.json
 
