@@ -1,4 +1,5 @@
 {
+	_version: 1,
 	team: [
 		{ id: 1,  divisionId: 1, order: 1, name: 'Kingfisher A',			clubId: 2, homeNight: 'Thursday' },
 		{ id: 2,  divisionId: 1, order: 2, name: 'Kingfisher B',			clubId: 2, homeNight: 'Thursday' },

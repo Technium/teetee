@@ -1,20 +1,26 @@
 
-.PHONY: dev prod clean upload data static
+.PHONY: all css watch dev prod clean upload data static json
 
-DEFAULT: dev
+DATA_IN := $(shell find data -name '*.js')
+DATA_OUT := $(DATA_IN:.js=.json)
 
-DATA_FILES = $(shell find data.in -name '*.js')
+all: data css
+
+css: stylesheets/newlayout.css
+
+stylesheets/newlayout.css: sass/newlayout.scss
+	@compass compile -e production
 
 watch: dev data
 	@compass watch
 
-dev: data
+dev:
+	@echo Switching to development mode
 	@echo "\$$dev: 1;" > sass/_env.scss
-	@compass compile -e development
 
-prod: data
+prod:
+	@echo Switching to production mode
 	@echo "\$$dev: 0;" > sass/_env.scss
-	@compass compile -e production
 
 static:
 	@rm -rf capture
@@ -23,16 +29,23 @@ static:
 	    --cache=0 -A9999999 -n -o0 -c100 -%c100 -r10 -O capture --index=0 -s0 -a --include-query-string -%P'
 
 clean:
-	@rm -f stylesheets/*.css
+	@echo Cleaning output...
+	@rm -f updates.json
 	@rm -f data/*.json
+	@rm -f stylesheets/*.css
 
-upload: prod data
-	@rsync -rtv --del index.html js images stylesheets data tt:public_html/tt
+upload: prod clean data css
+	@echo Syncing...
+	@rsync -rt --del index.html js/ images/ stylesheets/ $(DATA_OUT) updates.json .htaccess tt:public_html/tt
 
-data: data/results.json data/league.json data/averages.json data/players.json data/fixtures.json
+data: json updates.json
 
-data/%.json: data.in/%.js
+json: $(DATA_OUT)
+
+updates.json: $(DATA_OUT)
+	@echo Creating index...
+	@python utils/update-index.py $(DATA_OUT) > $@
+
+%.json: %.js
 	@echo Stringifying $<
-	@mkdir -p data
 	@node -e 'fs=require("fs");fs.writeFileSync("$@", JSON.stringify(eval("d="+fs.readFileSync("$<", "utf8"))));' >/dev/null
-	@touch -t $$(python -c "from time import *;print strftime('%Y%m%d%H%M.%S',localtime($$(git log -1 --format=%at $<)))") $@

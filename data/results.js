@@ -1,4 +1,5 @@
 {
+	_version: 1,
     table: [
         {
 			id: 0,

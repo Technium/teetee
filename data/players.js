@@ -1,4 +1,5 @@
 {
+	_version: 1,
 	player: [
 		{
 			"id": 1,

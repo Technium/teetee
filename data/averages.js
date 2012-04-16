@@ -1,4 +1,5 @@
 {
+	_version: 0,
 	averages: [
 		{
 			divisionId: 1,

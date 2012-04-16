@@ -3,4 +3,5 @@ data/
 stylesheets/
 capture
 sass/_env.scss
-TeeTee.geany
+*.geany
+updates.json
