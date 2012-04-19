@@ -99,4 +99,4 @@ function Mash() {
 
   mash.version = 'Mash 0.9';
   return mash;
-}
+};

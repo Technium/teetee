@@ -1,12 +1,21 @@
 
-.PHONY: all css watch dev prod clean upload data static json
+.PHONY: all css js watch dev prod clean upload data static json
 
 DATA_IN := $(shell find data -name '*.js')
 DATA_OUT := $(DATA_IN:.js=.json)
 
-all: data css
+JS_IN := js/modernizr.js js/date-en-GB.js js/Kybos.js \
+	js/jquery-1.7.1.min.js js/jquery.linq.min.js js/jquery.ba-hashchange.min.js \
+	js/pure.js js/app.js
+#$(shell find js -name '*.js')
+JS_OUT := $(JS_IN:js/%.js=js-min/%.js)
+
+all: data css js
 
 css: stylesheets/newlayout.css
+
+js: teetee.js
+
 
 stylesheets/newlayout.css: sass/newlayout.scss
 	@compass compile -e production
@@ -30,20 +39,29 @@ static:
 
 clean:
 	@echo Cleaning output...
-	@rm -f updates.json
-	@rm -f data/*.json
+	@rm -rf js-min teetee.js
+	@rm -f data/*.json updates.json
 	@rm -f stylesheets/*.css
 
-upload: prod clean data css
+upload: prod clean all
 	@echo Syncing...
-	@rsync -rt --del index.html js/ images/ stylesheets/ $(DATA_OUT) updates.json .htaccess tt:public_html/tt
+	@rsync -rt --del --exclude 'data/*.js' index.html updates.json teetee.js .htaccess js images stylesheets data tt:public_html/tt
+
+teetee.js: $(JS_OUT)
+	@echo Merging into $@...
+	@cat $(JS_OUT) > $@
+
+js-min/%.js: js/%.js
+	@mkdir -p js-min
+	@echo Compressing $<...
+	@java -jar utils/yuicompressor-2.4.7.jar --nomunge --preserve-semi --disable-optimizations $< -o $@
 
 data: json updates.json
 
 json: $(DATA_OUT)
 
-updates.json: $(DATA_OUT)
-	@echo Creating index...
+updates.json: $(DATA_OUT) utils/update-index.py
+	@echo Creating data index...
 	@python utils/update-index.py $(DATA_OUT) > $@
 
 %.json: %.js

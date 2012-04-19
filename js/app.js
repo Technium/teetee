@@ -76,7 +76,7 @@ tmpl = {
 		};
 	},
 
-	if: function($test, $value, $elseValue) {
+	test: function($test, $value, $elseValue) {
 		return function (ctx) {
 			with (ctx) {
 				return eval($test) ? $value : $elseValue;
@@ -134,7 +134,6 @@ app = {
 	},
 
 	start: function () {
-		//~ app.start = new Date;
 		app.random = Kybos();
 		app.templateCache = {};
 		app.lastHash = null;
@@ -144,21 +143,26 @@ app = {
 		app.updateTimes = app.getConfig('updateTimes', {});
 		app.lastGoodUpdate = app.getConfig('lastGoodUpdate', null);
 
-		/* Update stuff */
-		app.checkIfUpdatesRequired();
-		app.displayUpdateDate();
-		app.rebuildDatabase(); // Uses cached data
-
-		/* Location/back-stack stuff */
-		$(window).hashchange(app.hashChange);
-		$(window).hashchange(function() {
-			_gaq.push(['_trackPageview',location.pathname + location.search  + location.hash]);
-		});
-		$('section.articles').on('click', 'a.disabled', false);
-
 		/* Stats stuff */
 		app.initStats();
 		app.updateStat('loaded', 1);
+
+		/* Initiate data update if necessary */
+		app.checkIfUpdatesRequired();
+		app.displayUpdateDate();
+
+		/* Gather database from whatever data we currently have cached */
+		app.rebuildDatabase();
+
+		/* Location/back-stack stuff */
+		$('section.articles').on('click', 'a.disabled', false);
+		$(window).hashchange(app.hashChange);
+		/*
+		// Google Analytics support for hash navigation
+		$(window).hashchange(function() {
+			_gaq.push(['_trackPageview', location.pathname + location.search + location.hash]);
+		});
+		*/
 	},
 
 	toggleMyTeam: function () {
@@ -193,36 +197,68 @@ app = {
 	},
 
 	checkIfUpdatesRequired: function () {
+		/*
 		var when = new Date(app.lastGoodUpdate || 0);
 		var maxAge = app.userConfig.maxDataAge || userConfigDefaults.maxDataAge;
 
 		if (when < new Date().add(-app.maxDataAge).day()) {
 			console.log("update required, triggering check");
 			app.updateRequired = true;
-			setTimeout(app.checkForUpdates, 25);
+			app.updateStat('automaticUpdateCheck', 1);
 		} else {
 			console.log("update not required");
 			app.updateRequired = false;
 		}
+		*/
+		app.updateRequired = true;
+
+		if (app.updateRequired) {
+			setTimeout(app.checkForUpdates, 25);
+		}
+	},
+
+	forceCheckForUpdates: function () {
+		app.checkForUpdates();
 	},
 
 	checkForUpdates: function () {
-		app.updateStat('updateWanted', 1);
 		if (navigator.onLine === false) {
 			app.updateStat('updateFailOffline', 1);
 			markUpdateState('offline');
 			return;
 		}
 
-		// fetch!
+		// fetch index file
 		app.markUpdateState('checking');
-		app.fetches = {pending: 1, fail: false, changes: 0};
-		setTimeout(function () {
-			app.fetches = {pending: app.DATA_FILES.length, fail: false};
-			for (i=0; i<app.DATA_FILES.length; i++) {
-				app.fetchData(app.DATA_FILES[i]);
-			}
-		}, $dev ? 1000 : 0);
+		setTimeout(app.fetchDataIndex, $dev ? 1000 : 10);
+	},
+
+	fetchDataIndex: function (force) {
+		console.log("fetching index");
+		var lastFetchTime = new Date(app.indexUpdateTime || 0);
+		if (force) lastFetchTime = 0;
+		var url = 'updates.json';
+		var req = $.ajax(url, {
+			headers: { 'If-Modified-Since': lastFetchTime.toGMTString() },
+			dataType: 'json',
+			ifModified: true,
+		});
+		req.success(function (data, status) { app.dataIndexFetched(data, req, status); });
+		req.error(function (obj, err, msg) { app.dataFetchFailed(); })
+	},
+
+	fetchData: function (name, force) {
+		console.log("fetching",name);
+		var lastFetchTime = new Date(app.updateTimes[name] || 0);
+		if (force) lastFetchTime = 0;
+		var url = 'data/'+name+'.json';
+		var req = $.ajax(url, {
+			headers: { 'If-Modified-Since': lastFetchTime.toGMTString() },
+			dataType: 'json',
+			ifModified: true,
+		});
+		req.success(function (data, status) { app.dataFetched(name, data, req, status); });
+		req.error(function (obj, err, msg) { app.dataFetchFailed(name); })
 	},
 
 	updateFinished: function () {
@@ -246,7 +282,7 @@ app = {
 	},
 
 	rebuildDatabase: function () {
-		console.log("rebuild");
+		//~ console.log("rebuild");
 		app.db = {};
 		for (name in app.dbParts) {
 			$.extend(app.db, app.dbParts[name]);
@@ -282,27 +318,11 @@ app = {
 
 		dateField.removeClass('good bad');
 		dateField.addClass(app.updateRequired ? 'bad' : 'good');
-
-		//~ if ($dev) app.updateRequired = true;
 	},
 
 	markUpdateState: function (state) {
 		//~ console.log("update state = "+state, (new Date).getTime() - app.start);
 		$('.update .notice').attr('class', 'notice '+state);
-	},
-
-	fetchData: function (name, force) {
-		console.log("fetching",name);
-		var lastFetchTime = new Date(app.updateTimes[name] || 0);
-		if (force) lastFetchTime = 0;
-		var url = 'data/'+name+'.json';
-		var req = $.ajax(url, {
-			headers: { 'If-Modified-Since': lastFetchTime.toGMTString() },
-			dataType: 'json',
-			ifModified: true,
-		});
-		req.success(function (data, status) { app.dataFetched(name, data, req, status); });
-		req.error(function (obj, err, msg) { app.dataFetchFailed(name); })
 	},
 
 	dataFetchFailed: function (name) {
@@ -313,6 +333,39 @@ app = {
 		if (app.fetches.pending == 0) { app.updateFinished(); }
 	},
 
+	dataIndexFetched: function (data, req, status) {
+		if (status == "notmodified") {
+			console.log("fetch notmodified for data index");
+		} else {
+			console.log("fetch done for data index");
+
+			// insert return data into the database
+			app.dbParts['index'] = data;
+			app.setConfig('dbParts', app.dbParts);
+
+			app.updateStat('indexUpdated', 1);
+
+			// initiate a check of data versions, causing updates where necessary
+			setTimeout(app.checkDataVersions, 10);
+		}
+	},
+
+	checkDataVersions: function () {
+		// Check data versions and fire off updates for any that are outdated
+		app.fetches = {pending: 0, fail: false};
+		for (i=0; i<app.DATA_FILES.length; i++) {
+			var name = app.DATA_FILES[i];
+			var indexVersion = app.dbParts['index']['index'][name];
+			var currentVersion = (app.dbParts[name] || {})['_version'];
+			console.log(name,indexVersion,currentVersion);
+			if (indexVersion !== currentVersion) {
+				app.fetches.pending += 1;
+				app.fetchData(name);
+			}
+		}
+		if (!app.fetches.pending) { console.log("no updates needed"); }
+	},
+
 	dataFetched: function (name, data, req, status) {
 		if (status == "notmodified") {
 			console.log("fetch notmodified for ",name);
@@ -321,8 +374,8 @@ app = {
 
 			// insert return data into database
 			app.dbParts[name] = data;
-			//~ $.extend(app.db, data);
 			app.setConfig('dbParts', app.dbParts);
+			app.updateStat('dataFetched', 1);
 
 			app.fetches.changes = true;
 
@@ -373,13 +426,14 @@ app = {
 			if (!target) { target = $('.articles .notfound-basic'); }
 		}
 
+		/*
 		if (slide != 0 &&
 			Modernizr.csstransitions &&
 			navigator.userAgent.search("Windows Phone OS 7")==-1) {
 				app.switchItems(visibles, target,
 					(slide > 0)? 'offRight' : 'offLeft',
 					(slide > 0)? 'offLeft' : 'offRight', transitionDuration);
-		} else {
+		} else */ {
 			visibles.fadeOut('fast');
 			target.fadeIn('fast');
 		}
@@ -405,15 +459,15 @@ app = {
 		if (ele.length) { return ele; }
 
 		// Prepare the data
-		var data = { db: app.db };
+		var ctx = { db: app.db };
 		if (typeof id != "undefined") {
 			var store = app.db[type];
 			if (store) {
-				data[type] = $.Enumerable.From(store).Where("$.id == "+id).First();
-				data.obj = data[type];
-				data.obj_type = type;
+				ctx[type] = $.Enumerable.From(store).Where("$.id == "+id).First();
+				ctx.obj = ctx[type];
+				ctx.obj_type = type;
 			}
-			if (!data[type]) { console.log("item '"+name+"' not found for instantiation"); }
+			//if (!ctx[type]) { console.log("item '"+name+"' not found for instantiation"); }
 		}
 
 		// Compile the template
@@ -429,7 +483,7 @@ app = {
 
 		// Instantiate it for this data
 		console.log("instantiating:",name);
-		ele = $(app.templateCache[type](data))
+		ele = $(app.templateCache[type](ctx))
 			.addClass(type).addClass('generated')
 			.attr('id', name).appendTo($('section.articles'));
 
@@ -567,7 +621,7 @@ app = {
 				'division<-db.division': {
 					'aside ul.league > li > a@href+': 'division.id',
 					'aside ul.league > li > a': 'division.name',
-					'aside ul.teams@style': tmpl.if("context.division.id != item.id", "display:none"),
+					'aside ul.teams@style': tmpl.test("context.division.id != item.id", "display:none"),
 					'aside ul.teams > li': {
 						generator: tmpl.items('team', 'item.id', { key:'divisionId', sort:'order' }),
 						'team<-generator': {
@@ -640,7 +694,7 @@ app = {
 				'division<-db.division': {
 					'aside ul.league > li > a@href+': 'division.id',
 					'aside ul.league > li > a': 'division.name',
-					'aside ul.teams@style': tmpl.if("context.team.divisionId != item.id", "display:none"),
+					'aside ul.teams@style': tmpl.test("context.team.divisionId != item.id", "display:none"),
 					'aside ul.teams > li': {
 						generator: tmpl.items('team', 'item.id', { key:'divisionId', sort:'order' }),
 						'team<-generator': {

@@ -76,7 +76,7 @@ $p.core = function(sel, ctxt, plugins){
 	function error(e){
 		if(typeof console !== 'undefined'){
 			console.log(e);
-			debugger;
+			//debugger;
 		}
 		throw('pure error: ' + e);
 	}
