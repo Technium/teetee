@@ -54,7 +54,9 @@ teetee.js: $(JS_OUT)
 js-min/%.js: js/%.js
 	@mkdir -p js-min
 	@echo Compressing $<...
-	@java -jar utils/yuicompressor-2.4.7.jar --nomunge --preserve-semi --disable-optimizations $< -o $@
+	@uglifyjs -nc --unsafe --lift-vars $< > $@
+
+#	@java -jar utils/yuicompressor-2.4.7.jar --nomunge --preserve-semi --disable-optimizations $< -o $@
 
 data: json updates.json
 
