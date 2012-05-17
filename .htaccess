@@ -2,19 +2,24 @@
 ExpiresActive On
 ExpiresDefault A259200
 
+
+#Header append X-Steve "htaccess"
+
 <IfModule mod_expires.c>
-	Header set X-Expires "yes"
+	#Header append X-Steve "expries"
 
 	# Set up caching for 6 month on media and application core files
-	<filesMatch "\.(ico|gif|jpg|jpeg|png|flv|pdf|swf|mov|mp3|wmv|ppt|js|css|xml|txt)$">
+	<filesMatch "\.(ico|gif|jpg|jpeg|png|flv|pdf|swf|mov|mp3|wmv|ppt|css|xml|txt)$">
 		ExpiresDefault A31536000
 		Header append Cache-Control "public"
+		#Header append X-Steve "image"
 	</filesMatch>
 
 	# Set up caching for 1 week on main site html
-	<filesMatch "\.(html)$">
+	<filesMatch "\.(html|js)$">
 		ExpiresDefault A604800
 		Header append Cache-Control "public"
+		#Header append X-Steve "htmljs"
 	#, must-revalidate
 	</filesMatch>
 
@@ -23,11 +28,12 @@ ExpiresDefault A259200
 		ExpiresDefault A0
 		Header set Cache-Control "no-store, no-cache, must-revalidate, max-age=0"
 		Header set Pragma "no-cache"
+		#Header append X-Steve "nocache"
 	</filesMatch>
 </IfModule>
 
 <ifModule mod_gzip.c>
-	Header set X-gzip "yes"
+	#Header append X-Steve "gzip"
 	mod_gzip_on Yes
 	mod_gzip_dechunk Yes
 	mod_gzip_item_include file \.(html?|txt|css|js|php|pl|xml)$
@@ -39,7 +45,8 @@ ExpiresDefault A259200
 </ifModule>
 
 <IfModule mod_deflate.c>
-	Header set X-deflate "yes"
+	#Header append X-Steve "deflate"
+
 	# these are known to be safe with MSIE 6
 	AddOutputFilterByType DEFLATE text/html text/plain text/xml
 
